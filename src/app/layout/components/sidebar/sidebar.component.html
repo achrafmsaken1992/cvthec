@@ -1,0 +1,216 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.2.2/web-animations.min.js"></script>
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}"
+
+
+>
+<!--[@slideInOut]="menuState" (mouseleave)="toggleMenu()"  (mouseenter)="toggleMenu()"-->
+
+
+
+
+
+    <div class="list-group">
+
+        <img class="rounded-circle" style=" margin-top: -5px;" style="
+
+    vertical-align: middle; background-color: #cccccc;border-right: #2b2b3d" alt="Logo" src="http://www.uc.rnu.tn/static/actualites/maxresdefault.jpg" style="max-height:150px;background-color: white" class="pull-left">
+
+        <!--p style="margin-bottom: 5px" align="center"> <b style="font-weight: bold;
+    color: #2e6da4;font-size:22px">Societé</b>  <b style="font-weight: bold;
+    color: #ec1c23;font-size:22px">{{profile.companyName}}</b></p-->
+        <!--div *ngIf="isEtudiant" class="nested-menu">
+
+
+
+
+
+            <a class="list-group-item" (click)="addExpandClass('pages')">
+                <span><i class="fa fa-plus"></i>&nbsp; {{ 'candidats'  }}</span>
+            </a>
+
+            <li class="nested" [class.expand]="showMenu === 'pages'">
+                <ul class="submenu">
+                    <li>
+                        <a href="javascript:void(0)" [routerLink]="['/add-candidat']" [routerLinkActive]="['router-link-active']"  ><span>{{ 'Ajouter un candidat' }}</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" [routerLink]="['/display-candidat']" [routerLinkActive]="['router-link-active']"  ><span>{{ 'Afficher candidats'  }}</span></a>
+                    </li>
+
+                </ul>
+            </li>
+        </div-->
+        <!--div *ngIf="isEtudiant" class="nested-menu">
+
+
+
+
+
+            <a class="list-group-item" (click)="addExpandClass('collaborator')">
+                <span><i class="fa fa-plus"></i>&nbsp; {{ 'collaborateurs'  }}</span>
+            </a>
+
+            <li class="nested" [class.expand]="showMenu === 'collaborator'" style="margin-right: 1px">
+                <ul class="submenu">
+                    <li>
+                        <a href="javascript:void(0)" [routerLink]="['/add-collaborateur']" [routerLinkActive]="['router-link-active']"  ><span>{{ 'Ajouter un collaborateur' }}</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" [routerLink]="['/display-collaborateur']" [routerLinkActive]="['router-link-active']"  ><span>{{ 'Afficher collaborateurs'  }}</span></a>
+                    </li>
+
+                </ul>
+            </li>
+        </div-->
+        <a *ngIf="isEtudiant" routerLink="/profileEtudiant" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                  <i class="fa fa-user"></i> {{ 'Compte'  }}
+              </a>
+        <a *ngIf="isEtudiant" routerLink="/detailscandidat" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-user"></i> {{ 'Profile'  }}
+        </a>
+        <a *ngIf="isEtudiant" routerLink="/messagerie-etudiant/ " [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-comments"></i> {{ 'Messagerie'  }}
+        </a>
+        <a *ngIf="isAdmin" routerLink="/managementManager" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-user-plus"></i> {{ 'Demandes'  }}
+        </a>
+        <a *ngIf="isAdmin" routerLink="/managementEtudiant" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-graduation-cap"></i> {{ 'Etudiants'  }}
+        </a>
+        <a *ngIf="isManager" routerLink="/profileManager" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-briefcase"></i> {{ 'Compte'  }}
+        </a>
+        <a *ngIf="isManager" routerLink="/management-offers" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-briefcase"></i> {{ 'Offres'  }}
+        </a>
+
+
+
+
+        <!--div *ngIf="isManager" class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('pages')">
+                <span><i class="fa fa-plus"></i>&nbsp; {{ 'Gestion Rhs'  }}</span>
+            </a>
+
+            <li class="nested" [class.expand]="showMenu === 'pages'">
+                <ul class="submenu">
+                    <li>
+                        <a href="javascript:void(0)" [routerLink]="['/addUrh']" [routerLinkActive]="['router-link-active']"  ><span>{{ 'Ajouter un Rh'  }}</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" [routerLink]="['/displayUrh']" [routerLinkActive]="['router-link-active']"  ><span>{{ 'Afficher Rhs' }}</span></a>
+                    </li>
+
+
+                </ul>
+            </li>
+        </div-->
+
+              <!--a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                  <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' | translate }}
+              </a>
+              <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                  <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'Charts' | translate }}
+              </a>
+              <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                  <i class="fa fa-fw fa-table"></i>&nbsp;{{ 'Tables' | translate }}
+              </a>
+              <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                  <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Forms' | translate }}
+              </a>
+              <a [routerLink]="['/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                  <i class="fa fa-fw fa-desktop"></i>&nbsp;{{ 'Bootstrap Element' | translate }}
+              </a>
+              <a [routerLink]="['/grid']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                  <i class="fa fa-fw fa-wrench"></i>&nbsp;{{ 'Bootstrap Grid' | translate }}
+              </a>
+              <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                  <i class="fa fa-th-list"></i>&nbsp;{{ 'Component' | translate }}
+              </a>
+
+              <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                  <i class="fa fa-file-o"></i>&nbsp;{{ 'Blank Page' | translate }}
+              </a>
+              <a class="list-group-item more-themes" href="http://www.strapui.com/" >
+                  {{ 'More Theme' | translate }}
+              </a-->
+        <div class="header-fields">
+            <!--a (click)="rltAndLtr()" class="list-group-item">
+                <span><i class="fa fa-arrows-h"></i>&nbsp; RTL/LTR</span>
+            </a-->
+            <!--div class="nested-menu">
+                <!--a class="list-group-item" (click)="addExpandClass('languages')">
+                    <span><i class="fa fa-language"></i>&nbsp; {{ 'Language' | translate }} <b class="caret"></b></span>
+                </a-->
+                <!--li class="nested" [class.expand]="showMenu === 'languages'">
+                    <ul class="submenu">
+                        <li>
+                            <a href="javascript:void(0)" (click)="changeLang('en')">
+                                {{ 'English' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" (click)="changeLang('fr')">
+                                {{ 'French' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" (click)="changeLang('ur')">
+                                {{ 'Urdu' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" (click)="changeLang('es')">
+                                {{ 'Spanish' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" (click)="changeLang('it')">
+                                {{ 'Italian' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" (click)="changeLang('fa')">
+                                {{ 'Farsi' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" (click)="changeLang('de')">
+                                {{ 'German' | translate }}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div-->
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandClass('profile')">
+                    <span><i class="fa fa-user"></i>&nbsp; John Smith</span>
+                </a>
+                <li class="nested" [class.expand]="showMenu === 'profile'">
+                    <ul class="submenu">
+                        <!--li>
+                            <a href="javascript:void(0)">
+                                <span><i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}</span>
+                            </a>
+                        </li>
+                        <!--li>
+                            <a href="javascript:void(0)">
+                                <span><i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' | translate }}</span>
+                            </a>
+                        </li-->
+                        <!--li>
+                            <a href="javascript:void(0)">
+                                <span><i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}</span>
+                            </a>
+                        </li-->
+                        <li>
+                            <a [routerLink]="['/login']" (click)="onLoggedout()">
+                                <span><i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,55 @@
+<div class="card " [@routerTransition] style="width:90%;margin-left:5% ">
+
+    <div class="card-header section-title" style="font-size: 2rem">Liste des employés  <b>Resource Humaines</b>
+
+        <!--button class="btn btn-primary btn-lg btn3d">
+            <i class="material-icons">&#xE148;</i> Ajouter</button-->
+
+
+    </div>
+
+    <div class="card-body">
+
+<section id="team" class="pb-5"  >
+
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Team member -->
+      <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let rh of rhs">
+        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+          <div class="mainflip">
+            <div class="frontside">
+              <div class="card">
+                <div class="card-body text-center">
+                  <p *ngIf="rh.photo==null"><img class=" img-fluid" src="http://www.progressrh.com/wp-content/uploads/2016/02/RH_only_2inch.jpg" alt="card image"></p>
+                    <p *ngIf="rh.photo!=null"><img class=" img-fluid" src="{{getPhotoProfil(rh.photo,rh.id,rh.companyName)}}" alt="card image"></p>
+                    <h4 class="card-title">{{rh.firstName}}  {{rh.lastName}}</h4>
+                  <!--p class="card-text">travaille en tant que Rh chez {{rh.companyName}}</p-->
+                  <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="backside">
+              <div class="card">
+                <div class="card-body text-center mt-4">
+                  <h4 class="card-title"><i class="fa fa-user-circle" aria-hidden="true"></i>{{rh.firstName}}  {{rh.lastName}}</h4>
+                  <p class="card-text" align="center" style="font-size: 18px">@ {{rh.email}}<br>
+                    <i class="fa fa-phone" aria-hidden="true"></i> {{rh.phoneUser}}</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ./Team member -->
+
+
+
+    </div>
+  </div>
+</section>
+    </div>
+</div>

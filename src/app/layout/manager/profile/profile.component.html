@@ -1,0 +1,47 @@
+<div class="container"  [@routerTransition] style=" overflow: auto; ">
+
+  <div class="row">
+    <div class="offset-lg-3 col-lg-6 col-sm-6 col-12 main-section text-center" >
+      <div class="row">
+        <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
+      </div>
+      <div class="row user-detail">
+        <div class="col-lg-12 col-sm-12 col-12">
+
+          <br>
+
+
+
+          <div class="upload-btn-wrapper">
+            <img src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png" *ngIf="profile.image==null">
+            <img *ngIf="profile.image!=null" src="{{getPhotoProfil()}}" class="rounded-circle img-thumbnail image">
+
+            <div class="middle">
+              <div class="text"></div>
+            </div>
+            <input (change)="selectFile($event);updatePhoto()"  data-toggle="tooltip" title="Changer image profile"  type="file" name="photo" #photo="ngModel" ngModel='' accept="image/x-png,image/gif,image/jpeg" />
+          </div>
+          <br>
+
+
+
+          <h5><i class="fa fa-user" aria-hidden="true"></i> {{this.profile.prenom}}  {{this.profile.nom}}</h5>
+          <p>@ {{this.profile.email}}</p>
+          <p><i class="fa fa-phone" aria-hidden="true"></i> {{this.profile.tel}}</p>
+
+
+          <hr>
+          <!--a href="#" class="btn btn-success btn-sm">changer parametre du compte</a-->
+
+
+          <!--en tant que gestionnaire des resources humaines (Rh)-->
+          <hr>
+          <!--span>travaille  chez {{this.profile.companyName}}.</span-->
+        </div>
+      </div>
+      <div class="row user-social-detail">
+
+      </div>
+    </div>
+  </div>
+</div>

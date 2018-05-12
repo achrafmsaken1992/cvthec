@@ -1,0 +1,60 @@
+<button  class="btn btn-primary btn-cercle" data-toggle="modal" data-target="#myModal"><i class="material-icons " data-toggle="tooltip" title="Ajouter nouveau experience">&#xE147;</i></button>
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Ajout nouveau experience</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body ">
+
+        <form class="example-form" novalidate #fo="ngForm" (ngSubmit)="saveExperience(fo)">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Nom de la societé" #entreprise="ngModel" ngModel='' name="entreprise"
+                    required minlength="3">
+
+            <mat-hint *ngIf=" entreprise.errors?.required && entreprise.touched" style="color:black">Nom de la societé <b>obligaoire</b></mat-hint>
+            <mat-hint *ngIf=" entreprise.errors?.minlength && entreprise.touched " style="color:black">Minimum de caractere 3</mat-hint> </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Description" #description="ngModel" ngModel='' name="description"
+                   required >
+
+            <mat-hint *ngIf=" description.errors?.required && description.touched" style="color:black">Description <b>obligaoire</b></mat-hint>
+      </mat-form-field> <mat-form-field class="example-full-width">
+          <input matInput placeholder="lieu" #location="ngModel" ngModel='' name="lieu"
+                 required minlength="3" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)">
+
+          <mat-hint *ngIf=" location.errors?.required && location.touched" style="color:black">lieu <b>obligaoire</b></mat-hint>
+          <mat-hint *ngIf=" location.errors?.minlength && location.touched " style="color:black">Minimum de caractere 3</mat-hint> </mat-form-field>
+       <mat-form-field>
+            <input matInput  [matDatepicker]="picker" placeholder="Choisir date debut" #date1="ngModel"  name="date1" ngModel='' (change)="date=0" >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker ></mat-datepicker>
+        </mat-form-field>
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker2" placeholder="Choisir date fin" #date2="ngModel" ngModel='' name="date2"  >
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2 ></mat-datepicker>
+            </mat-form-field><div *ngIf="(date1.errors?.required && date1.touched)" style="color:black;">date debut <b>obligaoire</b></div><div *ngIf="date1==1" style="color:black;">date debut <b>invalide</b></div>
+<input type="hidden" name="candidateId"  #candidat_id="ngModel"  ngModel='' >
+ <div class="form-group row">
+
+            <div class="col-sm-12 col-md-6 "> <button  class="btn btn-success" >valider</button>
+                <button type="reset" class="btn btn-primary" style="margin-left:10px">annuler</button></div>  <div class="col-sm-12 col-md-6 ">  <flash-messages style="font-size='10px'"></flash-messages></div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" >Fermer</button>
+      </div>
+
+    </div>
+  </div>
+</div>

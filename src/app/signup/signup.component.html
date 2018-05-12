@@ -1,0 +1,62 @@
+<div   class="fullscreen_bg" >
+    <div class="container" >
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header">Enregistrer un compte</div>
+            <div class="card-body">
+                <form novalidate #fo="ngForm" (ngSubmit)="register(fo)" >
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="exampleInputName">Prenom</label>
+                                <input type="text" #cfn="ngModel" ngModel='' name="prenom" class="form-control" id="exampleInputName"  aria-describedby="nameHelp" placeholder="Entrez votre prénom" required minlength="3">
+                                <div *ngIf="cfn.errors?.required && cfn.touched" class="isa_warning">Champ Prenom obligatoire</div>
+                                <div *ngIf="cfn.errors?.minlength && !cfn.errors?.required && cfn.touched" class="isa_warning">Minimum de caractére 3</div></div>
+                            <div class="col-md-6">
+                                <label for="exampleInputLastName">Nom</label>
+                                <input #cln="ngModel" ngModel='' name="nom" class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Entrez votre nom" required minlength="3">
+                                <div *ngIf="cln.errors?.required && cln.touched" class="isa_warning">Champ Nom obligatoire</div>
+                                <div *ngIf="cln.errors?.minlength && !cln.errors?.required && cln.touched" class="isa_warning">Minimum de caractére 3</div></div>
+                        </div>
+                    </div> <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="exampleInputEmail1">Date Naissance</label>
+                            <input type="date" #cdate="ngModel" ngModel="" name="DateNaissance" class="form-control" id="exampleInputEmail1"  aria-describedby="emailHelp" placeholder="Entrez votre date naissance " required>
+                            <div *ngIf="cdate.errors?.required && cdate.touched" class="isa_warning">Champ date naissance obligatoire</div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="exampleInputLastName">Numero de telephone</label>
+                            <input  ngModel='' #ccph="ngModel" name="tel" class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Entrez votre numero de telephone" minlength="8" maxlength="12" required >
+                            <div *ngIf="ccph.errors?.required && ccph.touched" class="isa_warning">Champ Numero de telephone obligatoire</div> <div *ngIf="!ccph.errors?.required && ccph.errors?.minlength && ccph.touched" class="isa_warning">inserer valide numero de telephone</div><div *ngIf="!ccph.errors?.required && !ccph.errors?.minlength && ccph.errors?.maxlength && ccph.touched" class="isa_warning">inserer valide numero de telephone</div> </div>
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="exampleInputName">Nom de la societé</label>
+                                <input #ccn="ngModel" ngModel='' name="nomEntreprise" class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Entrez nom de la societé" required minlength="3">
+                                <div *ngIf="ccn.errors?.required && ccn.touched" class="isa_warning">Champ Nom de la societé obligatoire</div>
+                                <div *ngIf="ccn.errors?.minlength && !ccn.errors?.required && ccn.touched" class="isa_warning">Minimum de caractére 3</div></div>
+                            <div class="col-md-6">
+                                <label for="exampleInputEmail1">Email de la societé</label>
+                                <input type="text" #cemail="ngModel" ngModel="" name="email" class="form-control" id="exampleInputEmail1"  aria-describedby="emailHelp" placeholder="Entrez votre email" required email>
+                                <div *ngIf="cemail.errors?.required && cemail.touched" class="isa_warning">Champ Email de la societé obligatoire</div>
+                                <div *ngIf="!cemail.errors?.required && cemail.errors?.email && cemail.touched" class="isa_warning">Email non valide</div></div>
+
+
+
+                        </div></div>
+                    <button class="btn btn-primary" type="submit" > Enregistrer </button>&nbsp;
+
+                </form>
+
+                <div class="text-center">
+
+                    <a class="btn rounded-btn" [routerLink]="['/login']" style="font-size: 20px"> Connexion </a>
+                    <a class="d-block small" [routerLink]="['/forgetpassword']" style="font-size: 20px">Oublier mot de passe?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

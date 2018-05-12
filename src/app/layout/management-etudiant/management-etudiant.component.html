@@ -1,0 +1,249 @@
+
+
+<div class="container "  >
+    <div class="card mb-3">
+        <div class="card-header "><div style="display: block;"><h5>Liste  des etudiants
+            <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-circle"></i></button>
+        </h5>
+
+        </div></div>
+        <div class="card-body table-responsive" style="min-height: 350px;"  >
+
+
+
+
+
+
+
+
+
+
+            <nav id="navbar-example2" class="navbar navbar-light bg-light" style="overflow-x:auto; "style="width:1000px">
+
+                <div class="form-group input-group">
+
+                    <div  class="d-inline-block">
+
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Recherche {{rech}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            <a class="dropdown-item" (click)="rech='nom';chercher()">Nom</a>
+                            <a class="dropdown-item" (click)="rech='prenom';chercher()">Prenom</a>
+
+
+
+                        </div>
+
+
+
+                    </div>
+                    <div  class="d-inline-block">
+
+
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown">
+                                Recherche {{rech2}}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="drop">
+
+                                <a class="dropdown-item" (click)="rech2='active';chercher()">Active</a>
+                                <a class="dropdown-item" (click)="rech2='desactive';chercher()">Desactive</a>
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+                    <input  (keyup)="chercher()" [(ngModel)]="query" type="text" name="valeur" required  placeholder="Rechercher " class="form-control">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+            </nav>
+
+
+
+
+
+            <div class="clearfix" style="margin-bottom: 10px;" >
+                <div class="hint-text">Affiche <b>{{numberpage}}</b> sur <b>{{totalPages}}</b> entrées</div>
+                <ul class="pagination" style="margin-right: 28px;">
+                    <li class="page-item"><a class="page-link" (click)="precedent()"><i class="material-icons">&#xE408;</i></a></li>
+                    <li   [ngClass]="{'active':i==page}" class="page-item"  *ngFor="let p of pages;let i=index;">
+                        <a *ngIf=" (page-i<=4 && page>=4 && i<=page)||( i<5 && page<=4)" class="page-link" (click)="goto(i)">{{i}}</a>
+                    </li>
+
+
+                    <li class="page-item"><a  class="page-link" (click)="suivant()"><i class="material-icons">&#xE409;</i></a></li>
+                </ul>
+            </div>
+            <div style="overflow-x:auto; "style="width:1000px">
+                <table class="table table-striped ">
+                    <thead>
+                    <tr>
+<th colspan="2"></th>
+                        <th colspan="2">Nom et Prenom</th>
+
+                        <th>Cin</th>
+                        <th>Date naissance</th>
+                        <th>Telephone</th>
+                        <th>Email</th>
+
+
+
+
+
+                        <th *ngIf="active==1">action</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let c of data?.content">
+
+<td colspan="2">
+
+                        <img *ngIf="c.image==null"  style="width: 85px; height: 85px;" src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png" class="rounded-circle img-thumbnail image"
+                             style="width: 90px; height: 85px"
+                        >
+
+                        <img  *ngIf="c.image!=null"  src="{{getPhotoCandidate(c.image,c.id)}}" class="rounded-circle img-thumbnail image"
+                              style="width: 90px; height: 85px"
+                        ></td>
+                        <td colspan="2">{{c.prenom}} {{c.nom}}</td>
+                        <td> {{c.cin }} </td>
+                        <td >{{c.dateNaissance}}</td>
+                        <td>{{c.tel}}</td>
+                        <td >{{c.email}}</td>
+
+
+                        <td *ngIf="active==1">
+                            <div class="btn-group" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+
+                                <i class="fa fa-ellipsis-v   " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                </i>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a (click)="detailscontact(c.candidateId)" class="search"   data-toggle="tooltip" ><i class="material-icons">&#xE8B6;</i> plus de details</a>
+                                    <a  class="edit" data-toggle="tooltip" ><i class="material-icons"  >&#xE254;</i> modifier</a>
+                                    <a (click)="deleteCandidat(c.candidateId)" data-toggle="tooltip" ><i class="material-icons">&#xE872;</i> supprimer</a>
+
+
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <div class="clearfix"  style="margin-top: 40px;">
+                    <div class="hint-text">Affiche <b>{{numberpage}}</b> sur <b>{{totalPages}}</b> entrées</div>
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" (click)="precedent()"><i class="material-icons">&#xE408;</i></a></li>
+                        <li   [ngClass]="{'active':i==page}" class="page-item"  *ngFor="let p of pages;let i=index;">
+                            <a *ngIf=" (page-i<=4 && page>=4 && i<=page)||( i<5 && page<=4)" class="page-link" (click)="goto(i)">{{i}}</a>
+                        </li>
+
+
+                        <li class="page-item"><a  class="page-link" (click)="suivant()"><i class="material-icons">&#xE409;</i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Ajout etudiant</h4>
+                <button type="button" class="close" data-dismiss="modal" >&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <form novalidate #fo="ngForm" (ngSubmit)="register(fo)" >
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="exampleInputName">Prenom</label>
+                                <input type="text" #cfn="ngModel" ngModel='' name="prenom" class="form-control" id="exampleInputName"  aria-describedby="nameHelp" placeholder="Entrez votre prénom" required minlength="3">
+                                <div *ngIf="cfn.errors?.required && cfn.touched" class="isa_warning">Champ Prenom obligatoire</div>
+                                <div *ngIf="cfn.errors?.minlength && !cfn.errors?.required && cfn.touched" class="isa_warning">Minimum de caractére 3</div></div>
+                            <div class="col-md-6">
+                                <label for="exampleInputLastName">Nom</label>
+                                <input #cln="ngModel" ngModel='' name="nom" class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Entrez votre nom" required minlength="3">
+                                <div *ngIf="cln.errors?.required && cln.touched" class="isa_warning">Champ Nom obligatoire</div>
+                                <div *ngIf="cln.errors?.minlength && !cln.errors?.required && cln.touched" class="isa_warning">Minimum de caractére 3</div></div>
+                        </div>
+                    </div> <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="exampleInputEmail1">Date Naissance</label>
+                            <input type="date" #cdate="ngModel" ngModel="" name="DateNaissance" class="form-control" id="exampleInputEmail1"  aria-describedby="emailHelp" placeholder="Entrez votre date naissance " required>
+                            <div *ngIf="cdate.errors?.required && cdate.touched" class="isa_warning">Champ date naissance obligatoire</div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="exampleInputLastName">Numero de telephone</label>
+                            <input  ngModel='' #ccph="ngModel" name="tel" class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Entrez votre numero de telephone" minlength="8" maxlength="12" required >
+                            <div *ngIf="ccph.errors?.required && ccph.touched" class="isa_warning">Champ Numero de telephone obligatoire</div> <div *ngIf="!ccph.errors?.required && ccph.errors?.minlength && ccph.touched" class="isa_warning">inserer valide numero de telephone</div><div *ngIf="!ccph.errors?.required && !ccph.errors?.minlength && ccph.errors?.maxlength && ccph.touched" class="isa_warning">inserer valide numero de telephone</div> </div>
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="exampleInputName">cin</label>
+                                <input #ccn="ngModel" ngModel='' name="cin" class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Entrez cin" required minlength="3">
+                                <div *ngIf="ccn.errors?.required && ccn.touched" class="isa_warning">Champ cin obligatoire</div>
+                                <div *ngIf="ccn.errors?.minlength && !ccn.errors?.required && ccn.touched" class="isa_warning">Minimum de caractére 8</div></div>
+                            <div class="col-md-6">
+                                <label for="exampleInputEmail1">Email de la societé</label>
+                                <input type="text" #cemail="ngModel" ngModel="" name="email" class="form-control" id="exampleInputEmail1"  aria-describedby="emailHelp" placeholder="Entrez votre email" required email>
+                                <div *ngIf="cemail.errors?.required && cemail.touched" class="isa_warning">Champ Email de la societé obligatoire</div>
+                                <div *ngIf="!cemail.errors?.required && cemail.errors?.email && cemail.touched" class="isa_warning">Email non valide</div></div>
+
+
+
+                        </div></div>
+
+
+
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit" > Enregistrer </button>&nbsp;
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<i data-toggle="modal" [attr.data-target]="'#' + skill.id"><i  class="material-icons update" data-toggle="tooltip" title="modifier">update</i>
+</i>
+<div class="modal fade" id="{{skill.id}}">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modifier competance</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body ">
+                <div *ngIf="success" class="alert alert-success">
+                    {{success}}
+                </div>
+
+                <form class="example-form" novalidate #fo="ngForm" (ngSubmit)="updateCompetance(fo)">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Competance" #name="ngModel" [ngModel]='skill.name' name="name"
+                               required >
+
+                        <mat-hint *ngIf=" name.errors?.required && name.touched" style="color:black">Competance  <b>obligaoire</b></mat-hint>
+                    </mat-form-field >
+                    <mat-form-field class="example-full-width">
+                        <mat-select placeholder="Niveau"  #note="ngModel" [ngModel]='skill.note' name="note"  >
+                            <mat-option *ngFor="let evaluation of evaluations" [value]="evaluation.value">
+                                {{ evaluation.viewValue }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field><mat-form-field class="example-full-width">
+                    <input matInput placeholder="certificat" #certificat="ngModel" [ngModel]='skill.certificat' name="certificat">
+                    <mat-hint *ngIf=" !certificat.touched" >Les erreurs apparaissent instantanément!</mat-hint>
+                    <mat-hint *ngIf=" certificat.errors?.required && certificat.touched" style="color:black">lieu <b>obligatoire</b></mat-hint>
+                    <mat-hint *ngIf=" certificat.errors?.minlength && certificat.touched " style="color:black">Minimum de caractere 3</mat-hint> </mat-form-field>
+
+                    <input type="hidden" name="id"  #id="ngModel"  ngModel='' > <div class="form-group row">
+
+                    <div class="col-sm-12 col-md-6 "> <button  class="btn btn-success" type="submit" >valider</button>
+                       </div>
+                </div> </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"  >Fermer</button>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+.fullscreen_bg {
+
+  background-position: 50% 50%;
+
+  background-image: url('https://www.quantic.fr/sites/default/files/cvtech1.png');
+
+  min-height: 100%;
+  min-width: 100%;
+  width: auto;
+  height: auto;
+  margin: 0;
+  position: absolute;
+
+}
+.isa_info, .isa_success, .isa_warning, .isa_error {
+  margin: 5px 0px;
+  padding:6px;
+
+}
+.isa_info {
+  color: #00529B;
+  background-color: #BDE5F8;
+}
+.isa_success {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+}
+.isa_warning {
+  color: #9F6000;
+  background-color: #FEEFB3;
+}
+.isa_error {
+  color: #D8000C;
+  background-color: #FFD2D2;
+}

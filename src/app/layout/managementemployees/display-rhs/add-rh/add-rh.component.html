@@ -1,0 +1,68 @@
+<div class="card" style="width:90%;margin-left:5% ">
+    <div style="font-size: 2rem" class="card-header section-title">
+
+        Ajout nouveau responsable <b>Resource Humaine</b>
+    </div>
+
+    <div class="card-body">
+        <form novalidate #fo="ngForm" (ngSubmit)="registerRh(fo)">
+            <div class="form-group row">
+                <label  class="col-sm-12 col-md-12 col-lg-2 col-form-label">Email</label>
+                <div class="col-sm-9 col-md-10"><div class=" form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" ><i class="fa fa-at"></i></span>
+                    </div>
+                    <input type="text" #cemail="ngModel" ngModel='' name="email" class="form-control" id="inlineFormInputGroup" placeholder="Email" required email></div><div *ngIf="cemail.errors?.required && cemail.touched" class="isa_error">Email obligatoire</div>
+                    <div *ngIf="!cemail.errors?.required && cemail.errors?.email && cemail.touched" class="isa_error">Email non valide</div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label  class="col-sm-12 col-md-12 col-lg-2 col-form-label">Nom</label>
+                <div class="col-sm-12 col-md-10"><div class=" form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" ><i class="fa fa-user"></i></span>
+                    </div>
+                    <input #cnom="ngModel" ngModel='' name="lastName" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nom" required minlength="3"></div><div *ngIf="cnom.errors?.required && cnom.touched" class="isa_error">Nom obligatoire</div>
+                    <div *ngIf="!cnom.errors?.required && cnom.errors?.minlength && cnom.touched" class="isa_error">Minimum de caracteres 3 </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label  class="col-sm-12 col-md-12 col-lg-2 col-form-label">Prenon</label>
+                <div class="col-sm-12 col-md-10"><div class=" form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" ><i class="fa fa-user"></i></span>
+                    </div>
+                    <input #cprenom="ngModel" ngModel='' name="firstName" type="text" class="form-control"  placeholder="Prenom" required minlength="3"></div><div *ngIf="cprenom.errors?.required && cprenom.touched" class="isa_error">Prenom obligatoire</div>
+                    <div *ngIf="!cprenom.errors?.required && cprenom.errors?.minlength && cprenom.touched" class="isa_error">Minimum de caracteres 3 </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label  class="col-sm-12 col-md-12 col-lg-2 col-form-label">Telephone</label>
+                <div class="col-sm-12 col-md-10"><div class=" form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i></span>
+                    </div>
+                    <input #ctel="ngModel" (ngModel)='cand.tel' name="phone"   type="text" class="form-control" id="inlineFormInputGroup" placeholder="Numero de telephone" minlength="8" maxlength="12" required>
+                </div> <div *ngIf="ctel.errors?.required && ctel.touched " class="isa_error"> Numero de telephone obligatoire</div> <div *ngIf="!ctel.errors?.required && ctel.errors?.minlength && ctel.touched" class="isa_error">inserer valide numero de telephone</div><div *ngIf="!ctel.errors?.required && !ctel.errors?.minlength && ctel.errors?.maxlength && ctel.touched" class="isa_warning">inserer valide numero de telephone</div>  </div>
+            </div>
+            <div class="form-group row">
+                <label  class="col-sm-12 col-md-12 col-lg-2 col-form-label">Mot de passe</label>
+                <div class="col-sm-12 col-md-10"><div class=" form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" ><i class="fa fa-lock"></i></span>
+                    </div>
+                    <input #cpassword="ngModel" ngModel='' name="password" type="text" class="form-control"  placeholder="Mot de passe" required minlength="3"></div><div *ngIf="cpassword.errors?.required && cpassword.touched" class="isa_error">Prenom obligatoire</div>
+                    <div *ngIf="!cpassword.errors?.required && cpassword.errors?.minlength && cpassword.touched" class="isa_error">Minimum de caracteres 3 </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label  class="col-sm-12 col-md-12 col-lg-2 col-form-label">Validation</label>
+                <div class="col-sm-12 col-md-10 "> <button type="submit" class="btn btn-secondary">Valider</button>
+                    <button type="reset" class="btn btn-secondary" style="margin-left:10px">Annuler</button></div>
+            </div>
+
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<button  class="btn btn-primary btn-cercle" data-toggle="modal" data-target="#myModalL" ><i class="material-icons " data-toggle="tooltip" title="Ajouter nouveau langue">&#xE147;</i> </button>
+<div class="modal fade" id="myModalL">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Ajout nouveau Langue</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body ">
+
+        <form class="example-form" novalidate #fo2="ngForm" (ngSubmit)="saveLangue(fo2)">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Langue" #langue="ngModel" ngModel='' name="nom"
+                   required minlength="3">
+
+            <mat-hint *ngIf=" langue.errors?.required && langue.touched" style="color:black">Langue  <b>obligaoire</b></mat-hint>
+            <mat-hint *ngIf=" langue.errors?.minlength && langue.touched " style="color:black">Minimum de caractere 3</mat-hint> </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Niveau sur 100" ngModel='0' min="0" max="100" name="niveau" #niveau="ngModel" required>
+
+            <mat-hint *ngIf=" niveau.errors?.required && niveau.touched" style="color:black">Niveau  <b>obligaoire</b></mat-hint> </mat-form-field>
+
+
+          <div class="col-sm-12 col-md-6 "> <button  class="btn btn-success" >valider</button>
+            <button type="reset" class="btn btn-primary" style="margin-left:10px">annuler</button></div>  <div class="col-sm-12 col-md-6 ">  <flash-messages style="font-size='10px'" ></flash-messages></div>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" >Fermer</button>
+      </div>
+
+    </div>
+  </div>
+</div>

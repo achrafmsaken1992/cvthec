@@ -1,0 +1,249 @@
+<link href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
+
+<div id="main-wrapper " [@routerTransition]  >
+  <!-- Page Preloader -->
+
+  <!--button  class="btn btn-github">retour</button-->
+
+
+
+  <div class="columns-block container" >
+
+    <div class="left-col-block blocks" style="    border-radius: 3px;">
+      <header class="header theiaStickySidebar" >
+        <div class="profile-img">
+
+            <img  *ngIf="candidat.id!=null" class="img-fluid img-thumbnail"    src="{{getPhotoCandidate(candidat.image,candidat.id)}}"  style="height:250px;width:250px;margin-left:10%">
+            <img *ngIf="candidat.id==null" src="https://static6.depositphotos.com/1140262/641/i/950/depositphotos_6410189-stock-photo-working-too-much.jpg" class="img-fluid" alt=""-->
+        </div>
+        <section class="section-contact section-wrapper gray-bg">
+          <div class="container-fluid" style="">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="section-title">
+                  <h2>Contact</h2>
+                </div>
+              </div>
+            </div>
+            <!--.row-->
+            <div class="row">
+              <div class="col-lg-12">
+                <address>
+
+                  <strong>Nom et prenom</strong><br>
+                    {{candidat.prenom}} {{candidat.nom}}<br>
+                  <br>
+
+
+
+
+
+                </address>
+                <address>
+
+                  <strong>Date Naissance</strong><br>
+                    {{candidat.dateNaissance}}
+
+
+                </address>
+
+
+
+
+
+                <address>
+
+                  <strong>Numero de telephone</strong>{{candidat.tel}}<br>
+
+
+
+                </address>
+
+                <address>
+
+                  <strong>Email</strong><br>
+                    {{candidat.email}}
+                  <a href="mailto:#"></a>
+
+                </address>
+
+
+              </div>
+
+            </div></div>
+
+        </section>
+      </header>
+      <!-- .header-->
+
+    </div>
+    <!-- .left-col-block -->
+    <div class="right-col-block blocks" >
+
+
+      <div class="theiaStickySidebar">
+        <section class="expertise-wrapper section-wrapper gray-bg">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="section-title">
+                  <h2>Competances</h2>
+                </div></div>
+              <div class="col-lg-3">
+
+                <app-modal-add-competance  (send)="getCandidat($event)"></app-modal-add-competance>
+              </div>
+            </div>
+            <!-- .row -->
+            <div class="row">
+
+              <div class="col-lg-6" *ngFor="let competance of candidat.competance">
+                <div class="content-item">
+                    <app-modal-update-competance [skill]='competance'  (send)="getCandidat($event)"></app-modal-update-competance> <i class="material-icons delete" (click)="deleteCompetance(competance.id)">delete</i>
+                    <div> <b>{{competance.name}}</b>  {{competance.note}}</div>
+
+                    <div><b>Certificat</b> {{competance.certificat}}</div>
+                </div>
+              </div>
+            </div>
+
+            </div>
+        </section>
+        <!-- .expertise-wrapper -->
+
+        <section class="section-wrapper section-experience gray-bg">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="section-title">
+                  <h2>Experiences</h2>
+                </div></div>
+              <div class="col-lg-3">
+
+<app-modal-add-experience  (send)="getCandidat($event)" ></app-modal-add-experience>
+              </div>
+            </div>
+            <!--.row-->
+            <div class="row">
+              <div class="col-lg-6" *ngFor="let experience of candidat.experience">
+
+                <!-- .experience-item -->
+                <div class="expertise-item" > <app-modal-update-experience [experience]='experience'  (send)="getCandidat($event)"></app-modal-update-experience><i class="material-icons delete" (click)="deleteExperience(experience.id)" >delete</i>
+                  <div><b>Societé</b> {{experience.entreprise}} </div>
+                  <div><b>Periode</b> {{experience.date1}} - {{experience.date2}} </div>
+                  <div><b>Lieu</b> {{experience.lieu}}</div>
+                  <div><b>Description</b> {{experience.description}}</div>
+                  <div></div>
+
+                </div>
+
+              </div>
+            </div>
+            <!--.row-->
+          </div>
+          <!-- .container-fluid -->
+        </section>
+        <!-- .section-experience -->
+        <section class="section-wrapper section-education">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="section-title">
+                  <h2>Formations</h2>
+                </div></div>
+              <div class="col-lg-3">
+
+                <app-modal-add-formation  (send)="getCandidat($event)"></app-modal-add-formation>
+              </div>
+            </div>
+
+            <!--.row-->
+            <div class="row" >
+              <div class="col-lg-6" *ngFor="let formation of candidat.formation">
+                <div class="content-item"><app-modal-update-formation [formation]='formation' [id]='id' (send)="getCandidat($event)"></app-modal-update-formation> <i class="material-icons delete" (click)="deleteFormation(formation.id)" >delete</i>
+
+                    <div><b>Université</b> {{formation.universite}}</div>
+                    <div><b>Periode</b> {{formation.date1}} - {{formation.date2}}</div>
+                    <div><b>Section</b> {{formation.section}} </div>
+                    <div><b>Specialité</b> {{formation.specialite}}</div>
+
+                    <div><b>Mention </b>{{formation.result}}</div>
+
+                </div>
+                <!-- .experience-item -->
+
+              </div>
+            </div>
+            <!--.row-->
+          </div>
+          <!-- .container-fluid -->
+        </section>
+        <!-- .section-education -->
+
+        <section class="section-wrapper skills-wrapper" id="skills">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="section-title">
+                  <h2>Langues</h2>
+                </div></div>
+              <div class="col-lg-3">
+
+                <app-modal-add-langue  (send)="getCandidat($event)"></app-modal-add-langue>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="progress-wrapper" >
+                    <div  *ngFor="let langue of candidat.langue"><i class="material-icons delete pull-right" (click)="deleteLangue(langue.id)">delete</i><app-modal-update-langue [langue]='langue'  (send)="getCandidat($event)"></app-modal-update-langue>
+                        <div ><span class="progress-title">{{langue.nom}}</span></div>
+                    <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"  aria-valuemin="0"
+                       aria-valuemax="100"  [ngStyle]="{width:langue.niveau+'%'}" attr.aria-valuenow="{{id}}"><span class="progress-percent"> {{langue.niveau}}%</span>
+                  </div>
+
+                  <!-- .progress -->
+                </div>
+
+
+                  </div>
+                  <!-- .skill-progress -->
+                </div>
+                <!-- /.progress-wrapper -->
+              </div>
+        </div>
+            <!--.row -->
+          </div>
+          <!-- .container-fluid -->
+        </section>
+        <!-- .skills-wrapper -->
+        <!-- .section-publications -->
+
+        <!--.section-contact-->
+        <footer class="footer">
+          <div class="copyright-section">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="copytext">&#xA9;  Tous les droits reservé <b>Iset Sousse</b>
+                  </div>
+                </div>
+              </div>
+              <!--.row-->
+            </div>
+            <!-- .container-fluid -->
+          </div>
+          <!-- .copyright-section -->
+        </footer>
+        <!-- .footer -->
+      </div>
+      <!-- Sticky -->
+    </div>
+    <!-- .right-col-block -->
+  </div>
+  <!-- .columns-block -->
+</div>
+
+
+

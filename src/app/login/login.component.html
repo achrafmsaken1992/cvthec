@@ -1,0 +1,55 @@
+<div  [@routerTransition] class="login-page">
+    <!--hero section-->
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-8 mx-auto">
+                    <div class="card border-none">
+                        <div class="card-body">
+                            <div class="mt-2">
+                                <img src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png" alt="Male" class="brand-logo mx-auto d-block img-fluid rounded-circle"/>
+                            </div>
+                            <p class="mt-4 text-white lead text-center">
+                                Connectez-vous pour accéder à votre compte
+                            </p>
+                            <div class="mt-4">
+                                <form novalidate #fo="ngForm" (ngSubmit)="onLoggedin(fo)" class="login-form">
+                                    <div class="form-group">
+                                        <input #cemail="ngModel" ngModel="" name="email" type="email" class="form-control" id="email" value="" placeholder="Entrez votre email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" #cpassword="ngModel" ngModel="" name="password" class="form-control" id="password" value="" placeholder="Entrez votre mot de passe">
+                                    </div>
+                                    <label class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+
+                                    </label>
+                                    <button type="submit" class="btn btn-primary float-right">connexion</button>
+                                </form>
+                                <div class="clearfix"></div>
+                                <p class="content-divider center mt-4"><span>ou</span></p>
+                            </div>
+
+                            <p class="text-center">
+                                <span class="custom-control-description text-white">  <a class="btn rounded-btn" [routerLink]="['/forgetpassword']" style="font-size: 15px;">réinitialiser votre mot de passe</a></span>
+                                <span class="custom-control-description text-white"> <a class="btn rounded-btn" [routerLink]="['/signup']" style="font-size: 15px;">Inscrivez-vous maintenant</a></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-12 mt-5 footer">
+                    <p class="text-white small text-center">
+                        &copy; 2017 Login/Register Forms. A FREE Bootstrap 4 component by
+                        <a href="https://wireddots.com">Wired Dots</a>. Designed by <a href="https://twitter.com/attacomsian">@attacomsian</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()"> Log in </a>
+    &nbsp;
+    <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a-->
+
+</div>

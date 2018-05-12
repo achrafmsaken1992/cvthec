@@ -1,0 +1,112 @@
+
+
+<div id="frame">
+  <div id="sidepanel">
+    <div id="profile">
+      <div class="wrap">
+        <!--img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png"
+             class="online" alt=""-->
+        <img id="profile-img" *ngIf="profile.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
+             alt=""
+        >
+
+        <img id="profile-img" *ngIf="profile.image!=null"  src="{{getPhotoCandidate(profile.image,profile.id)}}"
+              alt=""   height="30px"
+        >
+        <p>{{this.profile.prenom}}  {{this.profile.nom}}</p>
+        <div
+                id="status-options">
+
+        </div>
+        <div id="expanded">
+          <label for="twitter"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i>
+          </label>
+          <input name="twitter" type="text" value="mikeross">
+          <label for="twitter"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i>
+          </label>
+          <input name="twitter" type="text" value="ross81">
+          <label for="twitter"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i>
+          </label>
+          <input name="twitter" type="text" value="mike.ross">
+        </div>
+      </div>
+    </div>
+    <div id="search">
+      <label for=""><i class="fa fa-search" aria-hidden="true"></i>
+      </label>
+      <input type="text" placeholder="Chercher des Entreprises..." (keyup)="chercher()" [(ngModel)]="mot">
+    </div>
+    <div id="contacts">
+      <ul >
+
+        <li *ngFor="let manager of managers;let i=index"  class="contact"    >
+
+          <div class="wrap" [ngClass]="{'active':active === i}"
+               (click)="active=i;getMessages(manager)">	<span class="contact-status busy"></span>
+            <!--img src="http://emilcarlsson.se/assets/harveyspecter.png"
+                 -->
+            <img *ngIf="manager.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
+                 alt=""
+            >
+
+            <img  *ngIf="manager.image!=null"  src="{{getPhotoManager(manager.image,manager.nomEntreprise)}}"
+                  alt=""
+            >
+
+
+
+            <div class="meta">
+              <p class="name">{{manager.prenom}} {{manager.nom}}</p>
+              <p class="preview"><b>Entreprise:</b> {{manager.nomEntreprise|uppercase}} </p>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+    <!--div id="bottom-bar">
+      <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>  <span>Add contact</span>
+      </button>
+      <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>  <span>Settings</span>
+      </button>
+    </div-->
+  </div>
+  <div class="content" *ngIf="a!=0">
+    <div class="contact-profile" >
+      <img *ngIf="manager.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
+           alt=""
+      >
+
+      <img  *ngIf="manager.image!=null"  src="{{getPhotoManager(manager.image,manager.nomEntreprise)}}"
+            alt=""
+      >
+      <p>{{manager.prenom}} {{manager.nom}}</p>
+      <div class="social-media" style="margin-right: 10px">Entreprise:{{manager.nomEntreprise|uppercase}}
+      </div>
+    </div>
+    <div class="messages" >
+      <ul *ngFor="let message of messages">
+        <li *ngIf="profile.id===message.user1" class="sent" >
+          <img src="{{getPhotoCandidate(profile.image,profile.id)}}" height="22px"  alt="">
+          <p>{{message.message}}</p>
+        </li>
+        <li *ngIf="profile.id!=message.user1" class="replies">
+          <img src="http://emilcarlsson.se/assets/harveyspecter.png" height="22px"  alt="">
+          <p>{{message.message}}</p>
+        </li>
+        <!--div [ngStyle]="{'background-color':person.country === 'UK' ? 'green' : 'red' }">
+        [ngClass]="{'active':active === i}"
+        </<div-->
+      </ul>
+    </div>
+    <div class="message-input">
+      <div class="wrap">
+        <input type="text" placeholder="Ecrivez votre message..." [(ngModel)]="msg"
+               (keyup.enter) ="addMessage()"
+        >	<i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+        <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+.col-form-label{
+    font-size: 20px;
+}
+.card-body{
+    width:90%;
+    margin-left: 5%;
+}
+
+.isa_info, .isa_success, .isa_warning, .isa_error {
+    margin: 5px 0px;
+    padding:6px;
+
+}
+.fa{
+    width:13px;
+}
+
+
+.isa_info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+.isa_success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+.isa_warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.isa_error {
+    color: #D8000C;
+    background-color: #FFD2D2;
+}
+
+.card .title {
+    text-align: center;
+    color: #007b5e;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+
+
