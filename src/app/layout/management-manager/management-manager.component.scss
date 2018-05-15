@@ -476,4 +476,14 @@ i {
     top:-4px;
     font-size: 12px;
 }
-
+#frame[_ngcontent-c14] #sidepanel[_ngcontent-c14] #profile[_ngcontent-c14] .wrap[_ngcontent-c14] img[_ngcontent-c14] {
+    width: 50px;
+    border-radius: 70%;
+    padding: 3px;
+    border: 2px solid #e74c3c;
+    height: 70px;
+    float: left;
+    cursor: pointer;
+    -webkit-transition: 0.3s border ease;
+    transition: 0.3s border ease;
+}

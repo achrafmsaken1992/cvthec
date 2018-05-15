@@ -1,19 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { OffersComponent } from './offers.component';
-import { OffersRoutingModule} from './offers-routing.module';
+import { OffresRoutingModule } from './offres-routing.module';
+import { OffresComponent } from './offres.component';
 
 import {FormsModule} from "@angular/forms";
 import {PageHeaderModule} from "../../../shared/modules/page-header/page-header.module";
 
 
-
-
-
 @NgModule({
-    imports: [CommonModule, OffersRoutingModule, PageHeaderModule,FormsModule],
-    declarations: [OffersComponent],
+    imports: [CommonModule, OffresRoutingModule, PageHeaderModule,FormsModule],
+    declarations: [OffresComponent],
 
 })
 export class OffersModule {}

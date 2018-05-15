@@ -6,7 +6,7 @@ import {Observable} from "rxjs/Observable";
 export class ManagersService {
     jwtToken: string;
 
-    constructor(private http: HttpClient) {
+    constructor(public http: HttpClient) {
     }
 
     loadToken() {
@@ -65,6 +65,42 @@ console.log(offre);
             headers: new HttpHeaders({'Authorization': this.jwtToken})
         });
         return this.http.request(req);
+    }
+    getEtudiantMessagerie(mot){
+        if (this.jwtToken == null) this.loadToken();
+        return this.http.get<any>("http://localhost:8080/manager/getEtudiantsMessagerie?mot=" + mot , {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+
+    }
+    getMessageries(id1,id2){
+        return    this.http.get<any>("http://localhost:8080/getMessageries?user1="+id1+"&user2="+id2,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+    }
+    addMessage(message){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.post('http://localhost:8080/addMessage',message,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    addQuiz(qcm){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.post('http://localhost:8080/manager/addQcm',qcm,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    getQuizs(id){
+        return    this.http.get<any>("http://localhost:8080/getQcmsByOffre?id="+id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+    }
+    addQuestion(question){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.post('http://localhost:8080/manager/addQuestion',question,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    getQuestions(id){
+        return    this.http.get<any>("http://localhost:8080/getQuestionsByQcm?id="+id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+    }
+    addSuggestion(suggestion){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.post('http://localhost:8080/manager/addSuggestion',suggestion,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    getSuggestions(id){
+        return    this.http.get<any>("http://localhost:8080/getSuggestionsByQuestion?id="+id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
     }
 
 }

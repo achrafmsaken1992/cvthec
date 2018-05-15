@@ -691,6 +691,11 @@ body {
   -webkit-transition: 0.3s border ease;
   transition: 0.3s border ease;
 }
-#frame[_ngcontent-c4][_ngcontent-c4] #sidepanel[_ngcontent-c4][_ngcontent-c4] #profile[_ngcontent-c4][_ngcontent-c4] .wrap[_ngcontent-c4][_ngcontent-c4] img[_ngcontent-c4][_ngcontent-c4] {
-  height:50px;
+ul {
+  list-style:none;
+  margin-left:0;
+  padding-left:0;
+}
+li {
+  margin-bottom:15px;/* à adapter */
 }

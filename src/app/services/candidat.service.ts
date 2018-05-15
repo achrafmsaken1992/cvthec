@@ -268,4 +268,13 @@ export class CandidatService {
     getMessageries(id1,id2){
         return    this.http.get<any>("http://localhost:8080/getMessageries?user1="+id1+"&user2="+id2,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
     }
+
+    getOffers(mot: string, page: number, size: number) {
+        if (this.jwtToken == null) this.loadToken();
+        return this.http.get<any>("http://localhost:8080/etudiant/getAllOffres?mot=" + "%"+mot+"%" +  + "&size=" + size+ "&page=" + page, {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+
+    }
+
+
+
 }

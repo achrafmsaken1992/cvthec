@@ -33,9 +33,14 @@ const routes: Routes = [
             { path: 'add-collaborateur', loadChildren: './collaborator/add-collaborator/add-collaborator.module#AddCollaboratorModule'},
             { path: 'management-offers', loadChildren: './manager/offers/offers.module#OffersModule'},
 
-            { path: 'messagerie-etudiant/:mot', loadChildren: './managementcandidat/messagerie-manager/messagerie-manager.module#MessagerieManagerModule'},
-            { path: 'profileManager', loadChildren: './manager/profile/profile.module#ProfileModule'}
-        ],
+            { path: 'messagerie-etudiant', loadChildren: './managementcandidat/messagerie-manager/messagerie-manager.module#MessagerieManagerModule'},
+            { path: 'profileManager', loadChildren: './manager/profile/profile.module#ProfileModule'},
+            { path: 'messagerie-manager', loadChildren: './manager/messagerie/messagerie.module#MessagerieModule'},
+            { path: 'offres', loadChildren: './managementcandidat/offres/offres.module#OffersModule'},
+            { path: 'liste-quizs/:id', loadChildren: './manager/quizs-offers/quizs-offers.module#QuizsOffersModule'},
+            {path:'liste-questions/:id',loadChildren: './manager/question/question.module#QuestionModule'},
+            {path:'liste-suggestions/:id',loadChildren: './manager/suggestion/suggestion.module#SuggestionModule'}
+            ],
 
     }
 ];

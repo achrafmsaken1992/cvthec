@@ -1,0 +1,131 @@
+
+<button  class="btn btn-github" (click)="backClicked()">retour</button><br><br>
+<div class="container "  >
+  <div class="card mb-3">
+    <div class="card-header "><div style="display: block;">
+
+
+      <h5>Liste  des question
+        <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalQuiz"><i class="fa fa-plus-circle"></i></button>
+      </h5>
+
+    </div></div>
+    <div class="card-body table-responsive" style="min-height: 350px;"  >
+
+
+
+
+
+
+
+
+
+
+      <nav id="navbar-example2" class="navbar navbar-light bg-light" style="overflow-x:auto; "style="width:1000px">
+
+        <div class="form-group input-group">
+
+          <div  class="d-inline-block">
+
+
+
+
+          </div>
+
+        </div>
+
+      </nav>
+
+      <div style="overflow-x:auto; "style="width:1000px">
+        <table class="table table-striped ">
+          <thead>
+          <tr>
+            <th>Numero suggestion</th>
+            <th colspan="2">Suggestion</th>
+            <th>Reponse</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let sug of suggestions;let i=index" >
+
+
+            <td colspan="2">{{i+1}}</td>
+            <td>{{sug.suggestion}}</td>
+            <td ><div *ngIf="sug.reponse===1">correct</div><div *ngIf="sug.reponse===0">fausse</div></td>
+            <td><div class="btn-group " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+
+              <a class="btn btn-blog    marginBottom10" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-2x fa-ellipsis-h"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a   class="search" style="color:black"  data-toggle="tooltip" >
+                  <i class="material-icons">question_answer</i>Liste Suggestions</a><br>
+                <a  class="edit" data-toggle="tooltip" ><i class="material-icons"  >&#xE254;</i> modifier</a>
+                <br><a  data-toggle="tooltip" ><i class="material-icons">&#xE872;</i> supprimer</a>
+
+
+
+              </div>
+            </div></td>
+
+
+
+
+          </tr>
+
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+<!-- The Modal -->
+<div class="modal" id="modalQuiz">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Ajout Quiz</h4>
+        <button type="button" class="close" data-dismiss="modal" >&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <form novalidate #fo="ngForm" (ngSubmit)="register(fo)" >
+        <div class="modal-body">
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-12">
+                <label for="exampleInputName">Suggestion</label>
+                <textarea  #cfn="ngModel" ngModel='' name="suggestion" class="form-control"  placeholder="Entrez question" required minlength="3" maxlength="255">
+              </textarea> <div *ngIf="cfn.errors?.required && cfn.touched" class="isa_warning">Champ Question obligatoire</div>
+                <div *ngIf="cfn.errors?.minlength && !cfn.errors?.required && cfn.touched" class="isa_warning">Minimum de caractére 3</div>  </div>
+              <input type="hidden" name="suggestion">
+            </div>
+
+
+          </div>
+          <div class="form-group">
+          <label>reponse:</label>
+              <label class="radio-inline"><input type="radio" required value="1" name="reponse"
+                                                 ngModel="1">correct</label>
+
+            <label class="radio-inline"><input type="radio" required value="0" name="reponse"
+                                               >fausse</label>
+
+            </div> </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit" > Enregistrer </button>&nbsp;
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -68,9 +68,11 @@
         <a *ngIf="isEtudiant" routerLink="/detailscandidat" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-user"></i> {{ 'Profile'  }}
         </a>
-        <a *ngIf="isEtudiant" routerLink="/messagerie-etudiant/ " [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a *ngIf="isEtudiant" routerLink="/messagerie-etudiant" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-comments"></i> {{ 'Messagerie'  }}
         </a>
+
+
         <a *ngIf="isAdmin" routerLink="/managementManager" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-user-plus"></i> {{ 'Demandes'  }}
         </a>
@@ -83,8 +85,12 @@
         <a *ngIf="isManager" routerLink="/management-offers" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-briefcase"></i> {{ 'Offres'  }}
         </a>
-
-
+        <a *ngIf="isManager" routerLink="/messagerie-manager" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-comments"></i> {{ 'Messagerie'  }}
+        </a>
+        <a *ngIf="isEtudiant" routerLink="/offres" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-briefcase"></i> {{ 'Offres'  }}
+        </a>
 
 
         <!--div *ngIf="isManager" class="nested-menu">

@@ -10,8 +10,8 @@
              alt=""
         >
 
-        <img id="profile-img" *ngIf="profile.image!=null"  src="{{getPhotoCandidate(profile.image,profile.id)}}"
-              alt="" height="50px"
+        <img id="profile-img" *ngIf="profile.image!=null"  src="{{getPhotoManager(profile.image,profile.nomEntreprise)}}"
+             alt=""
         >
         <p>{{this.profile.prenom}}  {{this.profile.nom}}</p>
         <div
@@ -37,27 +37,27 @@
       <input type="text" placeholder="Chercher des Entreprises..." (keyup)="chercher()" [(ngModel)]="mot">
     </div>
     <div id="contacts">
-      <ul >
+      <ul>
 
-        <li *ngFor="let manager of managers;let i=index"  class="contact"    >
+        <li *ngFor="let etudiant of etudiants;let i=index" class="contact"   (click)="active=i;getMessages(etudiant)" >
 
           <div class="wrap" [ngClass]="{'active':active === i}"
-               (click)="active=i;getMessages(manager)">	<span class="contact-status busy"></span>
+               >	<span class="contact-status busy"></span>
             <!--img src="http://emilcarlsson.se/assets/harveyspecter.png"
                  -->
-            <img *ngIf="manager.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
+            <img *ngIf="etudiant.image===null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
                  alt=""
             >
 
-            <img  *ngIf="manager.image!=null"  src="{{getPhotoManager(manager.image,manager.nomEntreprise)}}"
-                  alt=""
+            <img  *ngIf="etudiant.image!=null"  src="{{getPhotoCandidate(etudiant.image,etudiant.id)}}"
+                  alt=""  height="40px"
             >
 
 
 
             <div class="meta">
-              <p class="name">{{manager.prenom}} {{manager.nom}}</p>
-              <p class="preview"><b>Entreprise:</b> {{manager.nomEntreprise|uppercase}} </p>
+              <p class="name">{{etudiant.prenom}} {{etudiant.nom}}</p>
+
             </div>
           </div>
         </li>
@@ -73,30 +73,34 @@
   </div>
   <div class="content" *ngIf="a!=0">
     <div class="contact-profile" >
-      <img *ngIf="manager.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
-           alt=""
+      <img *ngIf="etudiantP.image===null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
+           alt="" height="40px"
       >
 
-      <img  *ngIf="manager.image!=null"  src="{{getPhotoManager(manager.image,manager.nomEntreprise)}}"
-            alt=""
+      <img  *ngIf="etudiantP.image!=null"  src="{{getPhotoCandidate(etudiantP.image,etudiantP.id)}}"
+            alt="" height="40px"
       >
-      <p>{{manager.prenom}} {{manager.nom}}</p>
-      <div class="social-media" style="margin-right: 10px">Entreprise:{{manager.nomEntreprise|uppercase}}
+      <p>{{etudiantP.prenom}} {{etudiantP.nom}}</p>
+      <div class="social-media" style="margin-right: 10px">
       </div>
     </div>
     <div class="messages" >
       <ul *ngFor="let message of messages">
         <li *ngIf="profile.id===message.user1" class="sent" >
-          <img src="{{getPhotoCandidate(profile.image,profile.id)}}" height="22px"  alt="">
+          <img *ngIf="this.profile.image!=null" src="{{getPhotoManager(profile.image,profile.nomEntreprise)}}" height="22px"  alt="" >
+          <img *ngIf="this.profile.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
+               alt=""
+          >
           <p>{{message.message}}</p>
         </li>
         <li *ngIf="profile.id!=message.user1" class="replies">
-          <img src="{{getPhotoManager(manager.image,manager.nomEntreprise)}}" height="22px"  alt="">
+          <img *ngIf="this.etudiantP.image!=null" src="{{getPhotoCandidate(etudiantP.image,etudiantP.id)}}" height="22px"  alt="" >
+          <img *ngIf="this.etudiantP.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
+               alt=""
+          >
           <p>{{message.message}}</p>
         </li>
-        <!--div [ngStyle]="{'background-color':person.country === 'UK' ? 'green' : 'red' }">
-        [ngClass]="{'active':active === i}"
-        </<div-->
+
       </ul>
     </div>
     <div class="message-input">
