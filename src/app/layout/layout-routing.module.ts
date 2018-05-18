@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
-import {ManagementManagerModule} from "./management-manager/management-manager.module";
-import {CollaboratorModule} from "./collaborator/collaborator.module";
-import {AddCollaboratorModule} from "./collaborator/add-collaborator/add-collaborator.module";
-import {ManagementEtudiantModule} from "./management-etudiant/management-etudiant.module";
-import {OffersRoutingModule} from "./manager/offers/offers-routing.module";
+
 
 const routes: Routes = [
     {
@@ -39,7 +35,9 @@ const routes: Routes = [
             { path: 'offres', loadChildren: './managementcandidat/offres/offres.module#OffersModule'},
             { path: 'liste-quizs/:id', loadChildren: './manager/quizs-offers/quizs-offers.module#QuizsOffersModule'},
             {path:'liste-questions/:id',loadChildren: './manager/question/question.module#QuestionModule'},
-            {path:'liste-suggestions/:id',loadChildren: './manager/suggestion/suggestion.module#SuggestionModule'}
+            {path:'liste-suggestions/:id',loadChildren: './manager/suggestion/suggestion.module#SuggestionModule'},
+            {path:'quizs/:id',loadChildren: './managementcandidat/quiz/quiz.module#QuizModule'},
+            {path:'test/:id',loadChildren: './managementcandidat/reponse/reponse.module#ReponseModule'}
             ],
 
     }

@@ -12,6 +12,8 @@ import {PageHeaderModule} from "../../../shared/modules/page-header/page-header.
 
 
 
+
+
 @NgModule({
     imports: [CommonModule, QuizsOffersRoutingModule, PageHeaderModule,FormsModule],
     declarations: [QuizsOffersComponent],

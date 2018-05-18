@@ -1,13 +1,13 @@
-import {MessagerieComponent} from './messagerie.component';
+import {MessagerieModule} from './messagerie.module';
 
-describe('MessagerieComponent', () => {
-    let messagerieComponent: MessagerieComponent;
+describe('MessagerieModule', () => {
+    let messagerieModule: MessagerieModule;
 
     beforeEach(() => {
-        messagerieComponent = new MessagerieComponent();
+        messagerieModule = new MessagerieModule();
     });
 
     it('should create an instance', () => {
-        expect(messagerieComponent).toBeTruthy();
+        expect(messagerieModule).toBeTruthy();
     });
 });

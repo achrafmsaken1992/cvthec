@@ -3,7 +3,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 
 import swal from 'sweetalert2';
-import {ManagersService} from "../../../services/managers.service";
+
+import {QuizService} from "../../../services/quiz.service";
+
+
 @Component({
   selector: 'app-quizs-offers',
   templateUrl: './quizs-offers.component.html',
@@ -14,25 +17,25 @@ id:number;
 quizs:any;
 
   constructor(private r:Router
-      ,private route: ActivatedRoute,public managersService:ManagersService
-  ) {this.id= this.route.snapshot.params['id'];
+      ,private route: ActivatedRoute,public quizService:QuizService
+  ) {
 
   }
 
   ngOnInit() {
 
-
-
-this.getQuizs(this.id);
+    this.id= this.route.snapshot.params['id'];
+console.log(this.id);
+this.getQuizs();
 
   }
 
-  getQuizs(id){
-    this.managersService.getQuizs(id).subscribe(resp=>{
+  getQuizs(){
+    this.quizService.getQuizs(this.id).subscribe(resp=>{
       this.quizs=resp;
-      console.log(resp);
+
     },err=>{
-      console.log(err);
+
     })
   }
   register(form) {
@@ -75,14 +78,14 @@ this.getQuizs(this.id);
         }).then((result) => {
           if (result.value) {
 
-this.managersService.addQuiz(form.value).subscribe(resp=>{
+this.quizService.addQuiz(form.value).subscribe(resp=>{
   swal(
       'Ajouté!',
       'ajout quiz avec succés',
       'success'
   )
   form.reset();
-  this.getQuizs(this.id);
+  this.getQuizs();
 })
 
 
@@ -108,6 +111,48 @@ this.managersService.addQuiz(form.value).subscribe(resp=>{
 
       }
     }
+supprimer(id){
+  swal({
+    title: 'Etes vous sur?',
+    text: '',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Oui, je confirme!',
+    cancelButtonText: `Non, j'annule`
+  }).then((result) => {
+    if (result.value) {
 
+      this.quizService.deleteQuiz(id).subscribe(resp=>{
+        swal(
+            'Supprimé!',
+            'supprimer quiz avec succés',
+            'success'
+        )
+
+        this.getQuizs();
+      })
+
+
+
+
+      // For more information about handling dismissals please visit
+      // https://sweetalert2.github.io/#handling-dismissals
+    } else if (result.dismiss === swal.DismissReason.cancel) {
+      swal(
+          'Annuler',
+          'suppression quiz annulé :)',
+          'error'
+      )
+
+    }})
+
+
+
+
+
+
+
+
+}
 
 }

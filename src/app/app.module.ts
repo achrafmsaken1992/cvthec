@@ -19,6 +19,8 @@ import {ToastModule} from "ng2-toastr";
 import {ManagersService} from "./services/managers.service";
 import {EtudiantService} from "./services/etudiant.service";
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
+import {QuizService} from "./services/quiz.service";
+
 
 
 
@@ -54,7 +56,7 @@ export function createTranslateLoader(http: HttpClient) {
         HttpClientModule
     ],
     declarations: [AppComponent],
-    providers: [AuthGuard, AuthService,CandidatService,CollaborateurService,EmployeesService,ManagersService,EtudiantService],
+    providers: [AuthGuard, AuthService,CandidatService,CollaborateurService,EmployeesService,ManagersService,EtudiantService,QuizService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

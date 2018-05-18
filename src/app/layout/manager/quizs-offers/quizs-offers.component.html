@@ -74,7 +74,7 @@
                 <a   class="search" style="color:black"  data-toggle="tooltip" routerLink="/liste-questions/{{quiz.id}}" [routerLinkActive]="['router-link-active']">
                   <i class="material-icons">question_answer</i>Liste Questions</a><br>
                 <a  class="edit" data-toggle="tooltip" ><i class="material-icons"  >&#xE254;</i> modifier</a>
-                <br><a  data-toggle="tooltip" ><i class="material-icons">&#xE872;</i> supprimer</a>
+                <br><a  data-toggle="tooltip" (click)="supprimer(quiz.id)"><i class="material-icons">&#xE872;</i> supprimer</a>
 
 
 

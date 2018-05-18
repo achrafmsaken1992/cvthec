@@ -1,0 +1,26 @@
+<div class="privew">
+  <div class="questionsBox" >
+    <div class="questions"><b>question:</b> {{question}}</div>
+    <ul class="answerList">
+      <li let *ngFor="let s of suggestions;let i=index">
+        <label>
+          <input type="checkbox" name="answerGroup" value="0" id="answerGroup_0"
+
+                 (change)="change(i)">{{s.suggestion}} </label>
+      </li>
+      <!--li>
+        <label>
+          <input type="checkbox" name="answerGroup" value="1" id="answerGroup_1" (change)="change(1)"> It closes the modal when escape key is pressed; set to false to disable.</label>
+      </li>
+      <li>
+        <label>
+          <input type="checkbox" name="answerGroup" value="2" id="answerGroup_2" (change)="change(2)"> It shows the modal when initialized.</label>
+      </li>
+      <li>
+        <label>
+          <input type="checkbox" name="answerGroup" value="3" id="answerGroup_3" (change)="change(3)"> Using the jQuery .load method, injects content into the modal body. If an href with a valid URL is added, it will load that content.</label>
+      </li-->
+    </ul>
+    <div class="questionsRow"><a  class="button" id="nextquestions" (click)="suivant()">{{mot}}</a> <span>Affiche <b>{{numberpage}}</b> sur <b>{{totalPages}}</b></span></div>
+  </div>
+</div>

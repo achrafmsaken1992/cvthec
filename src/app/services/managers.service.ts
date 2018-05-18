@@ -78,29 +78,5 @@ console.log(offre);
         if(this.jwtToken==null) this.loadToken();
         return this.http.post('http://localhost:8080/addMessage',message,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
     }
-    addQuiz(qcm){
-        if(this.jwtToken==null) this.loadToken();
-        return this.http.post('http://localhost:8080/manager/addQcm',qcm,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
-    }
-    getQuizs(id){
-        return    this.http.get<any>("http://localhost:8080/getQcmsByOffre?id="+id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
-
-    }
-    addQuestion(question){
-        if(this.jwtToken==null) this.loadToken();
-        return this.http.post('http://localhost:8080/manager/addQuestion',question,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
-    }
-    getQuestions(id){
-        return    this.http.get<any>("http://localhost:8080/getQuestionsByQcm?id="+id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
-
-    }
-    addSuggestion(suggestion){
-        if(this.jwtToken==null) this.loadToken();
-        return this.http.post('http://localhost:8080/manager/addSuggestion',suggestion,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
-    }
-    getSuggestions(id){
-        return    this.http.get<any>("http://localhost:8080/getSuggestionsByQuestion?id="+id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
-
-    }
 
 }
