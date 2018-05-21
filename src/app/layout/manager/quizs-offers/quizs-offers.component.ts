@@ -5,7 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import swal from 'sweetalert2';
 
 import {QuizService} from "../../../services/quiz.service";
-
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-quizs-offers',
@@ -16,7 +16,7 @@ export class QuizsOffersComponent implements OnInit {
 id:number;
 quizs:any;
 
-  constructor(private r:Router
+  constructor(public _location: Location,private r:Router
       ,private route: ActivatedRoute,public quizService:QuizService
   ) {
 
@@ -154,5 +154,8 @@ supprimer(id){
 
 
 }
+  backClicked(){
+    this._location.back();
+  }
 
 }

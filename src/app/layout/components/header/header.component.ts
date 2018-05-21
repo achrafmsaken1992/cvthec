@@ -10,14 +10,16 @@ import {AuthService} from "../../../services/auth.service";
 })
 export class HeaderComponent implements OnInit {
     pushRightClass: string = 'push-right';
-
+data:any;
+size=5;
 profile:any;
+    totalpage:number;
     constructor(private translate: TranslateService, public router: Router,private auth:AuthService) {
 
 
         this.auth.getProfile().subscribe(resp => {
             this.profile = resp;
-
+            this.getNotifications(this.profile.id,this.size);
         }, err => {
 
         });
@@ -59,4 +61,34 @@ profile:any;
 
         return "http://localhost:8080/getPhotoProfile/"+photo+"/"+this.profile.companyName+"/"+this.profile.id;
     }
+    getNotifications(id,size){
+
+        this.auth.getNotifications(id,size).subscribe(resp=>{
+            this.data=resp;
+
+
+            console.log(this.data);
+
+        })
+
+    }
+    change(){
+        this.size=this.size+5;
+        this.getNotifications(this.profile.id,this.size);
+    }
+    getPhotoManager(image,id){
+
+        return "http://localhost:8080/getPhotoManager/"+image+"/"+id;
+    }
+    isEtudiant(){
+        return this.auth.isEtudiant();
+    }
+    isManager(){
+        return this.auth.isManeger();
+    }
+    getPhotoCandidat(image,id){
+
+        return "http://localhost:8080/getPhotoEtudiant/"+image+"/"+id;
+    }
+
 }

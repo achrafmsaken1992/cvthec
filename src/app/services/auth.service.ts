@@ -80,7 +80,7 @@ export class AuthService {
 
   getProfile(){
   if(this.jwtToken==null) this.loadToken();
-  return this.http.get('http://localhost:8080/manager/userProfile',{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+  return this.http.get('http://localhost:8080/userProfile',{headers:new HttpHeaders({'Authorization':this.jwtToken})});
 }
 
 updatePassword(fo){
@@ -112,5 +112,8 @@ updatePassword(fo){
         return this.http.post('http://localhost:8080/activationCompte',form,{observe:'response',
         });
     }
-
+  getNotifications(user,size){
+    if(this.jwtToken==null) this.loadToken();
+    return this.http.get('http://localhost:8080/getNotifications?user='+user+ '&size=' + size,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+}
 }

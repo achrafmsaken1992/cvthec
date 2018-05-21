@@ -54,7 +54,7 @@ this.getProfile();
   chercher(){
     this.candidatservice.getCandidats(this.firstname,this.lastname,this.title,this.page,this.size).subscribe(data => {
       this.data=data;
-      console.log(data);
+
       this.pages=new Array(data.totalPages);
       this.totalPages=data.totalElements;
       this.numberpage=this.page*this.size+data.numberOfElements;

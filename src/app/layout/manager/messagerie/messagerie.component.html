@@ -34,7 +34,7 @@
     <div id="search">
       <label for=""><i class="fa fa-search" aria-hidden="true"></i>
       </label>
-      <input type="text" placeholder="Chercher des Entreprises..." (keyup)="chercher()" [(ngModel)]="mot">
+      <input type="text" placeholder="Chercher des Etudiants..." (keyup)="chercher()" [(ngModel)]="mot">
     </div>
     <div id="contacts">
       <ul>
@@ -86,14 +86,14 @@
     </div>
     <div class="messages" >
       <ul *ngFor="let message of messages">
-        <li *ngIf="profile.id===message.user1" class="sent" >
+        <li *ngIf="profile.id===message.user1.id" class="sent" >
           <img *ngIf="this.profile.image!=null" src="{{getPhotoManager(profile.image,profile.nomEntreprise)}}" height="22px"  alt="" >
           <img *ngIf="this.profile.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
                alt=""
           >
           <p>{{message.message}}</p>
         </li>
-        <li *ngIf="profile.id!=message.user1" class="replies">
+        <li *ngIf="profile.id!=message.user1.id" class="replies">
           <img *ngIf="this.etudiantP.image!=null" src="{{getPhotoCandidate(etudiantP.image,etudiantP.id)}}" height="22px"  alt="" >
           <img *ngIf="this.etudiantP.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
                alt=""

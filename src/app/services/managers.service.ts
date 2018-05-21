@@ -50,7 +50,7 @@ console.log(offre);
 
    managerProfile(){
         if(this.jwtToken==null) this.loadToken();
-        return    this.http.get<any>("http://localhost:8080/manager/userProfile",{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+        return    this.http.get<any>("http://localhost:8080/userProfile",{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
 
     }
     uploadImageManager(file: File,text:string): Observable<HttpEvent<{}>> {

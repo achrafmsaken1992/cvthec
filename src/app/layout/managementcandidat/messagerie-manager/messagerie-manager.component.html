@@ -1,9 +1,9 @@
 
-
-<div id="frame">
-  <div id="sidepanel">
+<div   style="overflow-x:auto; ">
+<div id="frame" style="min-width: 700px">
+  <div id="sidepanel"  >
     <div id="profile">
-      <div class="wrap">
+      <div class="wrap" >
         <!--img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png"
              class="online" alt=""-->
         <img id="profile-img" *ngIf="profile.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
@@ -71,7 +71,7 @@
       </button>
     </div-->
   </div>
-  <div class="content" *ngIf="a!=0">
+  <div class="content" *ngIf="a!=0" >
     <div class="contact-profile" >
       <img *ngIf="manager.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
            alt=""
@@ -86,11 +86,11 @@
     </div>
     <div class="messages" >
       <ul *ngFor="let message of messages">
-        <li *ngIf="profile.id===message.user1" class="sent" >
+        <li *ngIf="profile.id===message.user1.id" class="sent" >
           <img src="{{getPhotoCandidate(profile.image,profile.id)}}" height="22px"  alt="">
           <p>{{message.message}}</p>
         </li>
-        <li *ngIf="profile.id!=message.user1" class="replies">
+        <li *ngIf="profile.id!=message.user1.id" class="replies">
           <img src="{{getPhotoManager(manager.image,manager.nomEntreprise)}}" height="22px"  alt="">
           <p>{{message.message}}</p>
         </li>
@@ -109,4 +109,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

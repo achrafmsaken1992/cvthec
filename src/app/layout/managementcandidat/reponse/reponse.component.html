@@ -1,6 +1,6 @@
 <div class="privew">
   <div class="questionsBox" >
-    <div class="questions"><b>question:</b> {{question}}</div>
+    <div class="questions"><b>question numero {{page+1}}:</b> {{question}} </div>
     <ul class="answerList">
       <li let *ngFor="let s of suggestions;let i=index">
         <label>
@@ -21,6 +21,17 @@
           <input type="checkbox" name="answerGroup" value="3" id="answerGroup_3" (change)="change(3)"> Using the jQuery .load method, injects content into the modal body. If an href with a valid URL is added, it will load that content.</label>
       </li-->
     </ul>
-    <div class="questionsRow"><a  class="button" id="nextquestions" (click)="suivant()">{{mot}}</a> <span>Affiche <b>{{numberpage}}</b> sur <b>{{totalPages}}</b></span></div>
+    <div class="questionsRow"><a  class="button" id="nextquestions" (click)="suivant()">{{mot}}</a> <span>Question <b>{{numberpage}}</b> sur <b>{{totalPages}}</b></span></div>
+  </div>
+  <div *ngIf="duration>0">
+    temps restant {{clockDisplay}}
+
+
+  </div>
+  <div *ngIf="duration<=0" >
+    tu as deja repondu au Quiz votre resultat est:3/6
+
+
+
   </div>
 </div>

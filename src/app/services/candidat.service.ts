@@ -12,7 +12,7 @@ export class CandidatService {
   }
   getCandidat(){
     if(this.jwtToken==null) this.loadToken();
-    return    this.http.get<any>("http://localhost:8080/etudiant/userProfile",{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+    return    this.http.get<any>("http://localhost:8080/userProfile",{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
 
   }
 
@@ -271,7 +271,7 @@ export class CandidatService {
 
     getOffers(mot: string, page: number, size: number) {
         if (this.jwtToken == null) this.loadToken();
-        return this.http.get<any>("http://localhost:8080/etudiant/getAllOffres?mot=" + "%"+mot+"%" +  + "&size=" + size+ "&page=" + page, {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+        return this.http.get<any>("http://localhost:8080/etudiant/getAllOffres?mot=" + mot   + "&size=" + size+ "&page=" + page, {headers: new HttpHeaders({'Authorization': this.jwtToken})});
 
     }
 

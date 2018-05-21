@@ -73,4 +73,55 @@ export class QuizService {
   return    this.http.get<any>("http://localhost:8080/getSuggestionReponse?question="+id+ "&reponse=" + reponse,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
 
 }
+  addReponse(reponse){
+    if(this.jwtToken==null) this.loadToken();
+    return this.http.post('http://localhost:8080//etudiant/addReponse',reponse,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+  }
+  addNote(note){
+    if(this.jwtToken==null) this.loadToken();
+    return this.http.post('http://localhost:8080/etudiant/addNote',note,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+  }
+  findNoteByqcmByetudiant(etudiantId,qcmId){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<any>("http://localhost:8080/findNoteByqcmByetudiant?etudiant="+etudiantId+ "&qcm=" + qcmId,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+  }
+
+  nbrParticipantsQcm(qcmId){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<any>("http://localhost:8080/nbrParticipantsQcm?qcm=" + qcmId,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+  }
+  moyenneNoteQcm(qcmId){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<any>("http://localhost:8080/moyenneNoteQcm?qcm=" + qcmId,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+  }
+  meuilleurNoteQcm(qcmId){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<any>("http://localhost:8080/meuilleurNoteQcm?qcm=" + qcmId,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+  }
+  plusMauvaisNoteQcm(qcmId){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<any>("http://localhost:8080/plusMauvaisNoteQcm?qcm=" + qcmId,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+  }
+  findNoteByqcm(qcmId,page){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<any>("http://localhost:8080/findNoteByqcm?qcm="+qcmId+ "&page=" + page,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+  }
+findQuizById(id){
+  if(this.jwtToken==null) this.loadToken();
+  return    this.http.get<any>("http://localhost:8080/findQuizById?qcm="+id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+}
+  nbrParticipantsReussisQcm(qcmId){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<any>("http://localhost:8080/nbrParticipantsReussisQcm?qcm=" + qcmId,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+  }
+
+
 }

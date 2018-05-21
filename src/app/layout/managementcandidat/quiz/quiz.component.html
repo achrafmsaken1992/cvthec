@@ -7,7 +7,7 @@
 
       <div style="display: block;">
         <h5>Liste  des quizs
-          <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#modalQuiz"><i class="fa fa-plus-circle"></i></button>
+
         </h5>
 
       </div></div>
@@ -27,17 +27,7 @@
         <div class="form-group input-group">
 
           <div  class="d-inline-block" style="align:center">
-<div *ngIf="duration>0">
-temps restant {{clockDisplay}}
-
-
-          </div>
-          <div *ngIf="duration<=0" >
-            tu as deja repondu au Quiz votre resultat est:3/6
-
-
-
-          </div></div></div>
+</div></div>
 
       </nav>
 
@@ -48,8 +38,8 @@ temps restant {{clockDisplay}}
 
             <th colspan="2">Titre</th>
 
-            <th>Temps</th>
-            <th>Nombre questions</th>
+            <th>Temps par question</th>
+
             <th>Action</th>
 
 
@@ -67,8 +57,8 @@ temps restant {{clockDisplay}}
 
 
             <td colspan="2">{{quiz.titre}} </td>
-            <td>{{quiz.duree}} </td>
-            <td >8</td>
+            <td>{{quiz.duree}} secondes</td>
+
             <td><div class="btn-group " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
 
@@ -76,9 +66,9 @@ temps restant {{clockDisplay}}
                 <i class="fa fa-2x fa-ellipsis-h"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right">
-                <a   class="search" style="color:black"  data-toggle="tooltip" routerLink="/test/{{quiz.id}}" [routerLinkActive]="['router-link-active']">
+                <a   class="search" style="color:black"  data-toggle="tooltip"(click)="verif(quiz.id)" >
                   <i class="material-icons">question_answer</i>Passer un test</a><br>
-                <a  class="edit" data-toggle="tooltip" ><i class="material-icons"  >&#xE254;</i> voir resultat</a>
+                <a  class="edit" data-toggle="tooltip" (click)="resultat(quiz)"><i class="material-icons"  >view_headline</i> voir resultat</a>
 
 
 

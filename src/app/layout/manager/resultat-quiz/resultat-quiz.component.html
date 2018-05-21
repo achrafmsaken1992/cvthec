@@ -1,0 +1,116 @@
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+          <button  class="btn btn-github" (click)="backClicked()">retour</button><br><br>
+        <h5 class="card-title">Titre Quiz: <b>{{quiz.titre}}</b><br>Titre Offre: <b>{{quiz.offre.titre}}</b></h5>
+        <h6 class="card-subtitle mb-2 text-muted"></h6>
+        <div class="card-text">
+          <div ><span class="progress-title">Nombre de participants: {{data.content.length}}<br>
+            Nombre de participants ayant plus de 50% taux de reponses correctes: </span><b>{{reussis}} participants</b></div>
+           <div class="progress">
+        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"  aria-valuemin="0"
+             aria-valuemax="100"  [ngStyle]="{width:tauxReussis()+'%'}" attr.aria-valuenow="{{tauxReussis()}}"><span class="progress-percent"> {{tauxReussis()}}%</span>
+        </div></div>
+
+        <br>
+          Meilleur resultat: <b>{{resultat((data.content[0].reponseCorrect/(data.content[0].reponseCorrect+data.content[0].reponseFausse))*100)}}%  taux de reponses correctes</b><br>
+          Plus mauvais resultat: <b>{{resultat((data.content[totalPages-1].reponseCorrect/(data.content[0].reponseCorrect+data.content[0].reponseFausse))*100)}}%  taux de reponses correctes</b><br>
+Moyenne des resultats: <b>{{moyenne}}% taux de reponses correctes</b>
+        </div>
+        <!--a href="https://bootsnipp.com/pradeep330" class="card-link">link</a>
+        <a href="http://websitedesigntamilnadu.com" class="card-link">Another link</a-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header"><h5>Liste  des resultats</h5></div>
+    <div class="card-body table-responsive" style="min-height: 350px;"  >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="clearfix"  *ngIf="this.data.totalPages!=1">
+            <div class="hint-text">Affiche <b>{{numberpage}}</b> sur <b>{{totalPages}}</b> entrées</div>
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" (click)="precedent()"><i class="material-icons">&#xE408;</i></a></li>
+                <li   [ngClass]="{'active':i==page}" class="page-item"  *ngFor="let p of pages;let i=index;">
+                    <a *ngIf=" (page-i<=4 && page>=4 && i<=page)||( i<5 && page<=4)" class="page-link" (click)="goto(i)">{{i}}</a>
+                </li>
+
+
+                <li class="page-item"><a  class="page-link" (click)="suivant()"><i class="material-icons">&#xE409;</i></a></li>
+            </ul>
+        </div>
+        <div style="overflow-x:auto; "style="width: 1000px">
+            <table class="table table-striped ">
+                <thead>
+                <tr>
+
+                    <th colspan="2">Nom et Prenom</th>
+
+                  <th>Reponses correctes</th>
+                    <th>Reponses fausses</th>
+                    <th>Pourcentage</th>
+
+
+
+
+
+                    <th></th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let c of data?.content">
+
+
+
+
+                    <td colspan="2">{{c.etudiant.prenom}} {{c.etudiant.nom}}</td>
+<td>{{c.reponseCorrect}} reponses</td>
+                    <td>{{c.reponseFausse}} reponses</td>
+<td>{{pourcentage(c.reponseCorrect,c.reponseFausse)}}%</td>
+
+
+                    <td>
+                        <div class="btn-group active" data-toggle="buttons-radio" >
+                            <button  type="button" class="btn btn-primary yes"  data-toggle="tooltip" title="Accpter">Voir profile</button>
+
+                        </div></td>
+                </tr>
+
+                </tbody>
+            </table>
+            <div class="clearfix"  *ngIf="this.data.totalPages!=1">
+                <div class="hint-text">Affiche <b>{{numberpage}}</b> sur <b>{{totalPages}}</b> entrées</div>
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" (click)="precedent()"><i class="material-icons">&#xE408;</i></a></li>
+                    <li   [ngClass]="{'active':i==page}" class="page-item"  *ngFor="let p of pages;let i=index;">
+                        <a *ngIf=" (page-i<=4 && page>=4 && i<=page)||( i<5 && page<=4)" class="page-link" (click)="goto(i)">{{i}}</a>
+                    </li>
+
+
+                    <li class="page-item"><a  class="page-link" (click)="suivant()"><i class="material-icons">&#xE409;</i></a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
