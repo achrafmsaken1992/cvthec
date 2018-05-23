@@ -1,6 +1,6 @@
 <div class="privew">
   <div class="questionsBox" >
-    <div class="questions"><b>question numero {{page+1}}:</b> {{question}} </div>
+    <div class="questions"><b>question numero {{page+1}}:</b> {{question.question}} </div>
     <ul class="answerList">
       <li let *ngFor="let s of suggestions;let i=index">
         <label>

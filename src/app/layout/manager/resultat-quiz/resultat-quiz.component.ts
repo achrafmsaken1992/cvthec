@@ -71,5 +71,7 @@ pourcentage(reponseCorrect:number,reponseFausse:number){
   backClicked(){
     this._location.back();
   }
-
+voirProfile(id:number){
+    this.r.navigate(['profile-etudiant',id])
+}
 }

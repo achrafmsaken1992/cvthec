@@ -51,7 +51,7 @@
 
 
 
-            <div class="clearfix"  >
+            <div class="clearfix"  *ngIf="totalpage>1">
                 <div class="hint-text">Affiche <b>{{numberpage}}</b> sur <b>{{totalPages}}</b> entrées</div>
                 <ul class="pagination">
                     <li class="page-item"><a class="page-link" (click)="precedent()"><i class="material-icons">&#xE408;</i></a></li>
@@ -105,7 +105,7 @@
 
                     </tbody>
                 </table>
-                <div class="clearfix"  >
+                <div class="clearfix"  *ngIf="totalpage>1">
                     <div class="hint-text">Affiche <b>{{numberpage}}</b> sur <b>{{totalPages}}</b> entrées</div>
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" (click)="precedent()"><i class="material-icons">&#xE408;</i></a></li>

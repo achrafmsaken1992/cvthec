@@ -16,5 +16,10 @@ export class EtudiantService {
     register(user){
         return this.http.post("http://localhost:8080/admin/ajoutEtudiant",user,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
     }
+    getEtudiantById(id){
+        if(this.jwtToken==null) this.loadToken();
+        return    this.http.get<any>("http://localhost:8080/getEtudiantById?id="+id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+    }
 
 }

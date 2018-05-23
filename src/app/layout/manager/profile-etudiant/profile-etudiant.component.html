@@ -1,6 +1,6 @@
 <link href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
-
-<div id="main-wrapper " [@routerTransition]  >
+<button  class="btn btn-github" (click)="backClicked()">retour</button>
+<div id="main-wrapper "  >
   <!-- Page Preloader -->
 
   <!--button  class="btn btn-github">retour</button-->
@@ -13,8 +13,8 @@
       <header class="header theiaStickySidebar" >
         <div class="profile-img">
 
-            <img  *ngIf="candidat.id!=null" class="img-fluid img-thumbnail"    src="{{getPhotoCandidate(candidat.image,candidat.id)}}"  >
-            <img *ngIf="candidat.id==null" src="https://static6.depositphotos.com/1140262/641/i/950/depositphotos_6410189-stock-photo-working-too-much.jpg" class="img-fluid" alt="">
+          <img *ngIf="candidat.id==null" src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png" class="img-fluid" alt="">
+          <img  *ngIf="candidat.id!=null" class="img-fluid img-thumbnail"    src="{{getPhotoCandidate(candidat.image,candidat.id)}}"  >
         </div>
         <section class="section-contact section-wrapper gray-bg">
           <div class="container-fluid" style="">
@@ -31,7 +31,7 @@
                 <address>
 
                   <strong>Nom et prenom</strong><br>
-                    {{candidat.prenom}} {{candidat.nom}}<br>
+                  {{candidat.prenom}} {{candidat.nom}}<br>
                   <br>
 
 
@@ -41,8 +41,8 @@
                 </address>
                 <address>
 
-                  <strong>Date Naissance</strong><br>
-                    {{candidat.dateNaissance}}
+                  <strong>Date naissance</strong><br>
+                  {{candidat.dateNaissance}}
 
 
                 </address>
@@ -53,7 +53,7 @@
 
                 <address>
 
-                  <strong>Numero de telephone</strong><br>{{candidat.tel}}<br>
+                  <strong>Numero de telephone</strong> {{candidat.tel}}<br>
 
 
 
@@ -62,7 +62,7 @@
                 <address>
 
                   <strong>Email</strong><br>
-                    {{candidat.email}}
+                  {{candidat.email}}
                   <a href="mailto:#"></a>
 
                 </address>
@@ -91,7 +91,7 @@
                 </div></div>
               <div class="col-lg-3">
 
-                <app-modal-add-competance  (send)="getCandidat($event)"></app-modal-add-competance>
+
               </div>
             </div>
             <!-- .row -->
@@ -99,15 +99,15 @@
 
               <div class="col-lg-6" *ngFor="let competance of candidat.competance">
                 <div class="content-item">
-                    <app-modal-update-competance [skill]='competance'  (send)="getCandidat($event)"></app-modal-update-competance> <i class="material-icons delete" (click)="deleteCompetance(competance.id)">delete</i>
-                    <div> <b>{{competance.name}}</b>  {{competance.note}}</div>
 
-                    <div><b>Certificat</b> {{competance.certificat}}</div>
+                  <div> <b>{{competance.name}}</b>  {{competance.note}}</div>
+
+                  <div><b>Certificat</b> {{competance.certificat}}</div>
                 </div>
               </div>
             </div>
 
-            </div>
+          </div>
         </section>
         <!-- .expertise-wrapper -->
 
@@ -120,7 +120,7 @@
                 </div></div>
               <div class="col-lg-3">
 
-<app-modal-add-experience  (send)="getCandidat($event)" ></app-modal-add-experience>
+
               </div>
             </div>
             <!--.row-->
@@ -128,7 +128,7 @@
               <div class="col-lg-6" *ngFor="let experience of candidat.experience">
 
                 <!-- .experience-item -->
-                <div class="expertise-item" > <app-modal-update-experience [experience]='experience'  (send)="getCandidat($event)"></app-modal-update-experience><i class="material-icons delete" (click)="deleteExperience(experience.id)" >delete</i>
+                <div class="expertise-item" >
                   <div><b>Societé</b> {{experience.entreprise}} </div>
                   <div><b>Periode</b> {{experience.date1}} - {{experience.date2}} </div>
                   <div><b>Lieu</b> {{experience.lieu}}</div>
@@ -153,27 +153,28 @@
                 </div></div>
               <div class="col-lg-3">
 
-                <app-modal-add-formation  (send)="getCandidat($event)"></app-modal-add-formation>
+
               </div>
             </div>
 
             <!--.row-->
             <div class="row" >
               <div class="col-lg-6" *ngFor="let formation of candidat.formation">
-                <div class="content-item"><app-modal-update-formation [formation]='formation' [id]='id' (send)="getCandidat($event)"></app-modal-update-formation> <i class="material-icons delete" (click)="deleteFormation(formation.id)" >delete</i>
+                <div class="content-item">
 
-                    <div><b>Université</b> {{formation.universite}}</div>
-                    <div><b>Periode</b> {{formation.date1}} - {{formation.date2}}</div>
-                    <div><b>Section</b> {{formation.section}} </div>
-                    <div><b>Specialité</b> {{formation.specialite}}</div>
+                  <div><b>Université</b> {{formation.universite}}</div>
+                  <div><b>Periode</b> {{formation.date1}} - {{formation.date2}}</div>
+                  <div><b>Section</b> {{formation.section}} </div>
+                  <div><b>Specialité</b> {{formation.specialite}}</div>
 
-                    <div><b>Mention </b>{{formation.result}}</div>
+                  <div><b>Mention </b>{{formation.result}}</div>
 
                 </div>
-                <!-- .experience-item -->
+
 
               </div>
             </div>
+
             <!--.row-->
           </div>
           <!-- .container-fluid -->
@@ -189,22 +190,22 @@
                 </div></div>
               <div class="col-lg-3">
 
-                <app-modal-add-langue  (send)="getCandidat($event)"></app-modal-add-langue>
+
               </div>
             </div>
 
             <div class="row">
               <div class="col-lg-12">
                 <div class="progress-wrapper" >
-                    <div  *ngFor="let langue of candidat.langue"><i class="material-icons delete pull-right" (click)="deleteLangue(langue.id)">delete</i><app-modal-update-langue [langue]='langue'  (send)="getCandidat($event)"></app-modal-update-langue>
-                        <div ><span class="progress-title">{{langue.nom}}</span></div>
+                  <div  *ngFor="let langue of candidat.langue">
+                    <div ><span class="progress-title">{{langue.nom}}</span></div>
                     <div class="progress">
-                  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"  aria-valuemin="0"
-                       aria-valuemax="100"  [ngStyle]="{width:langue.niveau+'%'}" attr.aria-valuenow="{{id}}"><span class="progress-percent"> {{langue.niveau}}%</span>
-                  </div>
+                      <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"  aria-valuemin="0"
+                           aria-valuemax="100"  [ngStyle]="{width:langue.niveau+'%'}" attr.aria-valuenow="{{id}}"><span class="progress-percent"> {{langue.niveau}}%</span>
+                      </div>
 
-                  <!-- .progress -->
-                </div>
+                      <!-- .progress -->
+                    </div>
 
 
                   </div>
@@ -212,8 +213,7 @@
                 </div>
                 <!-- /.progress-wrapper -->
               </div>
-        </div>
-            <!--.row -->
+            </div>
           </div>
           <!-- .container-fluid -->
         </section>

@@ -10,12 +10,12 @@ import {ToastsManager} from "ng2-toastr";
   styleUrls: ['./reponse.component.scss']
 })
 export class ReponseComponent implements OnInit {
-  rep="";
-  nbrT=0;
-  nbrF=0;
-  k=0;
-addNote=0;
-  quit=0;
+    idNote:any;
+
+ correct=0;
+fausse=0;
+
+exit:number=0;
 suggestions:any;
   id:number;
   question:any;
@@ -28,11 +28,11 @@ suggestions:any;
 tab:string[]=[];
 mot="Suivant";
 resultat:any;
-idQuestion:number;
+
 profile:any;
     timeString : string;
-    // duration = 10*60;
-    duration = 1000;
+
+    duration :number=1000;
     seconds = "--";
     minutes = "--";
     clockDisplay : string;
@@ -46,89 +46,82 @@ profile:any;
   }
 
   ngOnInit() {
+
       this.id= this.route.snapshot.params['id'];
       this.candidatService.getCandidat().subscribe(resp=>{
-          this.profile=resp;
+    this.profile=resp;
 
 
 this.findNoteByqcmByetudiant(this.profile.id,this.id)    })
+      this.getQuestions();
 
-
-this.getQuestions();
       this.tickTick();
 
 
-
-
-
-
-
-
   }
+
+
+
+    getQuestions(){
+this.tab=[];
+        this.quizService.getQuestionsCandidat(this.page,this.id).subscribe(
+            data=>{
+                this.question=data.content[0];
+
+
+
+                this.pages=new Array(data.totalPages);
+                this.totalPages=data.totalElements;
+                this.numberpage=this.page+1;
+                this.totalpage=data.totalPages;
+                let note = {
+
+                    reponseC: 0,
+                    reponseF: this.totalPages ,
+                    etudiantId: this.profile.id,
+                    qcmId: this.id
+                }
+                this.quizService.getSuggestions(this.question.id).subscribe(resp=>{
+                    this.suggestions=resp;
+
+                    for(let i=0;i<this.suggestions.length;i++){
+                        this.tab[i]="0";
+                    }
+                    setTimeout(() => {
+
+                        if(this.exit==0)
+                            this._location.back();
+
+
+                    }, this.duration * 1000);
+                })
+                this.quizService.addNote(note).subscribe(resp=>{
+                    this.idNote=resp;
+
+                },err=>{
+
+                })
+
+                this.duration = data.content[0].qcm.duree * this.totalPages;
+         }
+        )
+    }
+
+
 change(i:number){
 if(this.tab[i]=="0"){
     this.tab[i]="1"
+
 }
 else{
     this.tab[i]="0"
 }
 
+
 }
-
-getQuestions(){
-    this.tab=[];
-this.k++;
-    this.quizService.getQuestionsCandidat(this.page,this.id).subscribe(
-      data=>{
-        this.question=data.content[0].question;
-        this.idQuestion=data.content[0].id;
-
-
-        this.pages=new Array(data.totalPages);
-        this.totalPages=data.totalElements;
-        this.numberpage=this.page+1;
-        this.totalpage=data.totalPages;
-        this.getSuggestions();
-if(this.k==1) {
-    this.duration = data.content[0].qcm.duree * this.totalPages;
-    setTimeout(() => {
-        let note = {
-            reponseC: this.nbrT,
-            reponseF: this.totalPages - this.nbrT,
-            etudiantId: this.profile.id,
-            qcmId: this.id
-        }
-     if(this.addNote==1) {
-         this.quizService.addNote(note).subscribe(resp => {
-             this.toastr.info(`Quiz terminé tu as repondu correctement ` + note.reponseC + `sur ` + this.totalPages + ` questions`);
-             this._location.back();
-         }, err => {
-
-         })
-     }
-
-    }, this.duration * 1000);
-}
-          for(let i=0;i<this.resultat.length;i++)
-          {
-              this.tab[i]="0"
-          }
-
-      }
-  )
-}
-    getSuggestions(){
-        this.quizService.getSuggestions(this.idQuestion).subscribe(resp=>{
-            this.suggestions=resp;
-
-            for(let i=0;i<this.suggestions.length;i++){
-                this.tab[i]="0";
-            }
-        })
-
-    }
 
   suivant(){
+
        let r:number;
 let send=0;
         if(this.page<this.totalpage) {
@@ -137,90 +130,89 @@ let send=0;
                 reponseEtudiant += this.tab[i];
             }
 
-            this.quizService.getSuggestionReponse(this.idQuestion,reponseEtudiant).subscribe(
+
+            this.quizService.getSuggestionReponse(this.question.id,reponseEtudiant).subscribe(
                 resp=>{
                     if(resp==1){
-                        r=1;
-                    }else{
-                        r=0;
+                        this.correct++;
+                      r=1;
+
                     }
+                       else {
+                        r = 0;
+                      this.fausse++;
+
+                    }
+
                     let reponse={
-                        question:this.idQuestion,
+                        id:this.idNote,
+                        question:this.question.id,
                         etudiant:this.profile.id,
                         resultat:r
 
                 }
-                    this.quizService.addReponse(reponse).subscribe(resp=>{
-                        if(r===1){
-                            this.nbrT++;
-                        }
-                        else
-                            this.nbrF++;
-if(this.nbrF+this.nbrT<this.totalPages) {
-
-}
-else{
-
-    let note = {
-        reponseC: this.nbrT,
-        reponseF: this.totalPages-this.nbrT,
-        etudiantId: this.profile.id,
-        qcmId: this.id
-    }
-    this.quizService.addNote(note).subscribe(resp => {
-
-        this._location.back();
-        },err=>{
-
-    })
-}
-
+                    this.quizService.addReponse(reponse).subscribe(resp=> {
 
                     })
+
+                    let note = {
+                        id:this.idNote,
+                        reponseC: this.correct,
+                        reponseF: this.totalPages-this.correct,
+                        etudiantId: this.profile.id,
+                        qcmId: this.id
+                    }
+                    this.quizService.addNote(note).subscribe(resp => {
+
+                    },err=>{
+
+                    })
+if(this.fausse+this.correct<this.totalPages) {
+
+    if (this.fausse + this.correct === this.totalPages - 1) {
+        this.mot = "terminer";
+    }
+    this.page++;
+    this.quizService.getQuestionsCandidat(this.page,this.id).subscribe(
+        data=>{
+            this.question=data.content[0];
+
+
+
+            this.pages=new Array(data.totalPages);
+            this.totalPages=data.totalElements;
+            this.numberpage=this.page+1;
+            this.totalpage=data.totalPages;
+            this.quizService.getSuggestions(this.question.id).subscribe(resp=>{
+                this.suggestions=resp;
+
+                for(let i=0;i<this.suggestions.length;i++){
+                    this.tab[i]="0";
+                }
+            })
+
+
+        })
+
+}
+    else if (this.fausse + this.correct === this.totalPages) {
+        this._location.back();
+    }
+
+
+
                 },
                 err=>{
 
                 }
             )
 
-
-    if (this.page < this.totalpage - 1) {
-        this.page++
-    }
-
-
-    if (this.page == this.totalpage - 1) {
-        this.mot = "Terminer"
-
-    }
-
-
-
-
-
-
-
-
-
         }
 
-    this.getQuestions();
+      this.tab=[];
 
   }
-/*
- this.data=data;
- console.log(data);
- this.pages=new Array(data.totalPages);
- this.totalPages=data.totalElements;
- this.numberpage=this.page*this.size+data.numberOfElements;
- this.totalpage=data.totalPages;
-*/
 
-
-  /*for(let i=0;i<4;i++){
-    this.tab[i]=0;
-    console.log(this.tab[i]);
-  }*/
     tickTick() {
 
             if (this.duration > 0) {
@@ -255,7 +247,7 @@ else{
     findNoteByqcmByetudiant(etudiantId,qcmId){
         this.quizService.findNoteByqcmByetudiant(etudiantId,qcmId).subscribe(resp=>{
           if(resp==null){
-this.addNote=1;
+
           }
           else{
 
@@ -266,4 +258,8 @@ this.addNote=1;
             console.log("non non")
         })
     }
+    ngOnDestroy(){
+        this.exit=1;
+    }
 }
+

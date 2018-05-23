@@ -11,15 +11,18 @@
 
                     <li *ngIf="isEtudiant()" class="nav-item dropdown"> <a class="nav-link " id="dLabel" role="button" data-toggle="dropdown" data-target="#" >
 
-                        <i class="fa fa-bell" style="cursor: pointer;font-size: 16px;"> Notification</i>
+                        <i class="fa fa-bell" style="cursor: pointer;font-size: 16px;" (click)="notification(data?.totalElements==0)">Notification</i>
 
                     </a>
-                        <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                        <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel" *ngIf="data?.totalElements!=0">
                             <div class="notification-heading">
                                 <h4 class="menu-title">Notifications</h4>
                                 <!--h4 class="menu-title float-right">View all<i class="fa fa-arrow-circle-o-right"></i></h4-->
                             </div>
-                            <div class="notifications-wrapper"> <a *ngFor="let messagerie of data?.content"
+                            <div class="notifications-wrapper" >
+
+
+                                <a *ngFor="let messagerie of data?.content"
                                     class="content" style="cursor: pointer"
 
                             >
@@ -31,7 +34,7 @@
 
                                     <h6 class="item-info">{{messagerie.user1.prenom}} {{messagerie.user1.nom}}  <small class="float-right">{{messagerie.date|amTimeAgo}}</small></h6>
 
-                                    <p class="item-info" style="background-color: #00aced">{{messagerie.message}}</p>
+                                    <p class="item-info" style="background-color: #00aced">{{getMessage(messagerie.message)}}</p>
 
                                 </div>
 
@@ -44,12 +47,12 @@
 
                     <li *ngIf="isManager()" class="nav-item dropdown"> <a class="nav-link " id="dLabel" role="button" data-toggle="dropdown" data-target="#" >
 
-                        <i class="fa fa-bell" style="cursor: pointer;font-size: 16px;"> Notification</i>
+                        <i class="fa fa-bell" style="cursor: pointer;font-size: 16px;" (click)="notification(data?.totalElements==0)"> Notification</i>
 
                     </a>
-                        <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                        <ul *ngIf="data?.totalElements!=0" class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
                             <div class="notification-heading">
-                                <h4 class="menu-title">Notifications</h4>
+                                <h4 class="menu-title"> Notifications</h4>
                                 <!--h4 class="menu-title float-right">View all<i class="fa fa-arrow-circle-o-right"></i></h4-->
                             </div>
                             <div class="notifications-wrapper"> <a *ngFor="let messagerie of data?.content"
@@ -64,7 +67,7 @@
 
                                     <h6 class="item-info">{{messagerie.user1.prenom}} {{messagerie.user1.nom}}  <small class="float-right">{{messagerie.date|amTimeAgo}}</small></h6>
 
-                                    <p class="item-info" style="background-color: #00aced">{{messagerie.message}}</p>
+                                    <p class="item-info" style="background-color: #00aced">{{getMessage(messagerie.message)}}</p>
 
                                 </div>
 

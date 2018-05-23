@@ -38,7 +38,8 @@ const routes: Routes = [
             {path:'liste-questions/:id',loadChildren: './manager/question/question.module#QuestionModule'},
             {path:'liste-suggestions/:id',loadChildren: './manager/suggestion/suggestion.module#SuggestionModule'},
             {path:'quizs/:id',loadChildren: './managementcandidat/quiz/quiz.module#QuizModule'},
-            {path:'test/:id',loadChildren: './managementcandidat/reponse/reponse.module#ReponseModule'}
+            {path:'test/:id',loadChildren: './managementcandidat/reponse/reponse.module#ReponseModule'},
+            {path:'profile-etudiant/:id',loadChildren: './manager/profile-etudiant/profile-etudiant.module#ProfileEtudiantModule'}
             ],
 
     }

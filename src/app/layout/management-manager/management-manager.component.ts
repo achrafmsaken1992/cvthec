@@ -26,7 +26,7 @@ active=1;
 valide=0;
 date=""
   constructor(private managerService:ManagersService) {
-      this.chercher();
+
   }
 
   ngOnInit() {
@@ -69,6 +69,7 @@ this.chercher();
             this.totalPages=data.totalElements;
             this.numberpage=this.page*this.size+data.numberOfElements;
             this.totalpage=data.totalPages;
+
 
         });
 
