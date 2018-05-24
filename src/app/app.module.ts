@@ -20,9 +20,21 @@ import {ManagersService} from "./services/managers.service";
 import {EtudiantService} from "./services/etudiant.service";
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
 import {QuizService} from "./services/quiz.service";
+import {MessagingService} from "./services/messaging-service.service";
+import {AngularFireModule, FirebaseApp} from "angularfire2";
+import {AngularFireDatabaseModule} from "angularfire2/database";
+import {AngularFireAuthModule} from "angularfire2/auth";
+import { AngularFirestoreModule} from "angularfire2/firestore";
 
 
-
+const config = {
+    apiKey: "AIzaSyAtiHSdmnsxIDQ67V1eVua9AcAqGnmA7Wg",
+    authDomain: "pfecv-9f6f8.firebaseapp.com",
+    databaseURL: "https://pfecv-9f6f8.firebaseio.com",
+    projectId: "pfecv-9f6f8",
+    storageBucket: "pfecv-9f6f8.appspot.com",
+    messagingSenderId: "47874298368"
+};
 
 
 
@@ -54,10 +66,14 @@ export function createTranslateLoader(http: HttpClient) {
         }),
         AppRoutingModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        AngularFireModule.initializeApp(config),
+        AngularFireDatabaseModule,
+        AngularFireAuthModule,
+        AngularFirestoreModule
     ],
     declarations: [AppComponent],
-    providers: [AuthGuard, AuthService,CandidatService,CollaborateurService,EmployeesService,ManagersService,EtudiantService,QuizService],
+    providers: [AuthGuard, AuthService,MessagingService,CandidatService,CollaborateurService,EmployeesService,ManagersService,EtudiantService,QuizService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

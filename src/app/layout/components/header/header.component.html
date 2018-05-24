@@ -6,7 +6,7 @@
                 <!-- <span class="navbar-toggler-icon"></span> -->
                 <i class="fa fa-bars text-muted" aria-hidden="true"></i>
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div #sam class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
 
                     <li *ngIf="isEtudiant()" class="nav-item dropdown"> <a class="nav-link " id="dLabel" role="button" data-toggle="dropdown" data-target="#" >
@@ -55,7 +55,7 @@
                                 <h4 class="menu-title"> Notifications</h4>
                                 <!--h4 class="menu-title float-right">View all<i class="fa fa-arrow-circle-o-right"></i></h4-->
                             </div>
-                            <div class="notifications-wrapper"> <a *ngFor="let messagerie of data?.content"
+                            <div class="notifications-wrapper" > <a *ngFor="let messagerie of data?.content"
                                                                    class="content" style="cursor: pointer"
 
                             >

@@ -1,6 +1,6 @@
 import { MessagerieManagerModule } from './messagerie-manager.module';
 
-describe('GridModule', () => {
+describe('messagerieManagerModule', () => {
   let messagerieManagerModule: MessagerieManagerModule;
 
   beforeEach(() => {

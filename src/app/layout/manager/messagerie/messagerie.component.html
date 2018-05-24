@@ -6,14 +6,14 @@
       <div class="wrap">
         <!--img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png"
              class="online" alt=""-->
-        <img id="profile-img" *ngIf="profile.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
+        <img id="profile-img" *ngIf="profile?.image===null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
              alt=""
         >
 
-        <img id="profile-img" *ngIf="profile.image!=null"  src="{{getPhotoManager(profile.image,profile.nomEntreprise)}}"
+        <img id="profile-img" *ngIf="profile?.image!=null"  src="{{getPhotoManager(profile.image,profile.nomEntreprise)}}"
              alt=""
         >
-        <p>{{this.profile.prenom}}  {{this.profile.nom}}</p>
+        <p>{{this.profile?.prenom}}  {{this.profile?.nom}}</p>
         <div
                 id="status-options">
 

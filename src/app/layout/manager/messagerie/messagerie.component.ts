@@ -18,6 +18,7 @@ msg="";
   constructor(private managerService:ManagersService) { }
 
   ngOnInit() {
+
     this.getProfile();
     this.getEtudiants();
   }
@@ -60,13 +61,16 @@ this.managerService.getEtudiantMessagerie(this.mot).subscribe(resp=>{
   }
 
   addMessage(){
+    let photo=this.getPhotoManager(this.profile.image,this.profile.nomEntreprise);
     let message={
       user1:this.profile.id,
       user2:this.etudiantP.id,
-      message:this.msg
+      message:this.msg,
+      image:photo
     }
     this.managerService.addMessage(message).subscribe(resp=>{
           this.msg="";
+
           this.getMessages(this.etudiantP);
 
         },

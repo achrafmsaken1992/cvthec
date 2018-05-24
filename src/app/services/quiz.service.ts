@@ -21,6 +21,12 @@ export class QuizService {
     return    this.http.get<any>("http://localhost:8080/getQcmsByOffre?id="+id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
 
   }
+  getQuizsManager(id){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<any>("http://localhost:8080/getQcmsByOffreManager?id="+id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+  }
+
   deleteQuiz(id){
     if(this.jwtToken==null) this.loadToken();
     return this.http.post('http://localhost:8080/manager/deleteQuiz',id,{headers:new HttpHeaders({'Authorization':this.jwtToken})});

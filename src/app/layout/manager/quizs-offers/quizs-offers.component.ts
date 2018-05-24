@@ -31,7 +31,7 @@ this.getQuizs();
   }
 
   getQuizs(){
-    this.quizService.getQuizs(this.id).subscribe(resp=>{
+    this.quizService.getQuizsManager(this.id).subscribe(resp=>{
       this.quizs=resp;
 
     },err=>{

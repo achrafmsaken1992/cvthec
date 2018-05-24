@@ -72,10 +72,12 @@ this.candidatService.getMessageries(this.profile.id,this.manager.id).subscribe(r
     return "http://localhost:8080/getPhotoEtudiant/"+photo+"/"+id;
   }
   addMessage(){
+      let photo=this.getPhotoCandidate(this.profile.image,this.profile.id);
 let message={
   user1:this.profile.id,
   user2:this.manager.id,
-  message:this.msg
+  message:this.msg,
+    image:photo
 }
 this.candidatService.addMessage(message).subscribe(resp=>{
   this.msg="";

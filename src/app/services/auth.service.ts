@@ -92,6 +92,7 @@ updatePassword(fo){
 
 }
 
+
    uploadPhoto(file: File,text:string): Observable<HttpEvent<{}>> {
        if(this.jwtToken==null) this.loadToken();
         let formdata: FormData = new FormData();
@@ -116,4 +117,11 @@ updatePassword(fo){
     if(this.jwtToken==null) this.loadToken();
     return this.http.get('http://localhost:8080/getNotifications?user='+user+ '&size=' + size,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
 }
+
+
+    updateNotification(notification,id){
+        if(this.jwtToken==null) this.loadToken();
+
+        return this.http.post('http://localhost:8080/updateTokenNotification?notification=' + notification+ '&id=' + id,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
 }
