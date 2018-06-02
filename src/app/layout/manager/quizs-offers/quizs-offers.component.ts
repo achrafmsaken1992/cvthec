@@ -6,48 +6,48 @@ import swal from 'sweetalert2';
 
 import {QuizService} from "../../../services/quiz.service";
 import {Location} from '@angular/common';
-
+declare var jQuery:any;
 @Component({
   selector: 'app-quizs-offers',
   templateUrl: './quizs-offers.component.html',
   styleUrls: ['./quizs-offers.component.scss']
 })
 export class QuizsOffersComponent implements OnInit {
-id:number;
-quizs:any;
+  id: number;
+  quizs: any;
 
-  constructor(public _location: Location,private r:Router
-      ,private route: ActivatedRoute,public quizService:QuizService
-  ) {
+  constructor(public _location: Location, private r: Router
+      , private route: ActivatedRoute, public quizService: QuizService) {
 
   }
 
   ngOnInit() {
 
-    this.id= this.route.snapshot.params['id'];
-console.log(this.id);
-this.getQuizs();
+    this.id = this.route.snapshot.params['id'];
+    console.log(this.id);
+    this.getQuizs();
 
   }
 
-  getQuizs(){
-    this.quizService.getQuizsManager(this.id).subscribe(resp=>{
-      this.quizs=resp;
+  getQuizs() {
+    this.quizService.getQuizsManager(this.id).subscribe(resp => {
+      this.quizs = resp;
 
-    },err=>{
+    }, err => {
 
     })
   }
+
   register(form) {
 
-    if((form.value.duree<20)){
+    if ((form.value.duree < 20)) {
       swal(
           'Echoué!',
           'durrée minimum 20 seconde',
           'error'
       )
     }
-    else  if((form.value.duree>80)){
+    else if ((form.value.duree > 80)) {
       swal(
           'Echoué!',
           'durrée maximum 80 seconde',
@@ -57,8 +57,7 @@ this.getQuizs();
 
     else if (!form.valid) {
 
-      swal('Oops...','vous devez remplir convenablement les champs'+ '!', 'error');
-
+      swal('Oops...', 'vous devez remplir convenablement les champs' + '!', 'error');
 
 
     }
@@ -66,7 +65,133 @@ this.getQuizs();
     else {
 
 
-      form.value.offre=this.id;
+      form.value.offre = this.id;
+
+      swal({
+        title: 'Etes vous sur?',
+        text: '',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Oui, je confirme!',
+        cancelButtonText: `Non, j'annule`
+      }).then((result) => {
+        if (result.value) {
+
+          this.quizService.addQuiz(form.value).subscribe(resp => {
+            swal(
+                'Ajouté!',
+                'ajout quiz avec succés',
+                'success'
+            )
+
+            form.reset();
+            this.getQuizs();
+          })
+
+
+          // For more information about handling dismissals please visit
+          // https://sweetalert2.github.io/#handling-dismissals
+        } else if (result.dismiss === swal.DismissReason.cancel) {
+          swal(
+              'Annuler',
+              'ajout quiz annulé :)',
+              'error'
+          )
+
+        }
+      })
+
+
+    }
+  }
+
+  supprimer(id) {
+    swal({
+      title: 'Etes vous sur?',
+      text: '',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Oui, je confirme!',
+      cancelButtonText: `Non, j'annule`
+    }).then((result) => {
+      if (result.value) {
+
+        this.quizService.deleteQuiz(id).subscribe(resp => {
+
+          swal(
+              'Supprimé!',
+              'supprimer quiz avec succés',
+              'success'
+          )
+
+          this.getQuizs();
+
+        })
+
+
+        // For more information about handling dismissals please visit
+        // https://sweetalert2.github.io/#handling-dismissals
+      } else if (result.dismiss === swal.DismissReason.cancel) {
+        swal(
+            'Annuler',
+            'suppression quiz annulé :)',
+            'error'
+        )
+
+      }
+    })
+
+
+  }
+
+  backClicked() {
+    this._location.back();
+  }
+
+  modal(id) {
+
+    jQuery("#quiz" + id).modal()
+
+
+  }
+
+  close() {
+    jQuery(".dropdown-toggle").hide();
+  }
+
+  open() {
+    jQuery(".dropdown-toggle").show();
+  }
+
+  update(form, id) {
+    if (form.valid) {
+      form.value.id = id;
+      if ((form.value.duree < 20)) {
+        swal(
+            'Echoué!',
+            'durrée minimum 20 seconde',
+            'error'
+        )
+      }
+      else if ((form.value.duree > 80)) {
+        swal(
+            'Echoué!',
+            'durrée maximum 80 seconde',
+            'error'
+        )
+      }
+
+      else if (!form.valid) {
+
+        swal('Oops...', 'vous devez remplir convenablement les champs' + '!', 'error');
+
+
+      }
+
+      else {
+
+
+        form.value.offre = this.id;
 
         swal({
           title: 'Etes vous sur?',
@@ -78,84 +203,22 @@ this.getQuizs();
         }).then((result) => {
           if (result.value) {
 
-this.quizService.addQuiz(form.value).subscribe(resp=>{
-  swal(
-      'Ajouté!',
-      'ajout quiz avec succés',
-      'success'
-  )
-  form.reset();
-  this.getQuizs();
-})
+            this.quizService.updateQuiz(form.value).subscribe(resp => {
+              swal(
+                  'modification!',
+                  'modification quiz avec succés',
+                  'success'
+              )
+              jQuery("div").removeClass("modal-backdrop");
+              jQuery("body").removeClass("modal-open ");
+              form.reset();
+              this.getQuizs();
 
-
-
-
-            // For more information about handling dismissals please visit
-            // https://sweetalert2.github.io/#handling-dismissals
-          } else if (result.dismiss === swal.DismissReason.cancel) {
-            swal(
-                'Annuler',
-                'ajout quiz annulé :)',
-                'error'
-            )
-
-        }})
-
-
-
-
-
-
-
-
+            })
+          }
+        })
       }
     }
-supprimer(id){
-  swal({
-    title: 'Etes vous sur?',
-    text: '',
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Oui, je confirme!',
-    cancelButtonText: `Non, j'annule`
-  }).then((result) => {
-    if (result.value) {
-
-      this.quizService.deleteQuiz(id).subscribe(resp=>{
-        swal(
-            'Supprimé!',
-            'supprimer quiz avec succés',
-            'success'
-        )
-
-        this.getQuizs();
-      })
-
-
-
-
-      // For more information about handling dismissals please visit
-      // https://sweetalert2.github.io/#handling-dismissals
-    } else if (result.dismiss === swal.DismissReason.cancel) {
-      swal(
-          'Annuler',
-          'suppression quiz annulé :)',
-          'error'
-      )
-
-    }})
-
-
-
-
-
-
-
-
-}
-  backClicked(){
-    this._location.back();
   }
-
 }
+

@@ -19,22 +19,42 @@ export class LoginComponent implements OnInit {
 
 
     onLoggedin({value,valid}) {
-
+let aux:any;
 
 
             this.auth.login(value).subscribe(resp=>{
-                let jwt=resp.headers.get('Authorization');
-                console.log(jwt);
-                this.auth.saveToken(jwt);
-                localStorage.setItem('isLoggedin', 'true');
 
-                this.router.navigate(['dashboard'])
-            },err=>{
+                this.auth.isActive(value.email).subscribe(resp2=>{
 
 
-                swal('Oops...','mot de passe ou email incorrect'+ '!', 'error');
 
-            });
+
+
+
+
+                        let jwt = resp.headers.get('Authorization');
+                        console.log(jwt);
+                        this.auth.saveToken(jwt);
+                        localStorage.setItem('isLoggedin', 'true');
+
+                        this.router.navigate(['dashboard'])
+
+                },err=>{
+                    if(err.error.message=="erreur1")
+                    swal('Oops...','veuillez activer votre compte par email'+ '!', 'error');
+                })
+
+
+
+
+                },err=>{
+
+                        swal('Oops...','mot de passe ou email incorrect'+ '!', 'error');
+
+                })
+
+
+
         }
 
 }

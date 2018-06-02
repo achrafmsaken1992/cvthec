@@ -6,11 +6,11 @@
       <div class="wrap" >
         <!--img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png"
              class="online" alt=""-->
-        <img id="profile-img" *ngIf="profile?.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
+        <img id="profile-img1" *ngIf="profile?.image==null"   [src]="'assets/images/icons_user.png'"
              alt=""
         >
 
-        <img id="profile-img" *ngIf="profile?.image!=null"  src="{{getPhotoCandidate(profile.image,profile.id)}}"
+        <img id="profile-img2" *ngIf="profile?.image!=null"  src="{{getPhotoCandidate(profile.image,profile.id)}}"
               alt="" height="50px"
         >
         <p>{{this.profile.prenom}}  {{this.profile?.nom}}</p>
@@ -45,7 +45,7 @@
                (click)="active=i;getMessages(manager)">	<span class="contact-status busy"></span>
             <!--img src="http://emilcarlsson.se/assets/harveyspecter.png"
                  -->
-            <img *ngIf="manager.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
+            <img *ngIf="manager.image==null"  [src]="'assets/images/icons_user.png'"
                  alt=""
             >
 
@@ -73,7 +73,7 @@
   </div>
   <div class="content" *ngIf="a!=0" >
     <div class="contact-profile" >
-      <img *ngIf="manager.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
+      <img *ngIf="manager.image==null"  [src]="'assets/images/icons_user.png'"
            alt=""
       >
 

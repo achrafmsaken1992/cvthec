@@ -61,7 +61,7 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right">
 
-                <a  class="edit" data-toggle="tooltip" ><i class="material-icons"  >&#xE254;</i> modifier</a>
+                <a  class="edit" data-toggle="tooltip" (click)="modal(sug.id)" (mouseleave)="close()"><i class="material-icons"  >&#xE254;</i> modifier</a>
                 <br><a  data-toggle="tooltip" (click)="supprimer(sug.id)"><i class="material-icons">&#xE872;</i> supprimer</a>
 
 
@@ -69,7 +69,50 @@
               </div>
             </div></td>
 
+            <!-- The Modal -->
+            <div class="modal" id="suggestion{{sug.id}}">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
 
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Modification Suggestion</h4>
+                    <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                  </div>
+
+                  <!-- Modal body -->
+                  <form novalidate #fo="ngForm" (ngSubmit)="modifier(fo,sug.id)" >
+                    <div class="modal-body">
+
+                      <div class="form-group">
+                        <div class="form-row">
+                          <div class="col-md-12">
+                            <label for="exampleInputName">Suggestion</label>
+                            <textarea  #cfn="ngModel" ngModel='{{sug.suggestion}}' name="suggestion" class="form-control"  placeholder="Entrez question" required minlength="3" maxlength="255">
+              </textarea> <div *ngIf="cfn.errors?.required && cfn.touched" class="isa_warning">Champ Question obligatoire</div>
+                            <div *ngIf="cfn.errors?.minlength && !cfn.errors?.required && cfn.touched" class="isa_warning">Minimum de caractére 3</div>  </div>
+                          <input type="hidden" name="id">
+                        </div>
+
+
+                      </div>
+                      <div class="form-group">
+                        <label>reponse:</label>
+                        <label class="radio-inline"><input type="radio" required value="1" name="reponse"
+                                                           ngModel="{{sug.reponse}}">correct</label>
+
+                        <label class="radio-inline"><input type="radio" ngModel="{{sug.reponse}}" required value="0" name="reponse"
+                        >fausse</label>
+
+                      </div> </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <button class="btn btn-primary" type="submit" > Modifier </button>&nbsp;
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
 
 
           </tr>

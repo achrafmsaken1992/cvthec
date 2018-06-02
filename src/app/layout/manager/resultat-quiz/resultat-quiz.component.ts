@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {QuizService} from "../../../services/quiz.service";
 import {Location} from '@angular/common';
+declare var jQuery:any;
 @Component({
   selector: 'app-resultat-quiz',
   templateUrl: './resultat-quiz.component.html',
@@ -74,4 +75,7 @@ pourcentage(reponseCorrect:number,reponseFausse:number){
 voirProfile(id:number){
     this.r.navigate(['profile-etudiant',id])
 }
+
+
+
 }

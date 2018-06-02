@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from '@angular/common';
 import swal from 'sweetalert2';
 import {QuizService} from "../../../services/quiz.service";
+declare var jQuery:any;
 @Component({
   selector: 'app-suggestion',
   templateUrl: './suggestion.component.html',
@@ -134,5 +135,80 @@ this.suggestions=resp;
 
 
 
+  }
+  modal(id) {
+
+    jQuery("#suggestion" + id).modal()
+
+
+  }
+
+  close() {
+    jQuery(".dropdown-toggle").hide();
+  }
+
+  open() {
+    jQuery(".dropdown-toggle").show();
+  }
+  modifier(form,id){
+
+
+    if (!form.valid) {
+
+      swal('Oops...','vous devez remplir convenablement les champs'+ '!', 'error');
+
+
+
+    }
+
+    else {
+
+
+      form.value.id=this.id;
+
+      swal({
+        title: 'Etes vous sur?',
+        text: '',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Oui, je confirme!',
+        cancelButtonText: `Non, j'annule`
+      }).then((result) => {
+        if (result.value) {
+
+          this.quizService.updateSuggestion(form.value).subscribe(resp=>{
+            swal(
+                'Modification!',
+                'modification suggestion avec succés',
+                'success'
+            )
+            jQuery("div").removeClass("modal-backdrop");
+            jQuery("body").removeClass("modal-open ");
+            form.reset();
+            this.getSuggestion();
+          })
+
+
+
+
+          // For more information about handling dismissals please visit
+          // https://sweetalert2.github.io/#handling-dismissals
+        } else if (result.dismiss === swal.DismissReason.cancel) {
+          swal(
+              'Annuler',
+              'Modification suggestion annulé :)',
+              'error'
+          )
+
+        }})
+
+
+
+
+
+
+
+
+    }
   }
 }

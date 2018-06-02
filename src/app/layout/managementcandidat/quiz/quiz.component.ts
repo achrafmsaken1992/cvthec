@@ -47,7 +47,7 @@ this.r.navigate(["test",id]);
       }
       else{
 
-        this.toastr.success(`tu as deja passé le quiz tu as  `+resp.reponseCorrect+` sur `+ (resp.reponseFausse+ resp.reponseCorrect)+` reponses correctes`  );
+        this.toastr.info(`tu as deja passé le quiz tu as  `+resp.reponseCorrect+` sur `+ (resp.reponseFausse+ resp.reponseCorrect)+` reponses correctes`  );
 
       }
     },err=>{

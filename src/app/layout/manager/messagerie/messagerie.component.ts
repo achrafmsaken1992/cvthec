@@ -66,7 +66,8 @@ this.managerService.getEtudiantMessagerie(this.mot).subscribe(resp=>{
       user1:this.profile.id,
       user2:this.etudiantP.id,
       message:this.msg,
-      image:photo
+      image:photo,
+      body:this.profile.prenom +"  "+ this.profile.nom +" t'\a envoyé nouveau message "
     }
     this.managerService.addMessage(message).subscribe(resp=>{
           this.msg="";

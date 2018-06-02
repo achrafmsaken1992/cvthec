@@ -39,7 +39,9 @@ export class AuthService {
         return false;
 
     }
-
+isActive(email){
+    return this.http.get("http://localhost:8080/isActive?email="+email,{observe:'response'});
+}
 
   login(user){
 
@@ -67,7 +69,7 @@ export class AuthService {
   logout(){
       this.jwtToken=null;
     localStorage.removeItem('token');
-
+      location.reload();
 
   }
   resetPassword(email){

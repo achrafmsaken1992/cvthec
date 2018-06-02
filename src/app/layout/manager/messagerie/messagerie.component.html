@@ -45,7 +45,9 @@
                >	<span class="contact-status busy"></span>
             <!--img src="http://emilcarlsson.se/assets/harveyspecter.png"
                  -->
-            <img *ngIf="etudiant.image===null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
+            <img *ngIf="etudiant.image===null"
+
+                 [src]="'assets/images/icons_user.png'"
                  alt=""
             >
 

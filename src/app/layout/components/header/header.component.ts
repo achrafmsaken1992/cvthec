@@ -127,7 +127,7 @@ export class HeaderComponent implements OnInit {
 
     notification(v) {
         if (v == true) {
-            this.toastr.info('<i class="fa fa-2x fa-info-circle"></i>Il n\' y a pas de notification ', null, {enableHTML: true});
+            this.toastr.info('Il n\' y a pas de notification ', null, {enableHTML: true});
         }
     }
 
