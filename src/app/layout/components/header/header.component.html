@@ -11,11 +11,11 @@
 
                     <li *ngIf="isEtudiant()" class="nav-item dropdown"> <a class="nav-link " id="dLabel" role="button" data-toggle="dropdown" data-target="#" >
 
-                        <i class="fa fa-bell" style="cursor: pointer;font-size: 16px;" (click)="notification(data?.totalElements==0)">Notification</i>
+                        <i class="fa fa-bell" style="cursor: pointer;font-size: 16px;" (click)="getNotifications(profile.id, size);" (click)="notification(data?.totalElements==0)">Notification</i>
 
                     </a>
-                        <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel" *ngIf="data?.totalElements!=0">
-                            <div class="notification-heading">
+                        <ul  class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel" *ngIf="data?.totalElements!=0">
+                            <div class="notification-heading ">
                                 <h4 class="menu-title">Notifications</h4>
                                 <!--h4 class="menu-title float-right">View all<i class="fa fa-arrow-circle-o-right"></i></h4-->
                             </div>
@@ -39,7 +39,7 @@
                                 </div>
 
                             </a>
-<div><button *ngIf="data.totalElements>size" class="btn btn-primary" style="width: 100%;font-size: 25px;color: black" (mouseover)="change()">suivant</button></div>
+<div><button *ngIf="data?.totalElements>size" class="btn btn-primary" style="width: 100%;font-size: 25px;color: black" (mouseover)="change()">suivant</button></div>
                             </div>
                         </ul>
                     </li>
@@ -72,7 +72,7 @@
                                 </div>
 
                             </a>
-                                <div><button *ngIf="data.totalElements>size" class="btn btn-primary" style="width: 100%;font-size: 25px;color: black" (mouseover)="change()">suivant</button></div>
+                                <div><button *ngIf="data?.totalElements>size" class="btn btn-primary" style="width: 100%;font-size: 25px;color: black" (mouseover)="change()">suivant</button></div>
                             </div>
                         </ul>
                     </li>

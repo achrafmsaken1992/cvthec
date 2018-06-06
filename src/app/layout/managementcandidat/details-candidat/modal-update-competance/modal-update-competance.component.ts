@@ -11,8 +11,12 @@ declare var jQuery:any;
     animations: [routerTransition()]
 })
 export class ModalUpdateCompetanceComponent implements OnInit {
+    options:any;
     note:string;
     success:boolean=false;
+    rech:string="";
+
+    cmps:any;
     evaluations = [
         {value: 'non évalué', viewValue: 'non évalué'},
         {value: 'débutant', viewValue: 'débutant'},
@@ -28,7 +32,10 @@ export class ModalUpdateCompetanceComponent implements OnInit {
     constructor(private candidatService:CandidatService) { }
 
     ngOnInit() {
-
+        this.getTitesCompetances();
+    }
+    change(){
+        this.options = this.cmps.filter(word=>word.toUpperCase().includes(this.rech.toUpperCase()));
     }
     store(){
         this.send.emit();
@@ -52,4 +59,11 @@ export class ModalUpdateCompetanceComponent implements OnInit {
 
         })
     }
+    getTitesCompetances(){
+        this.candidatService.getTitreCompetances().subscribe(resp=>{
+            this.cmps=resp;
+            this.options = this.cmps.filter(word=>word.toUpperCase().includes(this.skill.name.toUpperCase()));
+        })
+    }
+
 }

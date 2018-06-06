@@ -13,8 +13,8 @@
 
 
                     <div class="upload-btn-wrapper">
-<img src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png" *ngIf="profile.image==null">
-                    <img *ngIf="profile.image!=null" src="{{getPhotoProfil()}}" class="rounded-circle img-thumbnail image">
+<img src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png" *ngIf="profile?.image==null">
+                    <img *ngIf="profile?.image!=null" src="{{getPhotoProfil()}}" class="rounded-circle img-thumbnail image">
 
                     <div class="middle">
                         <div class="text"></div>
@@ -25,9 +25,9 @@
 
 
 
-          <h5><i class="fa fa-user" aria-hidden="true"></i> {{this.profile.prenom}}  {{this.profile.nom}}</h5>
-          <p>@ {{this.profile.email}}</p>
-          <p><i class="fa fa-phone" aria-hidden="true"></i> {{this.profile.tel}}</p>
+          <h5><i class="fa fa-user" aria-hidden="true"></i> {{this.profile?.prenom}}  {{this.profile?.nom}}</h5>
+          <p>@ {{this.profile?.email}}</p>
+          <p><i class="fa fa-phone" aria-hidden="true"></i> {{this.profile?.tel}}</p>
 
 
           <hr>

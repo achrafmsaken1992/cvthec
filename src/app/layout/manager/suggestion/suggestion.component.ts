@@ -15,13 +15,29 @@ export class SuggestionComponent implements OnInit {
   suggestions:any;
 
   constructor(private r:Router
-      ,private route: ActivatedRoute,public quizService:QuizService,public _location: Location
-  ) {this.id= this.route.snapshot.params['id'];
+      ,private route: ActivatedRoute,public quizService:QuizService,public _location: Location,private managerService:ManagersService
+  ) {
+    if(isNaN(this.id)==true){
+      this.r.navigate(['not-found'])
+    }
+    this.id= this.route.snapshot.params['id'];
 
   }
   ngOnInit() {
+    this.isQuestionManager();
     this.getSuggestion();
   }
+  isQuestionManager(){
+    this.managerService.isQuestionManager(this.id).subscribe(resp=>{
+      if(resp==0){
+        this.r.navigate(['access-denied'])
+      }
+    })
+  }
+
+
+
+
   backClicked(){
     this._location.back();
   }

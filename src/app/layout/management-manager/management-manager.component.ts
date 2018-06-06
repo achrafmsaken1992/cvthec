@@ -3,7 +3,7 @@ import {EmployeesService} from "../../services/employees.service";
 import {observable} from "rxjs/symbol/observable";
 import { Observable } from "rxjs/Observable"
 import {ManagersService} from "../../services/managers.service";
-
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-management-manager',
   templateUrl: './management-manager.component.html',
@@ -34,6 +34,100 @@ date=""
 
 
       }
+      refuser(id){
+          swal({
+              title: 'Etes vous sur?',
+              text: '',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Oui, je confirme!',
+              cancelButtonText: `Non, j'annule`
+          }).then((result) => {
+              if (result.value) {
+
+                  this.managerService.refuseManager(id).subscribe(resp=>{
+                      this.chercher();
+                  })
+
+
+
+                  swal(
+                      'Refuser!',
+                      'Refuse entreprise avec succés',
+                      'success'
+                  )
+
+
+
+
+
+
+
+
+                  // For more information about handling dismissals please visit
+                  // https://sweetalert2.github.io/#handling-dismissals
+              } else if (result.dismiss === swal.DismissReason.cancel) {
+                  swal(
+                      'Annuler',
+                      'refuser entreprise annulé :)',
+                      'error'
+                  )
+              }
+          })
+
+
+
+
+
+      }
+    accepter(id){
+        swal({
+            title: 'Etes vous sur?',
+            text: '',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Oui, je confirme!',
+            cancelButtonText: `Non, j'annule`
+        }).then((result) => {
+            if (result.value) {
+
+                this.managerService.valideCompteManager(id).subscribe(resp=>{
+                    this.chercher();
+                })
+
+
+
+                        swal(
+                            'Validation!',
+                            'validation entreprise avec succés',
+                            'success'
+                        )
+
+
+
+
+
+
+
+
+                // For more information about handling dismissals please visit
+                // https://sweetalert2.github.io/#handling-dismissals
+            } else if (result.dismiss === swal.DismissReason.cancel) {
+                swal(
+                    'Annuler',
+                    'validation entreprise annulé :)',
+                    'error'
+                )
+            }
+        })
+
+
+
+
+
+
+
+    }
 
 search(){
 

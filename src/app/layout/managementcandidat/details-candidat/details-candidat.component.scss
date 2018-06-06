@@ -85,15 +85,7 @@ ul {
 /*------------------
  * Button Style
  *------------------*/
-.btn {
-  padding        : 14px 30px 11px;
-  margin-bottom  : 0;
-  font-size      : 14px;
-  font-weight    : 500;
-  border-radius  : 0;
-  border         : 0;
-  text-transform : uppercase;
-}
+
 
 .btn-lg {
   font-weight : 700;
@@ -102,15 +94,7 @@ ul {
 }
 
 /*btn-primary*/
-.btn-primary {
-  background-color : #FFC107;
-}
 
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active:focus {
-  background : #ff9800;
-}
 
 /*btn-default*/
 .btn-default {
@@ -475,22 +459,6 @@ button:focus,
 /*-------------------
  * Form Style
  *-------------------*/
-.form-control {
-  height        : 50px;
-  padding       : 0 20px;
-  font-size     : 13px;
-  line-height   : 50px;
-  color         : #969595;
-  border        : 1px solid #cccccc;
-  border-radius : 0;
-  box-shadow    : none;
-  box-sizing    : border-box;
-}
-
-.form-control:focus,
-.form-control:active {
-  box-shadow : none;
-}
 
 /* --------------------------------------------
  *   Footer
@@ -580,4 +548,42 @@ button:focus,
 .profile-img img{
   height:250px;width:250px;margin-left:10%;
   border: dashed;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.btn-cercle{
+  border-radius: 30%;
+  display: flex;
+
+}
+
+.example-full-width {
+  width: 100%;
+}
+::ng-deep .cdk-overlay-container{
+  z-index: 1200 !important;
+}
+::ng-deep .pac-container {
+  z-index: 1054 !important;
+}
+
+.isa_info {
+  color: #00529B;
+  background-color: #BDE5F8;
+}
+.isa_success {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+}
+.isa_warning {
+  color: #9F6000;
+  background-color: #FEEFB3;
+  margin-top:10px;
+}
+.isa_error {
+  color: #D8000C;
+  background-color: #FFD2D2;
 }

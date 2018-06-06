@@ -82,6 +82,60 @@
 
 
       <div class="theiaStickySidebar">
+
+        <!-- .section-experience -->
+        <section class="section-wrapper section-education">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="section-title">
+                  <h2>Resumé</h2>
+                </div></div>
+              <div class="col-lg-6">
+
+                <button  class="btn btn-primary btn-cercle"   data-toggle="modal"(click)="open()" ><i class="material-icons " data-toggle="tooltip" title="modifier resumé">border_color
+               </i></button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </div>
+            </div>
+
+            <!--.row-->
+            <div class="row" >
+              <div class="col-lg-12" >
+                <div class="content-item">
+
+                  <div *ngIf="candidat?.resume==null"> aucun resumé </div>
+                  <div *ngIf="candidat?.resume!=null">{{candidat.resume}}</div>
+
+                </div>
+                <!-- .experience-item -->
+
+              </div>
+            </div>
+            <!--.row-->
+          </div>
+          <!-- .container-fluid -->
+        </section>
+        <!-- .section-education -->
+
+
+
+
+
+
         <section class="expertise-wrapper section-wrapper gray-bg">
           <div class="container-fluid">
             <div class="row">
@@ -217,6 +271,10 @@
           </div>
           <!-- .container-fluid -->
         </section>
+
+
+
+
         <!-- .skills-wrapper -->
         <!-- .section-publications -->
 
@@ -246,4 +304,50 @@
 </div>
 
 
+
+
+
+<!-- The Modal -->
+<div class="modal" id="resume">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form class="example-form" novalidate #foR="ngForm" (ngSubmit)="updateResume(foR)">
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-12">
+              <label for="exampleInputName">Resumé</label>
+              <textarea #ccn="ngModel" ngModel='' name="resume" class="form-control" id="exampleInputName"  aria-describedby="nameHelp" placeholder="Entrez resumé" required minlength="3" maxlength="511">
+                                </textarea>
+              <div *ngIf="ccn.errors?.required && ccn.touched" class="isa_warning">Champ resumé obligatoire</div>
+              <div *ngIf="ccn.errors?.minlength && !ccn.errors?.required && ccn.touched" class="isa_warning">Minimum de caractére 8</div>
+              <div *ngIf="ccn.errors?.maxlength && !ccn.errors?.required && ccn.touched" class="isa_warning">Maximum de caractére 512</div>
+            </div>
+
+
+
+          </div></div>
+        <div class="form-group row">
+
+          <div class="col-sm-12 col-md-6 "> <button  class="btn btn-success" >valider</button>
+            <button type="reset" class="btn btn-primary" style="margin-left:10px">annuler</button></div>  <div class="col-sm-12 col-md-6 ">  <flash-messages style="font-size='10px'"></flash-messages></div>
+        </div></form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 

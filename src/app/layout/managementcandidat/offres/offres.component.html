@@ -62,13 +62,13 @@
 
         <div class="card">
           <div class="card-header" >
-            <div style="margin-bottom: 20px"><div class="pull-right " ><b style="font-size: 15px">publié:</b><small>{{c.date| date: 'dd/MM/yyyy hh:mm:ss'}}</small></div></div>
-            <p><b>Titre Offre</b>: {{c.titre}}</p>
-            <p><b>Entreprise</b>: {{c.entreprise|uppercase}}</p>
+            <div style="margin-bottom: 20px"><div class="pull-right " ><b style="font-size: 15px">publié:</b><small>{{c?.date| date: 'dd/MM/yyyy hh:mm:ss'}}</small></div></div>
+            <p><b>Titre Offre</b>: {{c?.titre}}</p>
+            <p><b>Entreprise</b>: {{c?.entreprise|uppercase}}</p>
           </div>
           <div class="card-body">
 
-            <img src="{{getPhotoOffre(c.image,c.id,c.entreprise)}}"
+            <img src="{{getPhotoOffre(c?.image,c.id,c?.entreprise)}}"
                  alt="post img" class="float-left img-fluid thumb margin10 img-thumbnail"  style="margin-right: 10px;height:95px;width:80px">
             <article>
               {{c.description}}

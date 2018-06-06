@@ -96,7 +96,7 @@ export class HeaderComponent implements OnInit {
             this.data = resp;
 
 
-            console.log(this.data);
+
 
         })
 
@@ -141,15 +141,17 @@ export class HeaderComponent implements OnInit {
     }
 
     receiveMessage() {
+
         this.messaging.onMessage((payload) => {
-            console.log("Message receivedjhjkhgdjdhjkhdkhdjkhjdkh. ", payload);
-            this.getNotifications(this.profile.id, this.size);
+           // console.log("Message receivedjhjkhgdjdhjkhdkhdjkhjdkh. ", payload);
+
 
             this.toastr.info('vous avez  nouveau notification ', null, {enableHTML: true});
             this.currentMessage.next(payload)
 
 
         });
+
 
     }
 }

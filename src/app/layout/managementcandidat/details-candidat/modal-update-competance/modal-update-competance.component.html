@@ -19,8 +19,12 @@
                 <form class="example-form" novalidate #fo="ngForm" (ngSubmit)="updateCompetance(fo)">
                     <mat-form-field class="example-full-width">
                         <input matInput placeholder="Competance" #name="ngModel" [ngModel]='skill.name' name="name"
-                               required >
-
+                               [matAutocomplete]="auto" required [(ngModel)]="rech" (keyup)="change()"  >
+                        <mat-autocomplete  #auto="matAutocomplete">
+                            <mat-option  *ngFor="let option of options" [value]="option">
+                                {{ option }}
+                            </mat-option>
+                        </mat-autocomplete>
                         <mat-hint *ngIf=" name.errors?.required && name.touched" style="color:black">Competance  <b>obligaoire</b></mat-hint>
                     </mat-form-field >
                     <mat-form-field class="example-full-width">
@@ -31,7 +35,7 @@
                         </mat-select>
                     </mat-form-field><mat-form-field class="example-full-width">
                     <input matInput placeholder="certificat" #certificat="ngModel" [ngModel]='skill.certificat' name="certificat">
-                    <mat-hint *ngIf=" !certificat.touched" >Les erreurs apparaissent instantanément!</mat-hint>
+
                     <mat-hint *ngIf=" certificat.errors?.required && certificat.touched" style="color:black">lieu <b>obligatoire</b></mat-hint>
                     <mat-hint *ngIf=" certificat.errors?.minlength && certificat.touched " style="color:black">Minimum de caractere 3</mat-hint> </mat-form-field>
 

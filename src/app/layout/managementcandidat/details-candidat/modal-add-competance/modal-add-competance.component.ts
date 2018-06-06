@@ -10,6 +10,10 @@ import {routerTransition} from "../../../../router.animations";
   animations: [routerTransition()]
 })
 export class ModalAddCompetanceComponent implements OnInit {
+rech:string="";
+    options:any;
+
+cmps:any;
   competances = [
 
     {value: 'débutant', viewValue: 'débutant'},
@@ -29,9 +33,12 @@ export class ModalAddCompetanceComponent implements OnInit {
   }
 
   ngOnInit() {
+this.getTitesCompetances();
 
   }
-
+change(){
+    this.options = this.cmps.filter(word=>word.toUpperCase().includes(this.rech.toUpperCase()));
+}
   saveCompetance(form: FormGroup) {
 if(form.valid){
     if(form.value.certificat==""||form.value.note==null)
@@ -56,5 +63,11 @@ this.store();
         //  console.log("non");
       });
     }
+  }
+  getTitesCompetances(){
+     this.candidatservice.getTitreCompetances().subscribe(resp=>{
+         this.cmps=resp;
+         this.options=this.cmps;
+     })
   }
 }

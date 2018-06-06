@@ -10,10 +10,11 @@ import {FormsModule} from "@angular/forms";
 
 import {PageHeaderModule} from "../../../shared/modules";
 import {CustomMaterialModule} from "../../../material/material.module";
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 
 @NgModule({
     imports: [CommonModule, ProfileRoutingModule, PageHeaderModule,FormsModule, CustomMaterialModule],
-    declarations: [ProfileComponent],
+    declarations: [ProfileComponent, UpdatePasswordComponent],
 
 })
 export class ProfileModule {}

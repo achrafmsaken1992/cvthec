@@ -39,10 +39,10 @@
     <div id="contacts">
       <ul >
 
-        <li *ngFor="let manager of managers;let i=index"  class="contact"    >
+        <li *ngFor="let manager of managers"  class="contact"    >
 
-          <div class="wrap" [ngClass]="{'active':active === i}"
-               (click)="active=i;getMessages(manager)">	<span class="contact-status busy"></span>
+          <div class="wrap" [ngClass]="{'active':manager.id === active}"
+               (click)="active=i;goManager(manager)">	<span class="contact-status busy"></span>
             <!--img src="http://emilcarlsson.se/assets/harveyspecter.png"
                  -->
             <img *ngIf="manager.image==null"  [src]="'assets/images/icons_user.png'"

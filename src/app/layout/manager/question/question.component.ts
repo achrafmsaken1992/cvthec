@@ -14,14 +14,35 @@ export class QuestionComponent implements OnInit {
 questions:any;
 id:number;
   constructor(public _location: Location,private quizService:QuizService,public r:Router
-,private route: ActivatedRoute) { }
+,private route: ActivatedRoute,private managerService:ManagersService) {
+    this.id= parseInt(this.route.snapshot.params['id']);
+    if(isNaN(this.id)==true){
+      this.r.navigate(['not-found'])
+    }
+  }
 
   ngOnInit() {
-    this.id= parseInt(this.route.snapshot.params['id']);
-console.log(this.id);
+
+this.isQcmManager();
     this.getQuestions();
 
   }
+
+  isQcmManager(){
+    this.managerService.isOffreManager(this.id).subscribe(resp=>{
+      if(resp==0){
+        this.r.navigate(['access-denied'])
+      }
+    })
+  }
+
+
+
+
+
+
+
+
   backClicked(){
     this._location.back();
   }

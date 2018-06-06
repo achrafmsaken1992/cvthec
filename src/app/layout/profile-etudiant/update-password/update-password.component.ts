@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {routerTransition} from "../../../router.animations";
 import {AuthService} from "../../../services/auth.service";
-
+declare var jQuery:any;
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-update-password-rh',
   templateUrl: './update-password.component.html',
@@ -22,7 +23,21 @@ success:String="";
     if(fo.valid){
 this.auth.updatePassword(fo.value).subscribe(resp=>{
 this.error="";
-this.success="modification mot de passe avec succée";
+
+
+
+  fo.reset();
+  //fo.dirty=null;
+  swal(
+      'Mise a jour mot de passe!',
+      'Modification mot de passe avec succés',
+      'success'
+  )
+  jQuery('.modal').hide();
+  jQuery("div").removeClass("modal-backdrop");
+  jQuery("body").removeClass("modal-open ");
+  jQuery("div").removeClass("show");
+
 fo.reset();
 },err=>{
   this.error=err.error.message;

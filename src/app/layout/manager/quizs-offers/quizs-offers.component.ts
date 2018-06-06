@@ -6,6 +6,8 @@ import swal from 'sweetalert2';
 
 import {QuizService} from "../../../services/quiz.service";
 import {Location} from '@angular/common';
+import {ManagersService} from "../../../services/managers.service";
+import {AuthService} from "../../../services/auth.service";
 declare var jQuery:any;
 @Component({
   selector: 'app-quizs-offers',
@@ -16,18 +18,33 @@ export class QuizsOffersComponent implements OnInit {
   id: number;
   quizs: any;
 
-  constructor(public _location: Location, private r: Router
-      , private route: ActivatedRoute, public quizService: QuizService) {
 
+  constructor(public _location: Location, private r: Router
+      , private route: ActivatedRoute, public quizService: QuizService,private managerService:ManagersService,
+ private auth:AuthService) {
+    this.id = this.route.snapshot.params['id'];
+    if(isNaN(this.id)==true){
+      this.r.navigate(['not-found'])
+    }
+    this.isOffreManager();
   }
 
   ngOnInit() {
 
-    this.id = this.route.snapshot.params['id'];
-    console.log(this.id);
+
+
     this.getQuizs();
 
   }
+
+  isOffreManager(){
+    this.managerService.isOffreManager(this.id).subscribe(resp=>{
+      if(resp==0){
+        this.r.navigate(['access-denied'])
+      }
+    })
+  }
+
 
   getQuizs() {
     this.quizService.getQuizsManager(this.id).subscribe(resp => {

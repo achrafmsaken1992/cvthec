@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { SignupRoutingModule } from './signup-routing.module';
 import { SignupComponent } from './signup.component';
 import {FormsModule} from "@angular/forms";
+import {CustomMaterialModule} from "../material/material.module";
 
 @NgModule({
   imports: [
     CommonModule,
     SignupRoutingModule,
-    FormsModule
+    FormsModule,CustomMaterialModule
   ],
   declarations: [SignupComponent]
 })

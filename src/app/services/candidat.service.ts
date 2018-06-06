@@ -162,7 +162,10 @@ export class CandidatService {
         if(this.jwtToken==null) this.loadToken();
         return this.http.post('http://localhost:8080/addMessage',message,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
     }
-
+    updateResume(resume){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/etudiant/updateResume?resume='+resume,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
 
     register(user){
 
@@ -207,6 +210,11 @@ export class CandidatService {
     getManagers(mot:string) {
         if (this.jwtToken == null) this.loadToken();
         return this.http.get<any>("http://localhost:8080/etudiant/getManagers?mot=" + mot   , {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+
+    }
+    getTitreCompetances() {
+        if (this.jwtToken == null) this.loadToken();
+        return this.http.get<string>("http://localhost:8080/getTitreCompetances"  , {headers: new HttpHeaders({'Authorization': this.jwtToken})});
 
     }
 

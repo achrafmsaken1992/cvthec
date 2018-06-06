@@ -11,7 +11,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class MessagerieManagerComponent implements OnInit {
 managers:any;
 msg:string="";
-messages:any;
+messages:any[];
 manager:any;
 profile:any;
 mot:string="";
@@ -19,19 +19,62 @@ param1:any;
 
 a=0;
 active=-1;
+id:number;
+
   constructor(private candidatService:CandidatService,private r:Router,private route: ActivatedRoute) { }
 
   ngOnInit() {
+      if (this.route.snapshot.params['id'] != undefined)
+      {
+          if (isNaN(this.route.snapshot.params['id']) == true) {
+          this.r.navigate(['access-denied'])
+      }
+          this.id = parseInt(this.route.snapshot.params['id']);
+          this.getProfile();
+          this.getManagers();
+
+
+
+         }
+
+
+
+
+
+      else{
+          this.getProfile();
+          this.getManagers();
+      }
+
 
           //this.param1 = this.route.snapshot.params.param1;
           //console.log(this.param1+"hello")
-this.getProfile();
-this.getManagers();
+
   }
 
   getManagers(){
   this.candidatService.getManagers(this.mot).subscribe(resp=> {
     this.managers = resp;
+     let existe=0;
+
+    for (let i = 0; i < this.managers.length; i++) {
+
+        if (this.managers[i].id == this.id) {
+            this.manager = this.managers[i];
+            existe = 1;
+this.active=this.id;
+
+        }
+    }
+    if (existe == 0 && !isNaN(this.route.snapshot.params['id'] )) {
+        this.r.navigate(['access-denied'])
+    }
+    else {
+        this.getMessages(this.manager)
+        this.a = 1;
+    }
+
+
   },err=>{
    console.log(err)
     })
@@ -51,7 +94,7 @@ getProfile()
 }
 
 getMessages(manager){
-    this.a=1;
+
 
     this.manager=manager;
 this.candidatService.getMessageries(this.profile.id,this.manager.id).subscribe(resp=>{
@@ -91,4 +134,9 @@ err=>{
 
 
   }
+    goManager(manager){
+        this.getMessages(manager)
+        this.active=manager.id
+      this.r.navigateByUrl('messagerie-etudiant/'+manager.id)
+    }
 }

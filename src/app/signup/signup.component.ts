@@ -24,7 +24,10 @@ export class SignupComponent implements OnInit {
 
 
         if (form.valid) {
-
+            var date = new Date(form.value.dateNaissance),
+                mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+                day = ("0" + date.getDate()).slice(-2);
+            form.value.dateNaissance = [date.getFullYear(), mnth, day].join("-");
             this.auth.register(form.value).subscribe(resp => {
 
                 this.toastr.success('inscription avec succee', 'Error!');

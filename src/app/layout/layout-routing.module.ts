@@ -24,12 +24,16 @@ const routes: Routes = [
             { path: 'displayUrh', loadChildren: './managementemployees/display-rhs/display-rhs.module#DisplayUrhModule'},
             { path: 'addUrh', loadChildren: './managementemployees/display-rhs/add-rh/add-rh.module#AddUrhModule'},
             { path: 'managementManager', loadChildren: './management-manager/management-manager.module#ManagementManagerModule'},
+            {path: 'managementManager/:id', loadChildren: './management-manager/management-manager.module#ManagementManagerModule'},
+
             { path: 'managementEtudiant', loadChildren: './management-etudiant/management-etudiant.module#ManagementEtudiantModule'},
             { path: 'display-collaborateur', loadChildren: './collaborator/collaborator.module#CollaboratorModule'},
             { path: 'add-collaborateur', loadChildren: './collaborator/add-collaborator/add-collaborator.module#AddCollaboratorModule'},
             { path: 'management-offers', loadChildren: './manager/offers/offers.module#OffersModule'},
 
             { path: 'messagerie-etudiant', loadChildren: './managementcandidat/messagerie-manager/messagerie-manager.module#MessagerieManagerModule'},
+            { path: 'messagerie-etudiant/:id', loadChildren: './managementcandidat/messagerie-manager/messagerie-manager.module#MessagerieManagerModule'},
+
             { path: 'profileManager', loadChildren: './manager/profile/profile.module#ProfileModule'},
             { path: 'messagerie-manager', loadChildren: './manager/messagerie/messagerie.module#MessagerieModule'},
             { path: 'offres', loadChildren: './managementcandidat/offres/offres.module#OffersModule'},

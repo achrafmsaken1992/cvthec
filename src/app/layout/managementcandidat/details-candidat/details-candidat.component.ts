@@ -6,6 +6,7 @@ import {routerTransition} from "../../../router.animations";
 import {Location} from '@angular/common';
 import Swal from 'sweetalert2';
 import {AuthService} from "../../../services/auth.service";
+declare var jQuery:any;
 @Component({
   selector: 'app-details-candidat',
   templateUrl: './details-candidat.component.html',
@@ -219,8 +220,28 @@ getCandidat(){
 
         return "http://localhost:8080/getPhotoEtudiant/"+photo+"/"+id;
     }
+    updateResume(fo){
+        if(fo.valid){
+            this.candidatservice.updateResume(fo.value.resume).subscribe(resp=>{
+
+                this.getCandidat();
 
 
+
+                jQuery(".modal").hide();
+            })
+
+        }
+
+
+
+
+    }
+open(){
+    jQuery(".modal").show();
+
+
+}
     }
 
 

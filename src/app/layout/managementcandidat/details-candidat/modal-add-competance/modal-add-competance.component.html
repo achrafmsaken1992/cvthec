@@ -11,13 +11,17 @@
 
       <!-- Modal body -->
       <div class="modal-body ">
-
-        <form class="example-form" novalidate #fo3="ngForm" (ngSubmit)="saveCompetance(fo3)">
+          <div *ngIf="title!==''">
+              <form class="example-form" novalidate #fo3="ngForm" (ngSubmit)="saveCompetance(fo3)">
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Competance" #name="ngModel" ngModel='' name="name"
-                   required >
-            <mat-hint *ngIf=" !name.touched" >Les erreurs apparaissent instantanément!</mat-hint>
-            <mat-hint *ngIf=" name.errors?.required && name.touched" style="color:black">Competance  <b>obligaoire</b></mat-hint>
+            <input matInput placeholder="Competance" #name="ngModel" ngModel='' name="name" [(ngModel)]="rech"
+                   [matAutocomplete]="auto" required  (keyup)="change()">
+              <mat-autocomplete  #auto="matAutocomplete">
+                  <mat-option  *ngFor="let option of options" [value]="option">
+                      {{ option }}
+                  </mat-option>
+              </mat-autocomplete>
+            <mat-hint *ngIf=" name.errors?.required && name.touched" style="color:black">Competance  <b>obligatoire</b></mat-hint>
   </mat-form-field >
           <mat-form-field class="example-full-width">
             <mat-select placeholder="Niveau"  #note="ngModel" ngModel='' name="note"  [(value)]="selected">
@@ -27,7 +31,7 @@
             </mat-select>
           </mat-form-field><mat-form-field class="example-full-width">
           <input matInput placeholder="certificat" #certificat="ngModel" ngModel='' name="certificat">
-          <mat-hint *ngIf=" !certificat.touched" >Les erreurs apparaissent instantanément!</mat-hint>
+
           <mat-hint *ngIf=" certificat.errors?.required && certificat.touched" style="color:black">lieu <b>obligatoire</b></mat-hint>
           <mat-hint *ngIf=" certificat.errors?.minlength && certificat.touched " style="color:black">Minimum de caractere 3</mat-hint> </mat-form-field>
 
