@@ -50,9 +50,9 @@ profile:any;
 
     }
     ngOnInit() {
-        this.isEtudiant=this.auth.isEtudiant();
-        this.isManager=this.auth.isManeger();
-        this.isAdmin=this.auth.isAdmin();
+        this.isEtudiant= this.auth.isEtudiant();
+        this.isManager= this.auth.isManeger();
+        this.isAdmin= this.auth.isAdmin();
 //this.getProfile();
     }
    /* getProfile() {

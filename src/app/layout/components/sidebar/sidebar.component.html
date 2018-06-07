@@ -74,22 +74,25 @@
 
 
         <a *ngIf="isAdmin" routerLink="/managementManager" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-user-plus"></i> {{ 'Demandes'  }}
+            <i class="fa fa-user-plus"></i> {{ 'Gérer demandes'  }}
         </a>
         <a *ngIf="isAdmin" routerLink="/managementEtudiant" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-graduation-cap"></i> {{ 'Etudiants'  }}
+            <i class="fa fa-graduation-cap"></i> {{ 'Gérer etudiants'  }}
         </a>
         <a *ngIf="isManager" routerLink="/profileManager" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-briefcase"></i> {{ 'Compte'  }}
+            <i class="fa fa-user"></i> {{ 'Compte'  }}
         </a>
         <a *ngIf="isManager" routerLink="/management-offers" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-briefcase"></i> {{ 'Offres'  }}
+            <i class="fa fa-briefcase"></i> {{ 'Liste offres'  }}
+        </a>
+        <a *ngIf="isManager || isAdmin" routerLink="/liste-etudiants" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-graduation-cap"></i> {{ 'Liste etudiants'  }}
         </a>
         <a *ngIf="isManager" routerLink="/messagerie-manager" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-comments"></i> {{ 'Messagerie'  }}
         </a>
         <a *ngIf="isEtudiant" routerLink="/offres" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-briefcase"></i> {{ 'Offres'  }}
+            <i class="fa fa-briefcase"></i> {{ 'Liste offres'  }}
         </a>
 
 
