@@ -9,7 +9,7 @@
     <div class="card-header" ><h5>Liste  des etudiants</h5></div>
     <div class="card-body table-responsive" >
 
-      <div class="table-wrapper table-sm" style="width:1040px;" >
+      <div class="table-wrapper table-sm" style="width:1035px;" >
         <div class="table-title" >
           <div class="row"  >
             <div class="col-sm-6">
@@ -25,70 +25,29 @@
           <div class="row">
 
             <div>
-              <!---------------------------------search advanced------------------------------->
-
-
-
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="modal-body">
-                        <div class="form-group">
-                          <input type="text" class="form-control"  placeholder="Competance">
-
-                        </div>
-                        <div class="input-group form-group">
-                          <input type="text" class="form-control"  placeholder="Langue">
-                          <input type="text" class="form-control"  placeholder="Niveau">
-                        </div>
-                        <div class="input-group form-group">
-                          <input type="text" class="form-control"  placeholder="Experience">
-                          <input type="text" class="form-control"  placeholder="Societé">
-                        </div>
-                        <div class="input-group form-group">
-                          <input type="text" class="form-control"  placeholder="Formation">
-                          <input type="text" class="form-control"  placeholder="Societé">
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!------------------------------end search advanced------------------------->
 
               <div style="overflow-x:auto; "style="width: 1030px">
               <table  class="table-striped">
-                <tr><td>
+                <tr>
+                  <td>
+                    <div class="filter-group">
+                      <label >Prenom</label>
+                      <input type="text" class="form-control" [(ngModel)]="pren" (keyup)="page=0; rechEtudiants()">
+                    </div>
+                  </td>
+
+
+                  <td>
 
                   <div class="filter-group">
                     <label >Nom</label>
-                    <input type="text" class="form-control" [(ngModel)]="nom" (keyup)="page=0; chercher()">
-                  </div></td><td>
-                  <div class="filter-group">
-                    <label >Prenom</label>
-                    <input type="text" class="form-control" [(ngModel)]="prenom" (keyup)="page=0; chercher()">
-                  </div>
-                </td>
+                    <input type="text" class="form-control" [(ngModel)]="nom" (keyup)="page=0; rechEtudiants()">
+                  </div></td>
                   <td>
                     <div class="filter-group">
                       <label >Competance</label>
-                      <input list="competances" name="competance" [(ngModel)]="competance" (keyup)="page=0; chercher()">
-                      <div *ngIf="title!==''">
+                      <input list="competances" name="competance" [(ngModel)]="competance" (keyup)="page=0; rechEtudiants()">
+                      <div *ngIf="competance!=''">
                         <datalist id="competances">
                           <option *ngFor="let competance of competances">{{competance}}</option>
 
@@ -101,18 +60,18 @@
                 <tr *ngIf="advanced==1"><td>
   <div class="filter-group">
     <label >Experience</label>
-    <input type="text" class="form-control" [(ngModel)]="experience" (keyup)="page=0; chercher()">
+    <input type="text" class="form-control" [(ngModel)]="experience" (keyup)="page=0; rechEtudiants()">
   </div></td>
   <td>
     <div class="filter-group">
       <label >Formation</label>
-      <input type="text" class="form-control" [(ngModel)]="formation" (keyup)="page=0; chercher()">
+      <input type="text" class="form-control" [(ngModel)]="formation" (keyup)="page=0; rechEtudiants()">
     </div></td>
 
                   <td>
                     <div class="filter-group">
                       <label >Langue</label>
-                      <input list="langues" name="langue"  (keyup)="page=0; chercher()">
+                      <input list="langues" name="langue" [(ngModel)]="langue"  (keyup)="page=0; rechEtudiants()">
                       <div *ngIf="title!==''">
                         <datalist id="langues">
                           <option>Francais</option>
@@ -122,23 +81,7 @@
                       </div>
                     </div></td>
 </tr>
-        <tr>
 
-
-
-
-
-          <!--div class="filter-group">
-            <label >Titre</label>
-            <input list="browsers" name="browser" [(ngModel)]="title" (keyup)="page=0; chercher()">
-            <div *ngIf="title!==''">
-              <datalist id="browsers">
-                <option *ngFor="let tit of tabTitles">{{tit}}</option>
-
-              </datalist>
-            </div>
-          </div-->
-        </tr>
 
 
 
@@ -151,69 +94,68 @@
 
 
 
-              <div style="overflow-x:auto; "style="width: 1020px">
+              <div style="overflow-x:auto; "style="width: 1030px">
+                <div class="clearfix"  *ngIf="totalpage>1">
+                  <div class="hint-text">Affiche <b>{{numberpage}}</b> sur <b>{{totalPages}}</b> entrées</div>
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link" (click)="precedent()"><i class="material-icons">&#xE408;</i></a></li>
+                    <li   [ngClass]="{'active':i==page}" class="page-item"  *ngFor="let p of pages;let i=index;">
+                      <a *ngIf=" (page-i<=4 && page>=4 && i<=page)||( i<5 && page<=4)" class="page-link" (click)="goto(i)">{{i}}</a>
+                    </li>
+
+
+                    <li class="page-item"><a  class="page-link" (click)="suivant()"><i class="material-icons">&#xE409;</i></a></li>
+                  </ul>
+                </div>
                 <table class="table table-striped ">
                   <thead>
                   <tr>
-                    <th colspan="2"></th>
+                    <th colspan="2">image</th>
                     <th>Prenom</th>
                     <th >Nom</th>
-<th>email</th>
+                    <th>Email</th>
 
 
-                    <th>cv</th>
+                    <th>telecharger cv</th>
 
 
-                    <th>action</th>
+                    <th>voir profile</th>
 
 
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let c of data?.content">
+                  <tr *ngFor="let c of data?.content" >
                     <td colspan="2">   <div class="upload-btn-wrapper">
-                      <img *ngIf="c.photo==null"  src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png" class="rounded-circle img-thumbnail image"
+                      <img *ngIf="c.image==null"  src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png" class="rounded-circle img-thumbnail image"
                            style="min-width: 50px; min-height:100%"
                       >
 
-                      <img *ngIf="c.photo!=null"  src="{{getPhotoCandidate(c.photo,c.candidateId)}}" class="rounded-circle img-thumbnail image"
+                      <img *ngIf="c.image!=null"  class="rounded-circle img-thumbnail image" src="{{getPhotoCandidate(c.image,c.id)}}"
                            style="min-width: 50px; min-height:100%"
                       >
 
-                      <!--img *ngIf="profile.photo!=null" src="{{getPhotoProfil(profile.photo)}}" class="rounded-circle img-thumbnail image"-->
+                      <!--img  src="{{getPhotoCandidate(c.image,c.id)}}" *ngIf="profile.photo!=null" src="{{getPhotoProfil(profile.photo)}}" class="rounded-circle img-thumbnail image"-->
 
-                      <div class="middle">
-                        <div class="text"></div>
-                      </div>
-                      <input (change)="selectFile($event);candidate.id=c.candidateId;updatePhoto();"  data-toggle="tooltip" title="Changer image candidat"  type="file" name="photo" #photo="ngModel" ngModel='' accept="image/x-png,image/gif,image/jpeg" />
+
                     </div>
 
                     </td>
-                    <td>{{c.firstName}}</td>
-                    <td>{{c.lastName}}  </td>
-                    <td >{{c.title}}</td>
+                    <td>{{c.prenom}}  </td>
+                    <td>{{c.nom}}</td>
+
+                    <td >{{c.email}}</td>
 
 
                     <td>
-                      <a href="{{getCv(c.cv,c.candidateId)}}"  data-toggle="tooltip" title="Telecharger cv candidat" ><i class="material-icons">&#xE2C6;</i></a>
+                      <a href="#"  data-toggle="tooltip" title="Telecharger cv" ><i class="material-icons">&#xE2C6;</i></a>
                     </td>
                     <td>
-                      <div class="btn-group" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
 
-                        <a class="btn btn-primary  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a href="#"  data-toggle="tooltip" title="Voir profile" ><i class="fa fa-2x fa-user">
 
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                          <a (click)="detailscontact(c.candidateId)" class="search"   data-toggle="tooltip" ><i class="material-icons">&#xE8B6;</i> plus de details</a>
-                          <a  class="edit" data-toggle="tooltip" ><i class="material-icons"  >&#xE254;</i> modifier</a>
-                          <a (click)="deleteCandidat(c.candidateId)" data-toggle="tooltip" ><i class="material-icons">&#xE872;</i> supprimer</a>
-
-
-
-                        </div>
-                      </div>
-
+                      </i></a>
 
 
 
@@ -223,7 +165,7 @@
 
                   </tbody>
                 </table>
-                <div class="clearfix"  >
+                <div class="clearfix"  *ngIf="totalpage>1">
                   <div class="hint-text">Affiche <b>{{numberpage}}</b> sur <b>{{totalPages}}</b> entrées</div>
                   <ul class="pagination">
                     <li class="page-item"><a class="page-link" (click)="precedent()"><i class="material-icons">&#xE408;</i></a></li>
@@ -237,76 +179,5 @@
                 </div>
               </div>
             </div></div>
-          <!-- Edit Modal HTML -->
-          <div id="addEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <form>
-                  <div class="modal-header">
-                    <h4 class="modal-title">Add Employee</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label>Name</label>
-                      <input type="text" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Email</label>
-                      <input type="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Address</label>
-                      <textarea class="form-control" required></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label>Phone</label>
-                      <input type="text" class="form-control" required>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-success" value="Add">
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <!-- Edit Modal HTML -->
-          <div id="editEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <form>
-                  <div class="modal-header">
-                    <h4 class="modal-title">Edit Employee</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label>Name</label>
-                      <input type="text" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Email</label>
-                      <input type="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Address</label>
-                      <textarea class="form-control" required></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label>Phone</label>
-                      <input type="text" class="form-control" required>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-info" value="Save">
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
 
-        </div>
-      </div>
+        </div></div></div></div></div>

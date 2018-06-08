@@ -21,5 +21,13 @@ export class EtudiantService {
         return    this.http.get<any>("http://localhost:8080/getEtudiantById?id="+id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
 
     }
+    rechEtudiants(nom: string , pren: string , langue: string,competance: string,experience: string,formation: string,page: number,size: number){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<any>("http://localhost:8080/rechEtudiants?nom="+nom
+        +"&prenom="+pren
+        +"&langue="+langue+"&competance="+competance+"&experience="+experience+"&formation="+formation
+       +"&size="+size+"&page="+page,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+}
 
 }
