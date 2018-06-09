@@ -86,7 +86,7 @@
             <i class="fa fa-briefcase"></i> {{ 'Liste offres'  }}
         </a>
         <a *ngIf="isManager || isAdmin" routerLink="/liste-etudiants" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-graduation-cap"></i> {{ 'Liste etudiants'  }}
+            <i class="fa fa-graduation-cap"></i> {{ 'Liste profils'  }}
         </a>
         <a *ngIf="isManager" routerLink="/messagerie-manager" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-comments"></i> {{ 'Messagerie'  }}

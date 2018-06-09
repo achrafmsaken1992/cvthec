@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ManagersService} from "../../../services/managers.service";
 import swal from 'sweetalert2';
 import {AuthService} from "../../../services/auth.service";
+declare var jQuery:any;
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
@@ -174,6 +175,168 @@ console.log(form.value)
         this.page=i;
         this.chercher();
 
+    }
+
+
+    updateImageOffre(id:number) {
+        let photo: string;
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < 10; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        text = text + "." + this.ext;
+        photo = text;
+
+        swal({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this imaginary file!',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, keep it'
+        }).then((result) => {
+            if (result.value) {
+
+
+                    this.managersService.addImageOffre(this.selectedFiles.item(0), text, id).subscribe(event => {
+                        swal(
+                            'Modifier!',
+                            'modifier image offre avec succés',
+                            'success'
+                        )
+this.chercher();
+                    });
+
+
+
+            } else if (result.dismiss === swal.DismissReason.cancel) {
+                swal(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+
+            }
+        })
+
+
+
+
+
+    }
+    supprimer(id) {
+        swal({
+            title: 'Etes vous sur?',
+            text: '',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Oui, je confirme!',
+            cancelButtonText: `Non, j'annule`
+        }).then((result) => {
+            if (result.value) {
+
+                this.managersService.deleteOffre(id).subscribe(resp => {
+
+                    swal(
+                        'Supprimé!',
+                        'supprimer offre avec succés',
+                        'success'
+                    )
+this.page=0;
+
+                    this.chercher();
+
+                })
+
+
+                // For more information about handling dismissals please visit
+                // https://sweetalert2.github.io/#handling-dismissals
+            } else if (result.dismiss === swal.DismissReason.cancel) {
+                swal(
+                    'Annuler',
+                    'suppression offre annulé :)',
+                    'error'
+                )
+
+            }
+        })
+
+
+    }
+    modal(id) {
+
+        jQuery("#offre" + id).modal()
+
+
+    }
+    close() {
+        jQuery(".dropdown-toggle").hide();
+    }
+
+    open() {
+        jQuery(".dropdown-toggle").show();
+    }
+
+
+
+    update(form, id) {
+        if (form.valid) {
+            form.value.id = id;
+            if ((form.value.duree < 20)) {
+                swal(
+                    'Echoué!',
+                    'durrée minimum 20 seconde',
+                    'error'
+                )
+            }
+            else if ((form.value.duree > 80)) {
+                swal(
+                    'Echoué!',
+                    'durrée maximum 80 seconde',
+                    'error'
+                )
+            }
+
+            else if (!form.valid) {
+
+                swal('Oops...', 'vous devez remplir convenablement les champs' + '!', 'error');
+
+
+            }
+
+            else {
+
+
+                form.value.offre = id;
+
+                swal({
+                    title: 'Etes vous sur?',
+                    text: '',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Oui, je confirme!',
+                    cancelButtonText: `Non, j'annule`
+                }).then((result) => {
+                    if (result.value) {
+
+                        this.managersService.updateOffre(form.value).subscribe(resp => {
+                            swal(
+                                'modification!',
+                                'modification quiz avec succés',
+                                'success'
+                            )
+                            jQuery("div").removeClass("modal-backdrop");
+                            jQuery("body").removeClass("modal-open ");
+                            form.reset();
+                            this.chercher();
+
+                        })
+                    }
+                })
+            }
+        }
     }
 
 }

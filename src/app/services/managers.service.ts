@@ -111,4 +111,20 @@ export class ManagersService {
         if (this.jwtToken == null) this.loadToken();
         return this.http.get("http://localhost:8080/admin/refuseDemande?id=" + id, {headers: new HttpHeaders({'Authorization': this.jwtToken})});
     }
+    deleteOffre(id){
+
+
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.post('http://localhost:8080/manager/deleteOffre',id,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+
+
+    }
+    updateOffre(offre){
+
+
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.post('http://localhost:8080//manager/updateOffre',offre,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+
+
+    }
 }

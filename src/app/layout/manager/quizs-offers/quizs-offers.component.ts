@@ -237,5 +237,6 @@ export class QuizsOffersComponent implements OnInit {
       }
     }
   }
+
 }
 

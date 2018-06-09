@@ -272,23 +272,15 @@ i {
     min-width: 500px;
 }
 
-.upload-btn-wrapper {
+.upload {
     position: relative;
     overflow: hidden;
     display: inline-block;
 }
 
-.upload-btn-wrapper .btn {
-    border: 2px solid gray;
-    color: gray;
-    background-color: white;
-    padding: 4px 10px;
-    border-radius: 5px;
-    font-size: 30px;
-    font-weight: bold;
-}
 
-.upload-btn-wrapper input[type=file] {
+
+.upload input[type=file] {
     font-size: 100px;
     position: absolute;
     left: 0;
@@ -305,6 +297,16 @@ i {
     -ms-transform: translate(-50%, -50%);
     text-align: center;
 }
+.imgo:hover {
+    opacity: 0.3;
+    -webkit-transition: all 0.65s ease-in-out;
+    -moz-transition: all 0.65s ease-in-out;
+    -ms-transition: all 0.65s ease-in-out;
+    -o-transition: all 0.65s ease-in-out;
+    transition: all 0.65s ease-in-out;
+}
+
+
 
 
 
@@ -529,4 +531,31 @@ i {
 
     cursor: pointer;
     color: #F44336;
+}
+
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
 }

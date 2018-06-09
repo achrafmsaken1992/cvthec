@@ -13,8 +13,8 @@
       <header class="header theiaStickySidebar" >
         <div class="profile-img">
 
-          <img *ngIf="candidat.id==null" src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png" class="img-fluid" alt="">
-          <img  *ngIf="candidat.id!=null" class="img-fluid img-thumbnail"    src="{{getPhotoCandidate(candidat.image,candidat.id)}}"  >
+          <img *ngIf="candidat?.image==null" [src]="'assets/images/icons_user.png'" class="img-fluid" alt="">
+          <img  *ngIf="candidat?.image!=null" class="img-fluid img-thumbnail"    src="{{getPhotoCandidate(candidat.image,candidat.id)}}"  >
         </div>
         <section class="section-contact section-wrapper gray-bg">
           <div class="container-fluid" style="">

@@ -30,7 +30,7 @@ competances:any;
   formation:string="";
   pren:string="";
 
-  constructor(private candidatService:CandidatService,private etudiantService:EtudiantService) { }
+  constructor(private candidatService:CandidatService,private etudiantService:EtudiantService,private r:Router) { }
 
   ngOnInit() {
     this.rechEtudiants();
@@ -86,5 +86,7 @@ console.log(data)
     this.rechEtudiants();
 
   }
-
+  voirProfile(id:number){
+    this.r.navigate(['profile-etudiant',id])
+  }
 }
