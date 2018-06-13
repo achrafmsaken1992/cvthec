@@ -58,12 +58,14 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let quiz of quizs;">
+
+          <tr *ngFor="let quiz of quizs;let ind=index" >
 
 
             <td colspan="2">{{quiz.titre}} </td>
-            <td>{{quiz.duree}} </td>
-            <td >3</td>
+            <td>{{nbr(quiz.id,ind)}}{{quiz.duree}} </td>
+            <!--[ngStyle]="{'color':res <3 ? 'green' : 'red' }"-->
+            <td><div >{{res}}</div></td>
             <td><div class="btn-group " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
 

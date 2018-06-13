@@ -38,6 +38,7 @@ const routes: Routes = [
 
             { path: 'profileManager', loadChildren: './manager/profile/profile.module#ProfileModule'},
             { path: 'messagerie-manager', loadChildren: './manager/messagerie/messagerie.module#MessagerieModule'},
+            { path: 'messagerie-manager/:id', loadChildren: './manager/messagerie/messagerie.module#MessagerieModule'},
             { path: 'offres', loadChildren: './managementcandidat/offres/offres.module#OffersModule'},
             { path: 'liste-quizs/:id', loadChildren: './manager/quizs-offers/quizs-offers.module#QuizsOffersModule'},
             { path: 'resultat-quiz/:id', loadChildren: './manager/resultat-quiz/resultat-quiz.module#ResultatQuizModule'},

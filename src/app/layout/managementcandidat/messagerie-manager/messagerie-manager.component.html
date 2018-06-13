@@ -73,15 +73,15 @@
   </div>
   <div class="content" *ngIf="a!=0" >
     <div class="contact-profile" >
-      <img *ngIf="manager.image==null"  [src]="'assets/images/icons_user.png'"
+      <img *ngIf="manager?.image==null"  [src]="'assets/images/icons_user.png'"
            alt=""
       >
 
-      <img  *ngIf="manager.image!=null"  src="{{getPhotoManager(manager.image,manager.nomEntreprise)}}"
+      <img  *ngIf="manager?.image!=null"  src="{{getPhotoManager(manager.image,manager.nomEntreprise)}}"
             alt=""
       >
-      <p>{{manager.prenom}} {{manager.nom}}</p>
-      <div class="social-media" style="margin-right: 10px">Entreprise:{{manager.nomEntreprise|uppercase}}
+      <p>{{manager?.prenom}} {{manager?.nom}}</p>
+      <div class="social-media" style="margin-right: 10px">Entreprise:{{manager?.nomEntreprise|uppercase}}
       </div>
     </div>
     <div class="messages" >

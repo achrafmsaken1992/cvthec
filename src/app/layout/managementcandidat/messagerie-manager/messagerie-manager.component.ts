@@ -113,12 +113,13 @@ this.candidatService.getMessageries(this.profile.id,this.manager.id).subscribe(r
   }
   getPhotoCandidate(photo,id){
     return "http://localhost:8080/getPhotoEtudiant/"+photo+"/"+id;
-  }
+   }
   addMessage(){
       let photo=this.getPhotoCandidate(this.profile.image,this.profile.id);
 let message={
   user1:this.profile.id,
   user2:this.manager.id,
+    role:"manager",
   message:this.msg,
     image:photo,
     body:this.profile.prenom +"  "+ this.profile.nom +" t'\a envoyé nouveau message "
@@ -136,7 +137,7 @@ err=>{
   }
     goManager(manager){
         this.getMessages(manager)
-        this.active=manager.id
+        this.active=manager.id;
       this.r.navigateByUrl('messagerie-etudiant/'+manager.id)
     }
 }

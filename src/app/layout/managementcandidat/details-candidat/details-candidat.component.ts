@@ -237,6 +237,9 @@ getCandidat(){
 
 
     }
+    close(){
+        jQuery(".modal").hide();
+    }
 open(){
     jQuery(".modal").show();
 

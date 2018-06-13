@@ -39,9 +39,10 @@
     <div id="contacts">
       <ul>
 
-        <li *ngFor="let etudiant of etudiants;let i=index" class="contact"   (click)="active=i;getMessages(etudiant)" >
+        <li *ngFor="let etudiant of etudiants;let i=index" class="contact"
+            (click)="active=i;goEtudiant(etudiant)"  >
 
-          <div class="wrap" [ngClass]="{'active':active === i}"
+          <div class="wrap" [ngClass]="{'active':etudiant.id === active}"
                >	<span class="contact-status busy"></span>
             <!--img src="http://emilcarlsson.se/assets/harveyspecter.png"
                  -->
@@ -75,14 +76,14 @@
   </div>
   <div class="content" *ngIf="a!=0">
     <div class="contact-profile" >
-      <img *ngIf="etudiantP.image===null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
+      <img *ngIf="etudiantP?.image===null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
            alt="" height="40px"
       >
 
       <img  *ngIf="etudiantP.image!=null"  src="{{getPhotoCandidate(etudiantP.image,etudiantP.id)}}"
             alt="" height="40px"
       >
-      <p>{{etudiantP.prenom}} {{etudiantP.nom}}</p>
+      <p>{{etudiantP?.prenom}} {{etudiantP?.nom}}</p>
       <div class="social-media" style="margin-right: 10px">
       </div>
     </div>

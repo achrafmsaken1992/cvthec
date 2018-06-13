@@ -17,8 +17,8 @@ declare var jQuery:any;
 export class QuizsOffersComponent implements OnInit {
   id: number;
   quizs: any;
-
-
+res:any;
+i=0;
   constructor(public _location: Location, private r: Router
       , private route: ActivatedRoute, public quizService: QuizService,private managerService:ManagersService,
  private auth:AuthService) {
@@ -237,6 +237,19 @@ export class QuizsOffersComponent implements OnInit {
       }
     }
   }
+ nbr(id,index){
+    var k;
+    if(this.i==index) {
+      this.quizService.nbrQuestionsByQuiz(id).subscribe(resp => {
 
+        k=resp;
+        this.res = resp
+
+      })
+      this.i++;
+    }
+
+
+ }
 }
 

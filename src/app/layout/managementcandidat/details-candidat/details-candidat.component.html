@@ -1,6 +1,6 @@
 <link href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
 
-<div id="main-wrapper " [@routerTransition]  >
+<div id="main-wrapper " [@routerTransition] >
   <!-- Page Preloader -->
 
   <!--button  class="btn btn-github">retour</button-->
@@ -87,11 +87,11 @@
         <section class="section-wrapper section-education">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-2">
                 <div class="section-title">
                   <h2>Resumé</h2>
                 </div></div>
-              <div class="col-lg-6">
+              <div class="col-lg-10">
 
                 <button  class="btn btn-primary btn-cercle"   data-toggle="modal"(click)="open()" ><i class="material-icons " data-toggle="tooltip" title="modifier resumé">border_color
                </i></button>
@@ -187,6 +187,7 @@
                   <div><b>Periode</b> {{experience.date1}} - {{experience.date2}} </div>
                   <div><b>Lieu</b> {{experience.lieu}}</div>
                   <div><b>Description</b> {{experience.description}}</div>
+                  <div><b>mots clés</b> {{experience.motCle}}</div>
                   <div></div>
 
                 </div>
@@ -314,8 +315,8 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Résumé</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="close()">&times;</button>
       </div>
 
       <!-- Modal body -->
@@ -324,10 +325,10 @@
         <div class="form-group">
           <div class="form-row">
             <div class="col-md-12">
-              <label for="exampleInputName">Resumé</label>
-              <textarea #ccn="ngModel" ngModel='' name="resume" class="form-control" id="exampleInputName"  aria-describedby="nameHelp" placeholder="Entrez resumé" required minlength="3" maxlength="511">
+              <label for="exampleInputName">Résumé</label>
+              <textarea #ccn="ngModel" ngModel='{{candidat.resume}}' name="resume" class="form-control" id="exampleInputName"  aria-describedby="nameHelp" placeholder="Entrez resumé" required minlength="3" maxlength="511">
                                 </textarea>
-              <div *ngIf="ccn.errors?.required && ccn.touched" class="isa_warning">Champ resumé obligatoire</div>
+              <div *ngIf="ccn.errors?.required && ccn.touched" class="isa_warning">résumé obligatoire</div>
               <div *ngIf="ccn.errors?.minlength && !ccn.errors?.required && ccn.touched" class="isa_warning">Minimum de caractére 8</div>
               <div *ngIf="ccn.errors?.maxlength && !ccn.errors?.required && ccn.touched" class="isa_warning">Maximum de caractére 512</div>
             </div>
@@ -344,7 +345,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="close()">Fermer</button>
       </div>
 
     </div>

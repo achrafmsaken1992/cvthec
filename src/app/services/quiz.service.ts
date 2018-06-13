@@ -128,6 +128,10 @@ findQuizById(id){
     return    this.http.get<any>("http://localhost:8080/nbrParticipantsReussisQcm?qcm=" + qcmId,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
 
   }
+  nbrQuestionsByQuiz(id){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<any>("http://localhost:8080/nbrQuestionsByQcm?id=" + id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
 
+  }
 
 }
