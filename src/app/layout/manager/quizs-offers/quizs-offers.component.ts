@@ -22,6 +22,10 @@ i=0;
   constructor(public _location: Location, private r: Router
       , private route: ActivatedRoute, public quizService: QuizService,private managerService:ManagersService,
  private auth:AuthService) {
+    if(this.auth.isManeger()==false)
+    {
+      this.r.navigate(['access-denied'])
+    }
     this.id = this.route.snapshot.params['id'];
     if(isNaN(this.id)==true){
       this.r.navigate(['not-found'])

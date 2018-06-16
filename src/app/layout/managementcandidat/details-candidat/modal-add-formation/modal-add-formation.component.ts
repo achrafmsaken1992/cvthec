@@ -4,6 +4,8 @@ import {CandidatService} from "../../../../services/candidat.service";
 
 import {routerTransition} from "../../../../router.animations";
 import {FlashMessagesService} from "angular2-flash-messages";
+import Swal from 'sweetalert2';
+declare var jQuery:any;
 @Component({
   selector: 'app-modal-add-formation',
   templateUrl: './modal-add-formation.component.html',
@@ -56,7 +58,14 @@ export class ModalAddFormationComponent implements OnInit {
 
             this.send.emit();
 //   console.log("oui");
-
+          jQuery(".modal").hide();
+          jQuery("div").removeClass("modal-backdrop");
+          jQuery("body").removeClass("modal-open ");
+          Swal(
+              'Ajout formation!',
+              'Ajout formation  avec succée.',
+              'success'
+          )
         }, err => {
 
 

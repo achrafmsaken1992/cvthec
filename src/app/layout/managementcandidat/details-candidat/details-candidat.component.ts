@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import { Router,ActivatedRoute, Params} from '@angular/router';
 
 import {CandidatService} from "../../../services/candidat.service";
@@ -6,6 +6,7 @@ import {routerTransition} from "../../../router.animations";
 import {Location} from '@angular/common';
 import Swal from 'sweetalert2';
 import {AuthService} from "../../../services/auth.service";
+import {ToastsManager} from 'ng2-toastr';
 declare var jQuery:any;
 @Component({
   selector: 'app-details-candidat',
@@ -15,8 +16,13 @@ declare var jQuery:any;
 })
 export class DetailsCandidatComponent implements OnInit {
 candidat:string;
-  constructor(private activeRoute:ActivatedRoute,private router:Router,private auth:AuthService,private candidatservice: CandidatService,private _location: Location) {
-
+  constructor(private activeRoute:ActivatedRoute,private router:Router,private auth:AuthService,
+              private candidatservice: CandidatService,private _location: Location, public toastr: ToastsManager, vcr: ViewContainerRef) {
+      this.toastr.setRootViewContainerRef(vcr);
+      if(this.auth.isEtudiant()==false)
+      {
+          this.router.navigate(['access-denied'])
+      }
 
   }
 
@@ -37,19 +43,19 @@ getCandidat(){
 
 
         Swal({
-            title: 'Are you sure?',
-            text: 'You will not be able to recover this imaginary file!',
+            title: 'Etes vous sur?',
+
             type: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, keep it'
+            confirmButtonText: 'Oui, je confirme!',
+            cancelButtonText: 'Non, j\'annule'
         }).then((result) => {
             if (result.value) {
                 this.candidatservice.deleteExperience(id).subscribe(data => {
                     this.getCandidat();
                     Swal(
-                        'Deleted!',
-                        'Your imaginary file has been deleted.',
+                        'Suppression!',
+                        'Suppression experience avec succée.',
                         'success'
                     )
 
@@ -68,8 +74,8 @@ getCandidat(){
                 // https://sweetalert2.github.io/#handling-dismissals
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal(
-                    'Cancelled',
-                    'Your imaginary file is safe :)',
+                    'Annulée',
+                    'Suppression experience annulée',
                     'error'
                 )
             }
@@ -83,19 +89,19 @@ getCandidat(){
 
 
         Swal({
-            title: 'Are you sure?',
-            text: 'You will not be able to recover this imaginary file!',
+            title: 'Etes vous sur?',
+
             type: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, keep it'
+            confirmButtonText: 'Oui, je confirme!',
+            cancelButtonText: 'Non, j\'annule'
         }).then((result) => {
             if (result.value) {
                 this.candidatservice.deleteCompetance(id).subscribe(data => {
                     this.getCandidat();
                     Swal(
-                        'Deleted!',
-                        'Your imaginary file has been deleted.',
+                        'Suppression!',
+                        'Suppression competance avec succée.',
                         'success'
                     )
 
@@ -114,8 +120,8 @@ getCandidat(){
                 // https://sweetalert2.github.io/#handling-dismissals
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal(
-                    'Cancelled',
-                    'Your imaginary file is safe :)',
+                    'Annulée',
+                    'Suppression experience annulée',
                     'error'
                 )
             }
@@ -130,19 +136,19 @@ getCandidat(){
 
 
         Swal({
-            title: 'Are you sure?',
-            text: 'You will not be able to recover this imaginary file!',
+            title: 'Etes vous sur?',
+
             type: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, keep it'
+            confirmButtonText: 'Oui, je confirme!',
+            cancelButtonText: 'Non, j\'annule'
         }).then((result) => {
             if (result.value) {
                 this.candidatservice.deleteFormation(id).subscribe(data => {
 
                     Swal(
-                        'Deleted!',
-                        'Your imaginary file has been deleted.',
+                        'Suppression!',
+                        'Suppression formation avec succée.',
                         'success'
                     )
                     this.getCandidat();
@@ -161,8 +167,8 @@ getCandidat(){
                 // https://sweetalert2.github.io/#handling-dismissals
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal(
-                    'Cancelled',
-                    'Your imaginary file is safe :)',
+                    'Annulée',
+                    'Suppression formation annulée',
                     'error'
                 )
             }
@@ -177,19 +183,19 @@ getCandidat(){
 
 
         Swal({
-            title: 'Are you sure?',
-            text: 'You will not be able to recover this imaginary file!',
+            title: 'Etes vous sur?',
+
             type: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, keep it'
+            confirmButtonText: 'Oui, je confirme!',
+            cancelButtonText: 'Non, j\'annule'
         }).then((result) => {
             if (result.value) {
                 this.candidatservice.deleteLangue(id).subscribe(data => {
                     this.getCandidat();
                     Swal(
-                        'Deleted!',
-                        'Your imaginary file has been deleted.',
+                        'Suppression!',
+                        'Suppression langue avec succés.',
                         'success'
                     )
 
@@ -208,8 +214,8 @@ getCandidat(){
                 // https://sweetalert2.github.io/#handling-dismissals
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 Swal(
-                    'Cancelled',
-                    'Your imaginary file is safe :)',
+                    'Annulée',
+                    'Suppression langue annulée',
                     'error'
                 )
             }
@@ -229,6 +235,11 @@ getCandidat(){
 
 
                 jQuery(".modal").hide();
+                Swal(
+                    'mise à jour!',
+                    'mise à jour résumé avec succée.',
+                    'success'
+                )
             })
 
         }

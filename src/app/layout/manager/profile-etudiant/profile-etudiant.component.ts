@@ -12,9 +12,16 @@ export class ProfileEtudiantComponent implements OnInit {
 candidat:any;
 id:number;
 
-  constructor(public _location: Location,private route: ActivatedRoute,private etudiantservice: EtudiantService) { }
+  constructor(public _location: Location,private etudiantservice: EtudiantService,
+              private r:Router,private route: ActivatedRoute,private authService:AuthService) {
+    if (this.authService.isManeger() == false) {
+      this.r.navigate(['access-denied'])
+    }
+  }
+    ngOnInit() {
 
-  ngOnInit() {
+
+
     this.id= this.route.snapshot.params['id'];
     this.getCandidat();
 

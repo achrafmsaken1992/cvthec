@@ -3,6 +3,7 @@ import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@a
 import {ErrorStateMatcher} from '@angular/material/core';
 import {routerTransition} from "../../../../router.animations";
 import {CandidatService} from "../../../../services/candidat.service";
+import Swal from 'sweetalert2';
 declare var jQuery:any;
 @Component({
   selector: 'app-modal-update-experience',
@@ -51,6 +52,11 @@ export class ModalUpdateExperienceComponent implements OnInit {
                     this.send.emit();
                     jQuery("div").removeClass("modal-backdrop");
                     jQuery("body").removeClass("modal-open ");
+                    Swal(
+                        'modification experience!',
+                        'modification experience  avec succée.',
+                        'success'
+                    )
                 },err=>{
 
                 })

@@ -1,8 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewContainerRef} from '@angular/core';
 import {CandidatService} from "../../../../services/candidat.service";
 
 
 import {routerTransition} from "../../../../router.animations";
+import {ToastsManager} from 'ng2-toastr';
+import Swal from 'sweetalert2';
 declare var jQuery:any;
 @Component({
     selector: 'app-modal-update-competance',
@@ -29,7 +31,9 @@ export class ModalUpdateCompetanceComponent implements OnInit {
     @Output() send = new EventEmitter<number>();
 
 
-    constructor(private candidatService:CandidatService) { }
+    constructor(private candidatService:CandidatService ,private toastr: ToastsManager,private vcr: ViewContainerRef) {
+        this.toastr.setRootViewContainerRef(vcr)
+    }
 
     ngOnInit() {
         this.getTitesCompetances();
@@ -54,7 +58,12 @@ export class ModalUpdateCompetanceComponent implements OnInit {
 
             jQuery("div").removeClass("modal-backdrop");
             jQuery("body").removeClass("modal-open ");
-
+            jQuery(".dropdown-toggle").hide();
+            Swal(
+                'modification competance!',
+                'modification competance  avec succée.',
+                'success'
+            )
         } ,err=>{
 
         })

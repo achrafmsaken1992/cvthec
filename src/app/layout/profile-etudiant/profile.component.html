@@ -28,12 +28,20 @@
           <h5><i class="fa fa-user" aria-hidden="true"></i> {{this.profile?.prenom}}  {{this.profile?.nom}}</h5>
           <p>@ {{this.profile?.email}}</p>
           <p><i class="fa fa-phone" aria-hidden="true"></i> {{this.profile?.tel}}</p>
-
+            <p *ngIf="profile?.cv!=null">
+                <a href="{{downloadCv()}}">
+                <i class="fa fa-download"></i> telechargé cv</a></p>
 
           <hr>
           <!--a href="#" class="btn btn-success btn-sm">changer parametre du compte</a-->
+           <div class="upload-btn-wrapper">
+               <button class="btn btn-info btn-sm"> <input class="cv" type="file"  (change)="selectFileCv($event);updateCv()"  data-toggle="tooltip" title="Mise à jour cv"   name="cv" #cv="ngModel" ngModel='' accept="application/pdf" />
+                   <i class="fa fa-upload"></i> Mise à jour cv
+               </button></div>
 
-         <app-update-password-rh></app-update-password-rh>
+          <div style="position: relative;
+    overflow: hidden;
+    display: inline-block;">  <app-update-password-rh></app-update-password-rh></div>
 <!--en tant que gestionnaire des resources humaines (Rh)-->
           <hr>
           <!--span>travaille  chez {{this.profile.companyName}}.</span-->

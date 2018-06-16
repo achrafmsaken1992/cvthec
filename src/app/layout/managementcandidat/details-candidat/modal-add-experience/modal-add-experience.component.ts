@@ -4,7 +4,8 @@ import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@a
 import {ErrorStateMatcher} from '@angular/material/core';
 import {routerTransition} from "../../../../router.animations";
 import {CandidatService} from "../../../../services/candidat.service";
-
+import Swal from 'sweetalert2';
+declare var jQuery:any;
 
 
 
@@ -53,7 +54,14 @@ if(form.valid) {
 
     form.reset();
     this.send.emit();
-
+    jQuery(".modal").hide();
+    jQuery("div").removeClass("modal-backdrop");
+    jQuery("body").removeClass("modal-open ");
+    Swal(
+        'Ajout experience!',
+        'Ajout experience  avec succée.',
+        'success'
+    )
 //   console.log("oui");
   }, err => {
 

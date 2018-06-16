@@ -18,17 +18,17 @@
                         <input matInput placeholder="Nom de la societé" #university="ngModel" [ngModel]='formation.universite' name="universite"
                                required minlength="3">
 
-                        <mat-hint *ngIf=" university.errors?.required && university.touched" style="color:black">Nom de la societé <b>obligaoire</b></mat-hint>
+                        <mat-hint *ngIf=" university.errors?.required && university.touched" style="color:black">Nom de la societé <b>obligatoire</b></mat-hint>
                         <mat-hint *ngIf=" university.errors?.minlength && university.touched " style="color:black">Minimum de caractere 3</mat-hint> </mat-form-field>
                     <mat-form-field class="example-full-width">
                         <input matInput placeholder="domaine etude" #domaine_etude="ngModel" [ngModel]='formation.section' name="section"
                                required minlength="3">
-                        <mat-hint *ngIf=" !domaine_etude.touched" >Les erreurs apparaissent instantanément!</mat-hint>
-                        <mat-hint *ngIf=" domaine_etude.errors?.required && domaine_etude.touched" style="color:black">domaine etude <b>obligaoire</b></mat-hint>
+
+                        <mat-hint *ngIf=" domaine_etude.errors?.required && domaine_etude.touched" style="color:black">domaine etude <b>obligatoire</b></mat-hint>
                         <mat-hint *ngIf=" domaine_etude.errors?.minlength && domaine_etude.touched " style="color:black">Minimum de caractere 3</mat-hint>
                     </mat-form-field><mat-form-field class="example-full-width">   <input matInput placeholder="diplome" #diplome="ngModel" [ngModel]='formation.specialite' name="specialite"
                                                                                           required minlength="3">
-                    <mat-hint *ngIf=" !diplome.touched" >Les erreurs apparaissent instantanément!</mat-hint>
+
                     <mat-hint *ngIf=" diplome.errors?.required && diplome.touched" style="color:black">diplome <b>obligaoire</b></mat-hint>
                     <mat-hint *ngIf=" diplome.errors?.minlength && diplome.touched " style="color:black">Minimum de caractere 3</mat-hint> </mat-form-field>
                     <mat-form-field class="example-full-width">

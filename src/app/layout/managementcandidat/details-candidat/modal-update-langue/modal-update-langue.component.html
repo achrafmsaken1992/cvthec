@@ -16,8 +16,12 @@
             <form class="example-form" novalidate #fo="ngForm" (ngSubmit)="updateLangue(fo)">
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Langue" #clangue="ngModel" [ngModel]='langue.nom' name="nom"
-                           required minlength="3">
-
+                           [matAutocomplete]="auto"  [(ngModel)]="rech" (keyup)="change()"     required minlength="3">
+                    <mat-autocomplete  #auto="matAutocomplete">
+                        <mat-option  *ngFor="let option of options" [value]="option">
+                            {{ option }}
+                        </mat-option>
+                    </mat-autocomplete>
                     <mat-hint *ngIf=" clangue.errors?.required && clangue.touched" style="color:black">Langue  <b>obligaoire</b></mat-hint>
                     <mat-hint *ngIf=" clangue.errors?.minlength && clangue.touched " style="color:black">Minimum de caractere 3</mat-hint> </mat-form-field>
                 <mat-form-field class="example-full-width">

@@ -1,8 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewContainerRef} from '@angular/core';
 import {CandidatService} from "../../../../services/candidat.service";
-import {FlashMessagesService} from "angular2-flash-messages";
+
 import {FormGroup} from "@angular/forms";
 import {routerTransition} from "../../../../router.animations";
+
+import Swal from 'sweetalert2';
+declare var jQuery:any;
 @Component({
   selector: 'app-modal-add-competance',
   templateUrl: './modal-add-competance.component.html',
@@ -29,8 +32,9 @@ cmps:any;
     this.send.emit();
 
   }
-  constructor(private candidatservice: CandidatService, private _flashMessagesService2: FlashMessagesService) {
-  }
+  constructor(private candidatservice: CandidatService) {
+
+ }
 
   ngOnInit() {
 this.getTitesCompetances();
@@ -51,11 +55,17 @@ if(form.value.note=="" ||form.value.note==null)
       console.log(form.value)
       this.candidatservice.saveCompetance(form.value).subscribe(resp => {
 
-        this._flashMessagesService2.show('ajout avec succée!', {cssClass: 'alert-success', timeout: 3300});
+
         form.reset();
 this.store();
-
-
+          jQuery(".modal").hide();
+          jQuery("div").removeClass("modal-backdrop");
+          jQuery("body").removeClass("modal-open ");
+          Swal(
+              'Ajout competance!',
+              'Ajout competance  avec succée.',
+              'success'
+          )
       }, err => {
 
 

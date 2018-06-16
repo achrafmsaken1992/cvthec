@@ -15,14 +15,18 @@
         <form class="example-form" novalidate #fo2="ngForm" (ngSubmit)="saveLangue(fo2)">
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Langue" #langue="ngModel" ngModel='' name="nom"
-                   required minlength="3">
-
-            <mat-hint *ngIf=" langue.errors?.required && langue.touched" style="color:black">Langue  <b>obligaoire</b></mat-hint>
+                   [matAutocomplete]="auto"  [(ngModel)]="rech" (keyup)="change()"    required minlength="3">
+            <mat-autocomplete  #auto="matAutocomplete">
+              <mat-option  *ngFor="let option of options" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-hint *ngIf=" langue.errors?.required && langue.touched" style="color:black">Langue  <b>obligatoire</b></mat-hint>
             <mat-hint *ngIf=" langue.errors?.minlength && langue.touched " style="color:black">Minimum de caractere 3</mat-hint> </mat-form-field>
           <mat-form-field class="example-full-width">
             <input matInput type="number" placeholder="Niveau sur 100" ngModel='0' min="0" max="100" name="niveau" #niveau="ngModel" required>
 
-            <mat-hint *ngIf=" niveau.errors?.required && niveau.touched" style="color:black">Niveau  <b>obligaoire</b></mat-hint> </mat-form-field>
+            <mat-hint *ngIf=" niveau.errors?.required && niveau.touched" style="color:black">Niveau  <b>obligatoire</b></mat-hint> </mat-form-field>
 
 
           <div class="col-sm-12 col-md-6 "> <button  class="btn btn-success" >valider</button>

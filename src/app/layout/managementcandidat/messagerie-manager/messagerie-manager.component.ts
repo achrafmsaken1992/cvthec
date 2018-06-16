@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {EtudiantService} from "../../../services/etudiant.service";
 import {CandidatService} from "../../../services/candidat.service";
 import {ActivatedRoute, Router} from "@angular/router";
-
+import {AuthService} from '../../../services/auth.service';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-messagerie-manager',
   templateUrl: './messagerie-manager.component.html',
@@ -21,7 +22,14 @@ a=0;
 active=-1;
 id:number;
 
-  constructor(private candidatService:CandidatService,private r:Router,private route: ActivatedRoute) { }
+  constructor(private candidatService:CandidatService,private r:Router,private route: ActivatedRoute,
+  private authService:AuthService) {
+      if(this.authService.isEtudiant()==false)
+      {
+          this.r.navigate(['access-denied'])
+      }
+
+  }
 
   ngOnInit() {
       if (this.route.snapshot.params['id'] != undefined)
@@ -139,5 +147,39 @@ err=>{
         this.getMessages(manager)
         this.active=manager.id;
       this.r.navigateByUrl('messagerie-etudiant/'+manager.id)
+    }
+    supprimer(manager,id) {
+        swal({
+            title: 'Etes vous sur?',
+            text: '',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Oui, je confirme!',
+            cancelButtonText: `Non, j'annule`
+        }).then((result) => {
+            if (result.value) {
+
+                this.authService.deleteMessage(id).subscribe(resp => {
+                    swal(
+                        'Supprimer!',
+                        'suppression message avec succés',
+                        'success'
+                    )
+
+                    this.getMessages(manager);
+                })
+
+
+                // For more information about handling dismissals please visit
+                // https://sweetalert2.github.io/#handling-dismissals
+            } else if (result.dismiss === swal.DismissReason.cancel) {
+                swal(
+                    'Annuler',
+                    'suppression message annulée :)',
+                    'error'
+                )
+
+            }
+        })
     }
 }

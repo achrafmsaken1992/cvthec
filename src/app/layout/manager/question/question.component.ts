@@ -4,6 +4,7 @@ import {ManagersService} from "../../../services/managers.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import swal from 'sweetalert2';
 import {QuizService} from "../../../services/quiz.service";
+import {AuthService} from '../../../services/auth.service';
 declare var jQuery:any;
 @Component({
   selector: 'app-question',
@@ -14,7 +15,12 @@ export class QuestionComponent implements OnInit {
 questions:any;
 id:number;
   constructor(public _location: Location,private quizService:QuizService,public r:Router
-,private route: ActivatedRoute,private managerService:ManagersService) {
+,private managerService:ManagersService,private route: ActivatedRoute,private authService:AuthService) {
+    if(this.authService.isManeger()==false)
+    {
+      this.r.navigate(['access-denied'])
+    }
+
     this.id= parseInt(this.route.snapshot.params['id']);
     if(isNaN(this.id)==true){
       this.r.navigate(['not-found'])

@@ -6,6 +6,8 @@
       <div class="wrap">
         <!--img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png"
              class="online" alt=""-->
+
+
         <img id="profile-img" *ngIf="profile?.image===null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
              alt=""
         >
@@ -46,6 +48,7 @@
                >	<span class="contact-status busy"></span>
             <!--img src="http://emilcarlsson.se/assets/harveyspecter.png"
                  -->
+
             <img *ngIf="etudiant.image===null"
 
                  [src]="'assets/images/icons_user.png'"
@@ -89,19 +92,26 @@
     </div>
     <div class="messages" >
       <ul *ngFor="let message of messages">
+
         <li *ngIf="profile.id===message.user1.id" class="sent" >
+          <div style="margin-right: 5px" >{{message?.date|amTimeAgo}}</div><br>
           <img *ngIf="this.profile.image!=null" src="{{getPhotoManager(profile.image,profile.nomEntreprise)}}" height="22px"  alt="" >
           <img *ngIf="this.profile.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
                alt=""
           >
-          <p>{{message.message}}</p>
+        <p>{{message.message}}</p><i (click)="supprimer(etudiant,message.id)"  class="fa fa-2x fa-trash sup" style="color:red;margin-left: 5px;"></i>
+
         </li>
         <li *ngIf="profile.id!=message.user1.id" class="replies">
+          <div class="float-right" style="margin-right: 5px">{{message?.date|amTimeAgo}}</div><br><br>
           <img *ngIf="this.etudiantP.image!=null" src="{{getPhotoCandidate(etudiantP.image,etudiantP.id)}}" height="22px"  alt="" >
           <img *ngIf="this.etudiantP.image==null"   src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png"
                alt=""
           >
-          <p>{{message.message}}</p>
+
+          <p>{{message.message}}  </p><div class="sup float-right" style="margin-right: 5px;">
+         </div>
+
         </li>
 
       </ul>

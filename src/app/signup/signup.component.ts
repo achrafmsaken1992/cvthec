@@ -35,10 +35,10 @@ export class SignupComponent implements OnInit {
 
             }, err => {
                 if (err.error.message == "email exist deja")
-                    this.toastr.success('email exist deja', 'Error!');
+                    this.toastr.error('email exist deja', 'Error!');
 
                 else if (err.error.message == "nom de la societé existe deja") {
-                    this.toastr.success('nom de la societé existe deja', 'Error!');
+                    this.toastr.error('nom de la societé existe deja', 'Error!');
                 }
 
             });

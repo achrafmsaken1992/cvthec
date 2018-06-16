@@ -36,7 +36,7 @@
 
                 <mat-hint *ngIf=" motCle.errors?.required && motCle.touched" style="color:black">mots clés obligatoire</mat-hint>
                 <mat-hint *ngIf=" motCle.errors?.minlength && motCle.touched " style="color:black">Minimum de caractere 3</mat-hint> </mat-form-field><mat-form-field>
-            <input matInput  [matDatepicker]="picker" zplaceholder="Choisir date debut" #date1="ngModel"  name="date1" ngModel='' (change)="date=0" >
+            <input matInput  [matDatepicker]="picker" placeholder="Choisir date debut" #date1="ngModel"  name="date1" ngModel='' (change)="date=0" >
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker ></mat-datepicker>
         </mat-form-field>

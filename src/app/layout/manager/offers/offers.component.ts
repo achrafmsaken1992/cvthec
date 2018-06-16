@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ManagersService} from "../../../services/managers.service";
 import swal from 'sweetalert2';
 import {AuthService} from "../../../services/auth.service";
+import {ActivatedRoute, Router} from '@angular/router';
 declare var jQuery:any;
 @Component({
   selector: 'app-offers',
@@ -28,8 +29,11 @@ manager:any;
 
 
 
-  constructor(private managersService:ManagersService,private authService:AuthService) {
-
+  constructor(private managersService:ManagersService,private authService:AuthService,private r:Router,private route: ActivatedRoute) {
+      if(this.authService.isManeger()==false)
+      {
+          this.r.navigate(['access-denied'])
+      }
   }
 
   ngOnInit() {

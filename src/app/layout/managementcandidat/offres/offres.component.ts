@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CandidatService} from "../../../services/candidat.service";
+import {AuthService} from '../../../services/auth.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-offres',
@@ -17,7 +19,13 @@ export class OffresComponent implements OnInit {
   mot:string="";
   totalpage:number;
 
-  constructor(private candidatService:CandidatService) { }
+  constructor(private candidatService:CandidatService,private authService:AuthService
+,private route: ActivatedRoute,private r:Router) {
+    if(this.authService.isEtudiant()==false)
+    {
+      this.r.navigate(['access-denied'])
+    }
+  }
 
   ngOnInit() {
     this.getOffres();

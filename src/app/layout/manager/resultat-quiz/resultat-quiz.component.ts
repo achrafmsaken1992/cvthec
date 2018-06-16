@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {QuizService} from "../../../services/quiz.service";
 import {Location} from '@angular/common';
+import {AuthService} from '../../../services/auth.service';
 declare var jQuery:any;
 @Component({
   selector: 'app-resultat-quiz',
@@ -22,7 +23,12 @@ data:any;
   reussis:number;
 
   constructor(public _location: Location,private r:Router
-      ,private route: ActivatedRoute,public quizService:QuizService) { }
+      ,private route: ActivatedRoute,public quizService:QuizService,private authService:AuthService) {
+    if(this.authService.isManeger()==false)
+    {
+      this.r.navigate(['access-denied'])
+    }
+  }
 
   ngOnInit() {
     this.id= this.route.snapshot.params['id'];

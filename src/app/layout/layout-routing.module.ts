@@ -20,11 +20,11 @@ const routes: Routes = [
             { path: 'add-candidat', loadChildren: './managementcandidat/add-candidat/add-candidat.module#AddcandidatModule' },
             { path: 'display-candidat', loadChildren: './managementcandidat/display-candidat/display-candidat.module#DisplaycandidatModule'},
             { path: 'detailscandidat', loadChildren: './managementcandidat/details-candidat/details-candidat.module#DetailscandidatModule'},
-            { path: 'profileEtudiant', loadChildren: './profile-etudiant/profile.module#ProfileUrhModule'},
+            { path: 'CompteEtudiant', loadChildren: './profile-etudiant/profile.module#ProfileUrhModule'},
             { path: 'displayUrh', loadChildren: './managementemployees/display-rhs/display-rhs.module#DisplayUrhModule'},
             { path: 'addUrh', loadChildren: './managementemployees/display-rhs/add-rh/add-rh.module#AddUrhModule'},
             { path: 'managementManager', loadChildren: './management-manager/management-manager.module#ManagementManagerModule'},
-            {path: 'managementManager/:id', loadChildren: './management-manager/management-manager.module#ManagementManagerModule'},
+
 
             { path: 'managementEtudiant', loadChildren: './management-etudiant/management-etudiant.module#ManagementEtudiantModule'},
             { path: 'display-collaborateur', loadChildren: './collaborator/collaborator.module#CollaboratorModule'},
@@ -36,7 +36,7 @@ const routes: Routes = [
             { path: 'messagerie-etudiant', loadChildren: './managementcandidat/messagerie-manager/messagerie-manager.module#MessagerieManagerModule'},
             { path: 'messagerie-etudiant/:id', loadChildren: './managementcandidat/messagerie-manager/messagerie-manager.module#MessagerieManagerModule'},
 
-            { path: 'profileManager', loadChildren: './manager/profile/profile.module#ProfileModule'},
+            { path: 'compteManager', loadChildren: './manager/profile/profile.module#ProfileModule'},
             { path: 'messagerie-manager', loadChildren: './manager/messagerie/messagerie.module#MessagerieModule'},
             { path: 'messagerie-manager/:id', loadChildren: './manager/messagerie/messagerie.module#MessagerieModule'},
             { path: 'offres', loadChildren: './managementcandidat/offres/offres.module#OffersModule'},

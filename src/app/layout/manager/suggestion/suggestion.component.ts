@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from '@angular/common';
 import swal from 'sweetalert2';
 import {QuizService} from "../../../services/quiz.service";
+import {AuthService} from '../../../services/auth.service';
 declare var jQuery:any;
 @Component({
   selector: 'app-suggestion',
@@ -16,7 +17,12 @@ export class SuggestionComponent implements OnInit {
 
   constructor(private r:Router
       ,private route: ActivatedRoute,public quizService:QuizService,public _location: Location,private managerService:ManagersService
-  ) {
+  ,private authService:AuthService) {
+    if(this.authService.isManeger()==false)
+    {
+      this.r.navigate(['access-denied'])
+    }
+
     if(isNaN(this.id)==true){
       this.r.navigate(['not-found'])
     }

@@ -1,21 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Router} from "@angular/router";
-import {routerTransition} from "../../router.animations";
+import {AuthService} from '../../services/auth.service';
+import {ToastsManager} from 'ng2-toastr';
+
 
 @Component({
   selector: 'app-reception',
   templateUrl: './contact.component.html',
   styleUrls: ['../reception/reception.component.scss'],
-    animations: [routerTransition()]
+
 })
 
 export class ContactComponent implements OnInit {
-lat :number=35.850658;
+lat :number=35.802004;
 
-    lng :number=10.595464;
-  constructor(public router: Router) { }
+    lng :number=10.614392;
+  constructor(public router: Router,public authService:AuthService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
+  }
+  register(com){
+    if(com.valid) {
+      this.authService.envoyerContact(com.value).subscribe(resp => {
+        this.toastr.success('envoi commentaire avec succès', 'succès!');
+        com.reset();
+      })
+    }
   }
 
 }

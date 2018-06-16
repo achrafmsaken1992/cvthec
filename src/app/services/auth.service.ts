@@ -40,7 +40,7 @@ export class AuthService {
 
     }
 isActive(email){
-    return this.http.get("http://localhost:8080/isActive?email="+email,{observe:'response'});
+    return this.http.get("http://localhost:8080/isActiveAndValide?email="+email,{observe:'response'});
 }
 
   login(user){
@@ -115,6 +115,10 @@ updatePassword(fo){
         return this.http.post('http://localhost:8080/activationCompte',form,{observe:'response',
         });
     }
+    envoyerContact(form){
+        return this.http.post('http://localhost:8080/envoyerContact',form,{observe:'response',
+        });
+    }
   getNotifications(user,size){
     if(this.jwtToken==null) this.loadToken();
     return this.http.get('http://localhost:8080/getNotifications?user='+user+ '&size=' + size,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
@@ -125,5 +129,15 @@ updatePassword(fo){
         if(this.jwtToken==null) this.loadToken();
 
         return this.http.post('http://localhost:8080/updateTokenNotification?notification=' + notification+ '&id=' + id,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    deleteMessage(id){
+        if(this.jwtToken==null) this.loadToken();
+
+        return this.http.post('http://localhost:8080/supprimerMessage',id,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    deleteEtudiant(id){
+        if(this.jwtToken==null) this.loadToken();
+
+        return this.http.post('http://localhost:8080/admin/supprimerEtudiant',id,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
     }
 }

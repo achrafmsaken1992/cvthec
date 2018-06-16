@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
 
+import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from '@angular/common/http';
+import {Observable} from "rxjs/Observable";
 @Injectable()
 export class EtudiantService {
     jwtToken:string;
@@ -29,5 +30,19 @@ export class EtudiantService {
        +"&size="+size+"&page="+page,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
 
 }
+    uploadCv(file: File,text:string): Observable<HttpEvent<{}>> {
+        if(this.jwtToken==null) this.loadToken();
+        let formdata: FormData = new FormData();
 
+        formdata.append('file', file,text);
+
+
+        const req = new HttpRequest('POST', 'http://localhost:8080/etudiant/uploadCv', formdata, {
+            reportProgress: true,
+            responseType: 'text',
+            headers:new HttpHeaders({'Authorization':this.jwtToken})
+        });
+
+        return this.http.request(req);
+    }
 }

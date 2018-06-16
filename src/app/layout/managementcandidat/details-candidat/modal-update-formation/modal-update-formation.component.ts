@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {CandidatService} from "../../../../services/candidat.service";
-
+import Swal from 'sweetalert2';
 
 
 declare var jQuery:any;
@@ -14,6 +14,7 @@ export class ModalUpdateFormationComponent implements OnInit {
 
     @Input() formation: any;
     @Output() send = new EventEmitter<number>();
+
     results = [
         {value: 'moyen', viewValue: 'moyen'},
         {value: 'assez bien', viewValue: 'assez bien'},
@@ -55,11 +56,20 @@ this.candidatService.updateFormation(form.value).subscribe(resp=>{
     this.send.emit();
     jQuery("div").removeClass("modal-backdrop");
     jQuery("body").removeClass("modal-open ");
-
+    Swal(
+        'modification formation!',
+        'modification formation  avec succée.',
+        'success'
+    )
 },err=>{
 
 })
             }
         }
     }
+
+
+
+
+
 }

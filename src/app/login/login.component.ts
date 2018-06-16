@@ -42,6 +42,8 @@ let aux:any;
                 },err=>{
                     if(err.error.message=="erreur1")
                     swal('Oops...','veuillez activer votre compte par email'+ '!', 'error');
+                    if(err.error.message=="erreur2")
+                        swal('Oops...','veuillez attendre la validation du compte '+ '!', 'error');
                 })
 
 

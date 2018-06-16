@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import {CandidatService} from "../../../services/candidat.service";
 import {ToastsManager} from "ng2-toastr";
 import swal from 'sweetalert2';
+import {AuthService} from '../../../services/auth.service';
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
@@ -17,8 +18,14 @@ n:number=0;
 profile:any;
 
   constructor(private r:Router,private candidatService:CandidatService,
-              public toastr: ToastsManager, vcr: ViewContainerRef
-      ,private route: ActivatedRoute,public quizService:QuizService) { this.id= this.route.snapshot.params['id'];
+              public toastr: ToastsManager, vcr: ViewContainerRef,private authService:AuthService
+      ,private route: ActivatedRoute,public quizService:QuizService) {
+
+      if(this.authService.isEtudiant()==false)
+      {
+          this.r.navigate(['access-denied'])
+      }
+      this.id= this.route.snapshot.params['id'];
     this.toastr.setRootViewContainerRef(vcr)
     this.getQuizs(); }
 

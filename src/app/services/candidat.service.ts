@@ -282,7 +282,11 @@ export class CandidatService {
         return this.http.get<any>("http://localhost:8080/etudiant/getAllOffres?mot=" + mot   + "&size=" + size+ "&page=" + page, {headers: new HttpHeaders({'Authorization': this.jwtToken})});
 
     }
+    getLangues(){
+        if(this.jwtToken==null) this.loadToken();
+        return    this.http.get<any>("http://localhost:8080/getLangues",{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
 
+    }
 
 
 }

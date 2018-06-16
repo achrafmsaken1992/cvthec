@@ -1,4 +1,4 @@
-<div class="body-inner" [@routerTransition]>
+<div class="body-inner" >
     <div class="site-top">
 
         <div class="topbar-transparent" id="top-bar">
@@ -8,17 +8,17 @@
                         <ul class="top-info">
                             <li><span class="info-icon"><i class="icon icon-phone3"></i></span>
                                 <div class="info-wrapper">
-                                    <p class="info-title">(+9) 847-291-4353</p>
+                                    <p class="info-title">(+216) 73 307 960</p>
                                 </div>
                             </li>
                             <li><span class="info-icon"><i class="icon icon-envelope"></i></span>
                                 <div class="info-wrapper">
-                                    <p class="info-title">mail@example.com</p>
+                                    <p class="info-title">Iset.Sousse@gmail.com</p>
                                 </div>
                             </li>
                             <li class="last"><span class="info-icon"><i class="icon icon-map-marker2"></i></span>
                                 <div class="info-wrapper">
-                                    <p class="info-title">1010 Avenue, NY, USA</p>
+                                    <p class="info-title">4023 Sousse ERRIADH Sousse</p>
                                 </div>
                             </li>
                         </ul>
@@ -62,7 +62,7 @@
                             <div class="navbar-brand navbar-header">
                                 <div class="logo">
                                     <a href="index-2.html">
-                                        <img  [src]="'assets/images/logo2.png'"alt="">
+                                        <img  [src]="'assets/images/iset.jpg'" height="120px" width="150px">
                                     </a>
                                 </div>
                                 <!-- logo end-->
@@ -148,7 +148,7 @@
                             <div class="ts-contact-content">
                                 <h3 class="ts-contact-title">Trouvez nous
                                 </h3>
-                                <p>1010 Avenue, NY 90001, USA</p>
+                                <p>4023 Sousse ERRIADH Sousse</p>
                             </div>
                             <!-- Contact content end-->
                         </div>
@@ -160,7 +160,7 @@
                         <div class="ts-contact-info box-border"><span class="ts-contact-icon float-left"><i class="icon icon-phone3"></i></span>
                             <div class="ts-contact-content">
                                 <h3 class="ts-contact-title">Appelez nous</h3>
-                                <p>1+(91) 458 654 528</p>
+                                <p>(+216) 73 307 960</p>
                             </div>
                             <!-- Contact content end-->
                         </div>
@@ -172,7 +172,7 @@
                         <div class="ts-contact-info box-border"><span class="ts-contact-icon float-left"><i class="icon icon-envelope"></i></span>
                             <div class="ts-contact-content">
                                 <h3 class="ts-contact-title">Envoyez nous un mail</h3>
-                                <p>info@example.com</p>
+                                <p>Iset.Sousse@gmail.com</p>
                             </div>
                             <!-- Contact content end-->
                         </div>
@@ -188,36 +188,38 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <form class="contact-form" id="contact-form" action="http://themewinter.com/demo/html/bizipress/blue/contact-form.php" method="POST">
+                        <form class="contact-form"  novalidate #com="ngForm" (ngSubmit)="register(com)" >  <div class="row">
                             <div class="error-container"></div>
-                            <div class="row">
+
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <input class="form-control form-name" id="name" name="name" placeholder="Nom et Prenom" type="text" required>
+                                        <input type="text" #np="ngModel" ngModel='' name="np" class="form-control"    placeholder="Entrez votre nom et prenom" required minlength="5">
+                                        <div *ngIf="np.errors?.required && np.touched" class="isa_warning">Nom et Prenom obligatoire</div>
+                                        <div *ngIf="np.errors?.minlength && !np.errors?.required && np.touched" class="isa_warning">Minimum de caractére 5</div>
                                     </div>
                                 </div>
                                 <!-- Col end-->
+
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <input class="form-control form-website" id="url" name="url" placeholder="Site web" type="url" required>
+                                        <input type="text" #email="ngModel" ngModel='' name="email" class="form-control"    placeholder="Entrez votre email" required email>
+                                        <div *ngIf="email.errors?.required && email.touched" class="isa_warning">email obligatoire</div>
+                                        <div *ngIf="!email.errors?.required && email.errors?.email && email.touched" class="isa_warning">Email non valide</div>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <input class="form-control form-email" id="email" name="email" placeholder="Email" type="email" required>
+                                        <textarea #commentaire="ngModel" ngModel='' name="commentaire" class="form-control"    placeholder="Entrez votre commentaire" required minlength="5"></textarea>
+                                        <div *ngIf="commentaire.errors?.required && commentaire.touched" class="isa_warning">Commentaire obligatoire</div>
+                                        <div *ngIf="commentaire.errors?.minlength && !commentaire.errors?.required && commentaire.touched" class="isa_warning">Minimum de caracteres 5</div>
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control form-message required-field" id="message" placeholder="Commentaire" rows="8"></textarea>
-                                    </div>
-                                </div>
-                                <!-- Col 12 end-->
-                            </div>
-                            <!-- Form row end-->
-                            <div class="text-right">
+                                <!-- Col 12 end--> <div class="text-right">
                                 <button class="btn btn-primary tw-mt-30" type="submit">Contactez nous</button>
                             </div>
+                            </div> <!-- Form row end-->
+
+
                         </form>
                         <!-- Form end-->
                     </div>
@@ -241,21 +243,24 @@
                     <div class="col-lg-4 footer-box"><i class="fa fa-map-marker"></i>
                         <div class="footer-box-content">
                             <h3>Siège social</h3>
-                            <p>1010 Avenue, NY 90001, USA</p>
+                            <p>
+                                4023 Sousse ERRIADH
+                                Sousse
+                               </p>
                         </div>
                     </div>
                     <!-- Box 1 end-->
                     <div class="col-lg-4 footer-box"><i class="fa fa-phone"></i>
                         <div class="footer-box-content">
                             <h3>Appelez-nous</h3>
-                            <p>(+87) 847-291-4353</p>
+                            <p>(+216) 73 307 960</p>
                         </div>
                     </div>
                     <!-- Box 2 end-->
                     <div class="col-lg-4 footer-box"><i class="fa fa-envelope"></i>
                         <div class="footer-box-content">
                             <h3>Envoyez nous un mail</h3>
-                            <p>mail@example.com</p>
+                            <p>Iset.Sousse@gmail.com</p>
                         </div>
                     </div>
                     <!-- Box 3 end-->
@@ -272,14 +277,11 @@
                     <div class="col-lg-6 col-md-12 footer-widget footer-about">
                         <div class="footer-logo">
                             <a href="index-2.html">
-                                <img
-                                    [src]="'assets/images/footer-logo.png'"
-                                    alt="">
+
+                                <img  [src]="'assets/images/iset.jpg'" height="120px" width="150px">
                             </a>
                         </div>
-                        <p>Cabinet de Développement Logiciel et de Conseil en Transformation Digitale.
 
-                            Ecyl-IT est votre partenaire stratégique pour la réalisation vos projets avec succès,pour l’accompagnement à la réussite dans votre transformation digitale.</p>
                         <div class="footer-social">
                             <ul>
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -314,7 +316,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
-                        <div class="copyright-info"><span>Copyright © 2018 Ecyl-it. Tous les droits sont réservés.</span></div>
+                        <div class="copyright-info"><span>Copyright © 2018 Iset-Sousse. Tous les droits sont réservés.</span></div>
                     </div>
 
                 </div>

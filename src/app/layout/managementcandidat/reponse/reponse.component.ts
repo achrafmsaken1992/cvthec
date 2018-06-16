@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CandidatService} from "../../../services/candidat.service";
 import {Location} from '@angular/common';
 import {ToastsManager} from "ng2-toastr";
+import {AuthService} from '../../../services/auth.service';
 @Component({
   selector: 'app-reponse',
   templateUrl: './reponse.component.html',
@@ -40,7 +41,12 @@ profile:any;
 
   constructor(private quizService:QuizService,public r:Router
       ,private route: ActivatedRoute,private candidatService:CandidatService,private _location: Location
-      , public toastr: ToastsManager, vcr: ViewContainerRef) {
+      , public toastr: ToastsManager, vcr: ViewContainerRef,private authService:AuthService) {
+
+      if(this.authService.isEtudiant()==false)
+      {
+          this.r.navigate(['access-denied'])
+      }
 
       this.toastr.setRootViewContainerRef(vcr)
   }
@@ -255,7 +261,7 @@ if(this.fausse+this.correct<this.totalPages) {
          this.r.navigateByUrl("offres");
           }
         },err=>{
-            console.log("non non")
+
         })
     }
     ngOnDestroy(){

@@ -4,6 +4,8 @@ import {observable} from "rxjs/symbol/observable";
 import { Observable } from "rxjs/Observable"
 import {ManagersService} from "../../services/managers.service";
 import swal from 'sweetalert2';
+import {AuthService} from '../../services/auth.service';
+import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-management-manager',
   templateUrl: './management-manager.component.html',
@@ -25,11 +27,16 @@ societe="";
 active=1;
 valide=0;
 date=""
-  constructor(private managerService:ManagersService) {
-
+  constructor(private managerService:ManagersService,private authService:AuthService,
+              private r:Router,private route: ActivatedRoute) {
+if(this.authService.isAdmin()==false)
+{
+    this.r.navigate(['access-denied'])
+}
   }
 
   ngOnInit() {
+
       this.chercher();
 
 

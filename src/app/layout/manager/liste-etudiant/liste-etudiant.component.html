@@ -72,14 +72,17 @@
                     <div class="filter-group">
                       <label >Langue</label>
                       <input list="langues" name="langue" [(ngModel)]="langue"  (keyup)="page=0; rechEtudiants()">
-                      <div *ngIf="title!==''">
+                      <div *ngIf="langue!==''">
                         <datalist id="langues">
-                          <option>Francais</option>
-                          <option>Anglais</option>
-                          <option>Espagnol</option>
+                          <option *ngFor="let lang of langs">{{lang}}</option>
                         </datalist>
                       </div>
-                    </div></td>
+                    </div>
+
+
+
+
+                  </td>
 </tr>
 
 
@@ -110,7 +113,7 @@
                 <table class="table table-striped ">
                   <thead>
                   <tr>
-                    <th colspan="2">image</th>
+                    <th colspan="2"></th>
                     <th>Prenom</th>
                     <th >Nom</th>
                     <th>Email</th>
@@ -148,7 +151,8 @@
 
 
                     <td>
-                      <a href="#"  data-toggle="tooltip" title="Telecharger cv" ><i class="material-icons">&#xE2C6;</i></a>
+                      <a *ngIf="c.cv==null" (click)="alertCv()"  data-toggle="tooltip" title="Telecharger cv"  ><i class="fa fa-2x fa-download"></i></a>
+                      <a *ngIf="c.cv!=null" href="{{downloadCv(c.cv,c.id)}}"  data-toggle="tooltip" title="Telecharger cv"  ><i class="fa fa-2x fa-download"></i></a>
                     </td>
                     <td>
 

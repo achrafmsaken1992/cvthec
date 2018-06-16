@@ -311,7 +311,7 @@ i {
 .image {
     opacity: 1;
     display: block;
-    width: 85px;
+    min-width: 85px;
     height: 85px;
     transition: .5s ease;
     backface-visibility: hidden;

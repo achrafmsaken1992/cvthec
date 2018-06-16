@@ -62,7 +62,7 @@
                 </ul>
             </li>
         </div-->
-        <a *ngIf="isEtudiant" routerLink="/profileEtudiant" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a *ngIf="isEtudiant" routerLink="/CompteEtudiant" [routerLinkActive]="['router-link-active']" class="list-group-item">
                   <i class="fa fa-user"></i> {{ 'Compte'  }}
               </a>
         <a *ngIf="isEtudiant" routerLink="/detailscandidat" [routerLinkActive]="['router-link-active']" class="list-group-item">
@@ -79,7 +79,7 @@
         <a *ngIf="isAdmin" routerLink="/managementEtudiant" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-graduation-cap"></i> {{ 'Gérer etudiants'  }}
         </a>
-        <a *ngIf="isManager" routerLink="/profileManager" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a *ngIf="isManager" routerLink="/compteManager" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-user"></i> {{ 'Compte'  }}
         </a>
         <a *ngIf="isManager" routerLink="/management-offers" [routerLinkActive]="['router-link-active']" class="list-group-item">
@@ -191,7 +191,7 @@
                     </ul>
                 </li>
             </div-->
-            <div class="nested-menu">
+            <!--div class="nested-menu">
                 <a class="list-group-item" (click)="addExpandClass('profil')">
                     <span><i class="fa fa-user"></i>&nbsp; John Smith</span>
                 </a>
@@ -212,14 +212,14 @@
                                 <span><i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}</span>
                             </a>
                         </li-->
-                        <li>
+                        <!--li>
                             <a [routerLink]="['/login']" (click)="onLoggedout()">
                                 <span><i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-            </div>
+            </div-->
         </div>
     </div>
 </nav>

@@ -94,7 +94,7 @@
                     <thead>
                     <tr>
 <th colspan="2"></th>
-                        <th colspan="2">Nom et Prenom</th>
+                        <th >Nom et Prenom</th>
 
                         <th>Cin</th>
                         <th>Date naissance</th>
@@ -115,36 +115,24 @@
 
 <td colspan="2">
 
-                        <img *ngIf="c.image==null"  style="width: 85px; height: 85px;"  [src]="'assets/images/icons_user.png'" class="rounded-circle img-thumbnail image"
-                             style="width: 90px; height: 85px"
+                        <img *ngIf="c.image==null"   [src]="'assets/images/icons_user.png'" class="rounded-circle img-thumbnail image"
+
                         >
 
                         <img  *ngIf="c.image!=null"  src="{{getPhotoCandidate(c.image,c.id)}}" class="rounded-circle img-thumbnail image"
-                              style="width: 90px; height: 85px"
-                        ></td>
-                        <td colspan="2">{{c.prenom}} {{c.nom}}</td>
+
+                        >
+</td>
+                        <td>{{c.prenom}} {{c.nom}}</td>
                         <td> {{c.cin }} </td>
                         <td >{{c.dateNaissance}}</td>
                         <td>{{c.tel}}</td>
                         <td >{{c.email}}</td>
 
 
-                        <td *ngIf="active==1">
-                            <div class="btn-group" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-
-                                <i class="fa fa-ellipsis-v   " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                                </i>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a (click)="detailscontact(c.candidateId)" class="search"   data-toggle="tooltip" ><i class="material-icons">&#xE8B6;</i> plus de details</a>
-                                    <a  class="edit" data-toggle="tooltip" ><i class="material-icons"  >&#xE254;</i> modifier</a>
-                                    <a (click)="deleteCandidat(c.candidateId)" data-toggle="tooltip" ><i class="material-icons">&#xE872;</i> supprimer</a>
-
-
-
-                                </div>
-                            </div>
+                        <td >
+                            <button  type="button" class="btn btn-danger no" data-toggle="tooltip" title="Refuser"
+                                     (click)="supprimer(c.id)">Supprimer</button>
 
 
 

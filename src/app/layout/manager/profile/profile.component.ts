@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ManagersService} from "../../../services/managers.service";
 import Swal from 'sweetalert2';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../../../services/auth.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -9,18 +11,27 @@ import Swal from 'sweetalert2';
 export class ProfileComponent implements OnInit {
   profile: any;
   selectedFiles: FileList;
+  selectedFilesCv: FileList;
   ext: string = "";
-
-  constructor(private managerService: ManagersService) {
-
-
+extCv:string="";
+  constructor(private managerService: ManagersService,private r:Router,private route: ActivatedRoute,private authService:AuthService) {
+    if (this.authService.isManeger() == false) {
+      this.r.navigate(['access-denied'])
+    }
   }
 
-  selectFile(event) {
+    selectFile(event) {
     this.selectedFiles = event.target.files;
 
 
     this.ext = this.selectedFiles.item(0).name.split('.').pop();
+
+  }
+  selectFileCv(event) {
+    this.selectedFilesCv = event.target.files;
+
+
+    this.extCv = this.selectedFilesCv.item(0).name.split('.').pop();
 
   }
 
