@@ -64,12 +64,12 @@ extCv:string="";
     photo = text;
 
     Swal({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this imaginary file!',
+      title: 'Etes vous sur?',
+
       type: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      confirmButtonText: 'Oui, je confirme!',
+      cancelButtonText: 'Non, j\'annule'
     }).then((result) => {
       if (result.value) {
 
@@ -78,14 +78,20 @@ extCv:string="";
 
           this.getProfile()
 
-        }, err => {
+          this.getProfile()
+          Swal(
+              'Upload!',
+              'Upload image avec succés.',
+              'success'
+          )
+        },err=>{
 
         });
 
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal(
-            'Cancelled',
-            'Your imaginary file is safe :)',
+            'Annulée',
+            'Upload image annulé ',
             'error'
         )
 

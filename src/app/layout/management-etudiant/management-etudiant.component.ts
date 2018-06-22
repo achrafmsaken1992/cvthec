@@ -114,18 +114,29 @@ rech2="active";
 
     }
     register(form:FormGroup){
-        this.etudiantService.register(form.value).subscribe(resp=>{
 
-            jQuery('#myModal').modal('toggle');
-            this.toastr.success('ajout avec succée', 'Error!');
-            form.reset();
-            this.chercher();
-        },err=>{
-            if (err.error.message == "email exist deja")
-                this.toastr.success('email exist deja', 'Error!');
+        if(form.value){
+            var date = new Date(form.value.dateNaissance),
+                mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+                day = ("0" + date.getDate()).slice(-2);
+            form.value.dateNaissance = [date.getFullYear(), mnth, day].join("-");
 
-        })
+            form.value.dateNaissance=form.value.dateNaissance.substr(0,10)
 
+
+
+            this.etudiantService.register(form.value).subscribe(resp => {
+
+                jQuery('#myModal').modal('toggle');
+                this.toastr.success('ajout etudiant avec succée', 'succés!');
+                form.reset();
+                this.chercher();
+            }, err => {
+                if (err.error.message == "email exist deja")
+                    this.toastr.success('email exist deja', 'Erreur!');
+
+            })
+        }
     }
     getPhotoCandidate(photo,id){
         return "http://localhost:8080/getPhotoEtudiant/"+photo+"/"+id;

@@ -22,21 +22,22 @@ export class SuggestionComponent implements OnInit {
     {
       this.r.navigate(['access-denied'])
     }
+    this.id= this.route.snapshot.params['id'];
+
 
     if(isNaN(this.id)==true){
       this.r.navigate(['not-found'])
     }
-    this.id= this.route.snapshot.params['id'];
 
   }
   ngOnInit() {
-    this.isQuestionManager();
+   // this.isQuestionManager();
     this.getSuggestion();
   }
   isQuestionManager(){
     this.managerService.isQuestionManager(this.id).subscribe(resp=>{
       if(resp==0){
-        this.r.navigate(['access-denied'])
+       // this.r.navigate(['access-denied'])
       }
     })
   }
@@ -85,7 +86,7 @@ this.suggestions=resp;
           this.quizService.addSuggestion(form.value).subscribe(resp=>{
             swal(
                 'Ajouté!',
-                'ajout quiz avec succés',
+                'ajout suggestion avec succés',
                 'success'
             )
             form.reset();
@@ -100,7 +101,7 @@ this.suggestions=resp;
         } else if (result.dismiss === swal.DismissReason.cancel) {
           swal(
               'Annuler',
-              'ajout quiz annulé :)',
+              'ajout question annulé :)',
               'error'
           )
 

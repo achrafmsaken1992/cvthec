@@ -6,10 +6,10 @@ import { ManagementEtudiantComponent} from './management-etudiant.component';
 
 import {FormsModule} from "@angular/forms";
 import {PageHeaderModule} from "../../shared/modules";
-
+import {CustomMaterialModule} from "../../material/material.module";
 
 @NgModule({
-    imports: [CommonModule, ManagementEtudiantRoutingModule, PageHeaderModule,FormsModule],
+    imports: [CommonModule, ManagementEtudiantRoutingModule, PageHeaderModule,FormsModule, CustomMaterialModule],
     declarations: [ManagementEtudiantComponent],
 
 })

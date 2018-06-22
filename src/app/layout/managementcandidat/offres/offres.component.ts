@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {CandidatService} from "../../../services/candidat.service";
 import {AuthService} from '../../../services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {QuizService} from '../../../services/quiz.service';
+import {ToastsManager} from 'ng2-toastr';
 
 @Component({
   selector: 'app-offres',
@@ -18,13 +20,18 @@ export class OffresComponent implements OnInit {
   numberpage:number;
   mot:string="";
   totalpage:number;
-
-  constructor(private candidatService:CandidatService,private authService:AuthService
-,private route: ActivatedRoute,private r:Router) {
-    if(this.authService.isEtudiant()==false)
+isAdmin:boolean;
+isEtudiant:boolean;
+  constructor(private candidatService:CandidatService,private authService:AuthService,private quizService:QuizService
+,private route: ActivatedRoute,private r:Router, private toastr: ToastsManager, vcr: ViewContainerRef) {
+    this.isAdmin=this.authService.isAdmin();
+    this.isEtudiant=this.authService.isEtudiant()
+    this.toastr.setRootViewContainerRef(vcr)
+    if(this.authService.isEtudiant()==false && this.authService.isAdmin()==false )
     {
       this.r.navigate(['access-denied'])
     }
+
   }
 
   ngOnInit() {
@@ -77,5 +84,15 @@ chercher(){
   getPhotoOffre(photo,id,entreprise){
 
     return "http://localhost:8080/getPhotoOffreByManager/"+photo+"/"+id+"/"+entreprise;
+  }
+  goQuizs(id){
+    this.quizService.nbrQuizsOffre(id).subscribe(resp=>{
+      if(resp!=0)
+        this.r.navigateByUrl('/quizs/'+id)
+      else
+        this.toastr.info('il n`\ y a aucun quiz pour cette offre  ', null, {enableHTML: true});
+    })
+
+
   }
 }

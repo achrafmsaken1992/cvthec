@@ -133,5 +133,39 @@ findQuizById(id){
     return    this.http.get<any>("http://localhost:8080/nbrQuestionsByQcm?id=" + id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
 
   }
+  nbrSuggestionByQuestion(id){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<any>("http://localhost:8080/nbrSuggestionByQuestion?id=" + id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+  }
+nbrQuizsOffre(id){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<number>("http://localhost:8080/nbrQuizsOffre?id=" + id,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+  }
+  nbrRepCorrect(){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<number>("http://localhost:8080/admin/nbrRepCorrect" ,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+  }
+  nbrRepFausse(){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<number>("http://localhost:8080/admin/nbrRepFausse" ,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+  }
+ nbrMoyenne(){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<number>("http://localhost:8080/admin/nbrMoyenne" ,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+  }
+  nbrRed(){
+    if(this.jwtToken==null) this.loadToken();
+    return    this.http.get<number>("http://localhost:8080/admin/nbrRed" ,{headers:new HttpHeaders({'Authorization':this.jwtToken})} );
+
+  }
+
+
+
+
 
 }

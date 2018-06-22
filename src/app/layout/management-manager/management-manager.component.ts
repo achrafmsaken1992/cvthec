@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {EmployeesService} from "../../services/employees.service";
-import {observable} from "rxjs/symbol/observable";
-import { Observable } from "rxjs/Observable"
 import {ManagersService} from "../../services/managers.service";
 import swal from 'sweetalert2';
 import {AuthService} from '../../services/auth.service';

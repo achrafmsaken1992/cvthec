@@ -87,11 +87,13 @@
     <div class="messages" >
       <ul *ngFor="let message of messages">
         <li *ngIf="profile.id===message.user1.id" class="sent" >
+          <div style="margin-right: 5px" >{{message.date|amTimeAgo}}</div><br>
           <img src="{{getPhotoCandidate(profile.image,profile.id)}}" height="22px"  alt="">
           <p>{{message.message}}</p>
           <i (click)="supprimer(manager,message.id)"  class="fa fa-2x fa-trash sup" style="color:red;margin-left: 5px;"></i>
         </li>
         <li *ngIf="profile.id!=message.user1.id" class="replies">
+          <div class="float-right" style="margin-right: 5px">{{message?.date|amTimeAgo}}</div><br><br>
           <img src="{{getPhotoManager(manager.image,manager.nomEntreprise)}}" height="22px"  alt="">
           <p>{{message.message}}</p>
         </li>

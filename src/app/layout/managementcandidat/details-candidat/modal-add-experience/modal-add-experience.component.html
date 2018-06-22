@@ -23,18 +23,18 @@
             <input matInput placeholder="Description" #description="ngModel" ngModel='' name="description"
                    required >
 
-            <mat-hint *ngIf=" description.errors?.required && description.touched" style="color:black">mots <b>clés</b></mat-hint>
+            <mat-hint *ngIf=" description.errors?.required && description.touched" style="color:black">Mots <b>clés</b></mat-hint>
       </mat-form-field>  <mat-form-field class="example-full-width">
-          <input matInput placeholder="lieu" #location="ngModel" ngModel='' name="lieu"
+          <input matInput placeholder="Lieu" #location="ngModel" ngModel='' name="lieu"
                  required minlength="3" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)">
 
-          <mat-hint *ngIf=" location.errors?.required && location.touched" style="color:black">lieu <b>obligatoire</b></mat-hint>
+          <mat-hint *ngIf=" location.errors?.required && location.touched" style="color:black">Lieu <b>obligatoire</b></mat-hint>
           <mat-hint *ngIf=" location.errors?.minlength && location.touched " style="color:black">Minimum de caractere 3</mat-hint> </mat-form-field>
             <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="motCle" #motCle="ngModel" ngModel='' name="motCle"
+                <textarea matInput placeholder="MotCle" #motCle="ngModel" ngModel='' name="motCle"
                           required minlength="3" ></textarea>
 
-                <mat-hint *ngIf=" motCle.errors?.required && motCle.touched" style="color:black">mots clés obligatoire</mat-hint>
+                <mat-hint *ngIf=" motCle.errors?.required && motCle.touched" style="color:black">Mots clés obligatoire</mat-hint>
                 <mat-hint *ngIf=" motCle.errors?.minlength && motCle.touched " style="color:black">Minimum de caractere 3</mat-hint> </mat-form-field><mat-form-field>
             <input matInput  [matDatepicker]="picker" placeholder="Choisir date debut" #date1="ngModel"  name="date1" ngModel='' (change)="date=0" >
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -44,7 +44,7 @@
                 <input matInput [matDatepicker]="picker2" placeholder="Choisir date fin" #date2="ngModel" ngModel='' name="date2"  >
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2 ></mat-datepicker>
-            </mat-form-field><div *ngIf="(date1.errors?.required && date1.touched)" style="color:black;">date debut <b>obligatoire</b></div><div *ngIf="date1==1" style="color:black;">date debut <b>invalide</b></div>
+            </mat-form-field><div *ngIf="(date1.errors?.required && date1.touched)" style="color:black;">Date debut <b>obligatoire</b></div><div *ngIf="date1==1" style="color:black;">date debut <b>invalide</b></div>
 <input type="hidden" name="candidateId"  #candidat_id="ngModel"  ngModel='' >
  <div class="form-group row">
 

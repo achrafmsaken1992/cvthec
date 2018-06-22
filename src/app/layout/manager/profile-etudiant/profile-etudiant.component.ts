@@ -10,11 +10,11 @@ import {Location} from '@angular/common';
 })
 export class ProfileEtudiantComponent implements OnInit {
 candidat:any;
-id:number;
+id:any;
 
   constructor(public _location: Location,private etudiantservice: EtudiantService,
               private r:Router,private route: ActivatedRoute,private authService:AuthService) {
-    if (this.authService.isManeger() == false) {
+    if (this.authService.isManeger() == false && this.authService.isAdmin() == false) {
       this.r.navigate(['access-denied'])
     }
   }
@@ -23,15 +23,28 @@ id:number;
 
 
     this.id= this.route.snapshot.params['id'];
+    if(isNaN(this.id) || this.id<=0){
+      this.r.navigate(['access-denied'])
+    }
     this.getCandidat();
 
   }
 
 getCandidat(){
-  this.etudiantservice.getEtudiantById(this.id).subscribe(resp=>{
-    this.candidat=resp;
 
-  })
+
+
+    this.etudiantservice.getEtudiantById(this.id).subscribe(resp => {
+      this.candidat = resp;
+
+
+      if (resp.nomEntreprise != null)
+        this.r.navigate(['access-denied'])
+
+    }, err => {
+
+    })
+
 
 }
 

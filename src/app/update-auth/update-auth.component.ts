@@ -22,7 +22,7 @@ export class UpdateAuthComponent implements OnInit {
   updatePassword(fo){
     fo.value.token=this.token;
     this.auth.recoveryPassword(fo.value).subscribe(resp => {
-      swal('mise a jour mot de passe avec succée!', 'success');
+      swal('mise a jour mot de passe avec succés!', 'success');
       swal('!mettre a jour mot de passe', 'mise a jour mot de passe avec succée');
       this.router.navigate(['login']);
 

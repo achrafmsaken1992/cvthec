@@ -62,6 +62,9 @@
                 </ul>
             </li>
         </div-->
+        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Tableau de bord' }}
+        </a>
         <a *ngIf="isEtudiant" routerLink="/CompteEtudiant" [routerLinkActive]="['router-link-active']" class="list-group-item">
                   <i class="fa fa-user"></i> {{ 'Compte'  }}
               </a>
@@ -75,6 +78,9 @@
 
         <a *ngIf="isAdmin" routerLink="/managementManager" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-user-plus"></i> {{ 'Gérer demandes'  }}
+        </a>
+        <a *ngIf="isAdmin || isEtudiant" routerLink="/liste-entreprises" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-briefcase"></i> {{ 'Liste entreprises'  }}
         </a>
         <a *ngIf="isAdmin" routerLink="/managementEtudiant" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-graduation-cap"></i> {{ 'Gérer etudiants'  }}
@@ -91,7 +97,7 @@
         <a *ngIf="isManager" routerLink="/messagerie-manager" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-comments"></i> {{ 'Messagerie'  }}
         </a>
-        <a *ngIf="isEtudiant" routerLink="/offres" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a *ngIf="isEtudiant || isAdmin" routerLink="/offres" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-briefcase"></i> {{ 'Liste offres'  }}
         </a>
 
@@ -115,10 +121,8 @@
             </li>
         </div-->
 
-              <!--a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                  <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' | translate }}
-              </a>
-              <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+
+              <!--a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                   <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'Charts' | translate }}
               </a>
               <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">

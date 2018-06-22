@@ -6,6 +6,7 @@
                 <!-- <span class="navbar-toggler-icon"></span> -->
                 <i class="fa fa-bars text-muted" aria-hidden="true"></i>
             </button>
+
             <div #sam class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
 
@@ -27,7 +28,7 @@
 
                             >
 
-                                <div class="notification-item">
+                                <div class="notification-item" (click)="goMessagerieE(messagerie.user1.id)">
 
                                     <!--img src="http://www.leapcms.com/images/100pixels1.gif"-->
                                     <img src="{{getPhotoManager(messagerie.user1.image,messagerie.user1.nomEntreprise)}}" height="100px" width="100px">
@@ -60,7 +61,7 @@
 
                             >
 
-                                <div class="notification-item">
+                                <div class="notification-item" (click)="goMessagerieM(messagerie.user1.id)">
 
                                     <!--img src="http://www.leapcms.com/images/100pixels1.gif"-->
                                     <img src="{{getPhotoCandidat(messagerie.user1.image,messagerie.user1.id)}}" height="100px" width="100px">
@@ -89,16 +90,32 @@
 
 
 
-                    <li class="nav-item">
-                        <a   class="nav-link" routerLink="/profileUrh">
-                            <i class="fa fa-fw fa-user"></i> Compte
+                    <li *ngIf="manager" class="nav-item">
+                        <a   class="nav-link" routerLink="/compteManager">
+                            <i *ngIf="profile?.image==null" class="fa fa-user"></i>
+                            <img  *ngIf="profile?.image!=null" class="imgh" src="{{getPhotoManager(profile.image,profile.nomEntreprise)}}"
+                               width="25px" height="25px"  >
+                            Manager {{profile.prenom}}
                         </a>
                     </li>
+                    <li *ngIf="etudiant" class="nav-item">
+                        <a   class="nav-link" routerLink="/CompteEtudiant">
+
+                                <i *ngIf="profile?.image==null" class="fa fa-user"></i>
+                                <img *ngIf="profile?.image!=null" class="imgh" src="{{getPhotoCandidate(profile.image,profile.id)}}"
+                                     width="25px" height="25px" >
+                                Etudiant {{profile.prenom}}
+                        </a>
+                    </li>
+
+
+
                     <li class="nav-item">
                         <a   class="nav-link" style="cursor: pointer" (click)="onLoggedout()">
                             <i class="fa fa-fw fa-power-off"></i> Deconnecter
                         </a>
                     </li>
+
                 </ul>
             </div>
         </div>

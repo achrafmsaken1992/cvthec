@@ -1,5 +1,5 @@
 <div [@routerTransition]>
-    <h2 class="text-muted">Tableau de bord <small>Aperçu des statistiques</small></h2>
+    <h2 class="text-muted">Tableau de bord </h2>
     <!--div class="row">
         <div class="col-md-12">
             <ngb-carousel>
@@ -14,27 +14,154 @@
         </div>
     </div-->
     <hr>
-    <div class="row">
+    <div class="row" *ngIf="isEtudiant">
         <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
-            <app-stat [bgClass]="'primary'" [icon]="'fa-comments'" [count]="26" [label]="'messages reçus!'" ></app-stat>
+            <app-stat [bgClass]="'primary'" [icon]="'fa-comments'" [count]="nbrMsgRecu" [label]="'Messages reçus!'" ></app-stat>
         </div>
         <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
-            <app-stat [bgClass]="'secondary'" [icon]="'fa-comments'" [count]="13" [label]="'messages envoyés!'"></app-stat>
+            <app-stat [bgClass]="'secondary'" [icon]="'fa-comments'" [count]="nbrMsgEnvoye" [label]="'Messages envoyés!'"></app-stat>
         </div>
         <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
-            <app-stat [bgClass]="'warning'" [icon]="'fa-briefcase'" [count]="12" [label]="'Offres!'" ></app-stat>
+            <app-stat [bgClass]="'warning'" [icon]="'fa-briefcase'" [count]="offres" [label]="'Offres!'" ></app-stat>
         </div>
         <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
-            <app-stat [bgClass]="'success'" [icon]="'fa-question-circle'" [count]="124" [label]="'Quizs!'" ></app-stat>
+            <app-stat [bgClass]="'success'" [icon]="'fa-question-circle'" [count]="quizs" [label]="'Quizs!'" ></app-stat>
         </div>
         <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
-            <app-stat [bgClass]="'info'" [icon]="'fa-question-circle'" [count]="124" [label]="'Quizs répondus !'" ></app-stat>
+            <app-stat [bgClass]="'info'" [icon]="'fa-question-circle'" [count]="quizsRepondus" [label]="'Quizs répondus!'" ></app-stat>
         </div>
         <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
-            <app-stat [bgClass]="'danger'" [icon]="'fa-building'" [count]="13" [label]="'Entreprises!'"></app-stat>
+            <app-stat [bgClass]="'danger'" [icon]="'fa-building'" [count]="entreprises" [label]="'Entreprises!'"></app-stat>
         </div>
 
     </div>
+
+        <div class="row" *ngIf="isManager">
+            <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
+                <app-stat [bgClass]="'primary'" [icon]="'fa-comments'" [count]="nbrMsgRecu" [label]="'Messages reçus!'" ></app-stat>
+            </div>
+            <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
+                <app-stat [bgClass]="'secondary'" [icon]="'fa-comments'" [count]="nbrMsgEnvoye" [label]="'Messages envoyés!'"></app-stat>
+            </div>
+            <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
+                <app-stat [bgClass]="'warning'" [icon]="'fa-briefcase'" [count]="offresManager" [label]="'Offres!'" ></app-stat>
+            </div>
+            <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
+                <app-stat [bgClass]="'success'" [icon]="'fa-question-circle'" [count]="quizsManager" [label]="'Quizs!'" ></app-stat>
+            </div>
+            <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
+                <app-stat [bgClass]="'info'" [icon]="'fa-question-circle'" [count]="quizsReponse" [label]="'Reponses des quizs!'" ></app-stat>
+            </div>
+            <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
+                <app-stat [bgClass]="'danger'" [icon]="'fa-graduation-cap'" [count]="etudiants" [label]="'Etudiants!'"></app-stat>
+            </div>
+        </div>
+            <div class="row" *ngIf="isAdmin">
+                <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
+                    <app-stat [bgClass]="'primary'" [icon]="'fa-comments'" [count]="messageriesManagers" [label]="'Messages entreprises!'" ></app-stat>
+                </div>
+                <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
+                    <app-stat [bgClass]="'secondary'" [icon]="'fa-comments'" [count]="messageriesEtudiants" [label]="'Messages etudiants!'"></app-stat>
+                </div>
+                <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
+                    <app-stat [bgClass]="'warning'" [icon]="'fa-briefcase'" [count]="offres" [label]="'Offres!'" ></app-stat>
+                </div>
+                <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
+                    <app-stat [bgClass]="'success'" [icon]="'fa-question-circle'" [count]="quizs" [label]="'Quizs!'" ></app-stat>
+                </div>
+                <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
+                    <app-stat [bgClass]="'info'" [icon]="'fa-graduation-cap'" [count]="etudiants" [label]="'Etudiants!'"></app-stat>
+                </div>
+                <div class="col-xl-4 col-lg-6 sat" style="margin-top: 10px">
+                    <app-stat [bgClass]="'danger'" [icon]="'fa-building'" [count]="entreprises" [label]="'Entreprises!'"></app-stat>
+                </div>
+
+
+
+    </div>
+    <div *ngIf="isAdmin">
+    <hr>
+    <h2 class="text-muted">Aperçu des statistiques</h2>
+    <div class="row">
+    <div class="col col-sm-6">
+        <div class="card mb-3">
+            <div class="card-header">
+                Taux des reponses correctes
+            </div>
+            <div class="card-body">
+                <canvas baseChart height="180px" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                </canvas>
+            </div>
+        </div>
+    </div>
+        <div class="col col-sm-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Taux des Notes
+                </div>
+                <div class="card-body">
+                    <canvas baseChart height="180px" [data]="doughnutChartData2" [labels]="doughnutChartLabels2" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col col-sm-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Top 3 entreprises ont fait des offres
+                </div>
+                <div class="card-body" >
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <!-- Category -->
+                                <div class="single category" style="width:100%">
+
+                                    <ul class="list-unstyled">
+                                        <li *ngFor="let offre of offresStat;let i=index;" >
+                                            <div *ngIf="i<3"  class="of">{{offre.entreprise}} <span class="pull-right">{{offre.nbr}}</span></div></li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-sm-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                   Top 3 competances
+                </div>
+                <div class="card-body" >
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <!-- Category -->
+                                <div class="single category" style="width:100%">
+
+                                    <ul class="list-unstyled">
+                                        <li *ngFor="let comp of competancesStat;let i=index;" >
+                                            <div *ngIf="i<3"  class="of">{{comp.competance}} <span class="pull-right">{{comp.nbr}}</span></div></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div></div>
+
+
+
     <!--hr /-->
     <!--ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert!-->
     <!--hr /-->

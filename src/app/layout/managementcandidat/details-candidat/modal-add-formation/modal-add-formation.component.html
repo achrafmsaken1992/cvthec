@@ -23,15 +23,15 @@
             <input matInput placeholder="domaine etude" #domaine_etude="ngModel" ngModel='' name="section"
                    required minlength="3">
 
-            <mat-hint *ngIf=" domaine_etude.errors?.required && domaine_etude.touched" style="color:black">domaine etude <b>obligaoire</b></mat-hint>
+            <mat-hint *ngIf=" domaine_etude.errors?.required && domaine_etude.touched" style="color:black">Domaine etude <b>obligaoire</b></mat-hint>
             <mat-hint *ngIf=" domaine_etude.errors?.minlength && domaine_etude.touched " style="color:black">Minimum de caractere 3</mat-hint>
-          </mat-form-field><mat-form-field class="example-full-width">   <input matInput placeholder="diplome" #diplome="ngModel" ngModel='' name="specialite"
+          </mat-form-field><mat-form-field class="example-full-width">   <input matInput placeholder="Diplome" #diplome="ngModel" ngModel='' name="specialite"
                  required minlength="3">
 
-          <mat-hint *ngIf=" diplome.errors?.required && diplome.touched" style="color:black">diplome <b>obligaoire</b></mat-hint>
+          <mat-hint *ngIf=" diplome.errors?.required && diplome.touched" style="color:black">Diplome <b>obligaoire</b></mat-hint>
           <mat-hint *ngIf=" diplome.errors?.minlength && diplome.touched " style="color:black">Minimum de caractere 3</mat-hint> </mat-form-field>
           <mat-form-field class="example-full-width">
-            <mat-select placeholder="mention"  #note="ngModel" ngModel='' name="result" [(value)]="selected" >
+            <mat-select placeholder="Mention"  #note="ngModel" ngModel='' name="result" [(value)]="selected" >
               <mat-option *ngFor="let result of results" [value]="result.value">
                 {{ result.viewValue }}
               </mat-option>
@@ -44,7 +44,7 @@
             <input matInput [matDatepicker]="picker2" placeholder="Choisir date fin" #date2="ngModel" ngModel='' name="date2"  >
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2 ></mat-datepicker>
-          </mat-form-field><div *ngIf="(date1.errors?.required && date1.touched)" style="color:black;">date debut <b>obligaoire</b></div><div *ngIf="date1==1" style="color:black;">date debut <b>invalide</b></div>
+          </mat-form-field><div *ngIf="(date1.errors?.required && date1.touched)" style="color:black;">Date debut <b>obligaoire</b></div><div *ngIf="date1==1" style="color:black;">date debut <b>invalide</b></div>
 
           <div class="form-group row">
 

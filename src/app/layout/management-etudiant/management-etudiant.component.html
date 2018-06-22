@@ -194,10 +194,13 @@
                     </div> <div class="form-group">
                     <div class="form-row">
                         <div class="col-md-6">
-                            <label for="exampleInputEmail1">Date Naissance</label>
-                            <input type="date" #cdate="ngModel" ngModel="" name="DateNaissance" class="form-control" id="exampleInputEmail1"  aria-describedby="emailHelp" placeholder="Entrez votre date naissance " required>
-                            <div *ngIf="cdate.errors?.required && cdate.touched" class="isa_warning">Champ date naissance obligatoire</div>
-                        </div>
+                            <label for="exampleInputEmail1">Date Naissance*</label><br>
+                            <!--input type="date" #cdate="ngModel" ngModel="" name="DateNaissance" class="form-control" id="exampleInputEmail1"  aria-describedby="emailHelp" placeholder="Entrez votre date naissance " required>
+                            <div *ngIf="cdate.errors?.required && cdate.touched" class="isa_warning">Champ date naissance obligatoire</div-->
+                            <mat-form-field style="width:100%;margin-top:-8px">   <input matInput  [matDatepicker]="picker" placeholder="Entrez votre Date de naissance" #date1="ngModel"  name="dateNaissance" ngModel='' required>
+                                <mat-hint *ngIf=" date1.errors?.required && date1.touched" class="isa_warning" style="width:100%;font-size:17px;height:30px;margin-top:-7px;    margin: 5px 0px;">Date de naissance  <b>obligaoire</b></mat-hint><mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker ></mat-datepicker>
+                            </mat-form-field> </div>
 
                         <div class="col-md-6">
                             <label for="exampleInputLastName">Numero de telephone</label>

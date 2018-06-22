@@ -513,3 +513,14 @@ i {
     color: #D8000C;
     background-color: #FFD2D2;
 }
+::ng-deep .cdk-overlay-container{
+    z-index: 1200 !important;
+}
+::ng-deep .pac-container {
+    z-index: 1054 !important;
+}
+.btn-cercle{
+    border-radius: 30%;
+    display: flex;
+
+}

@@ -27,12 +27,11 @@ const routes: Routes = [
 
 
             { path: 'managementEtudiant', loadChildren: './management-etudiant/management-etudiant.module#ManagementEtudiantModule'},
-            { path: 'display-collaborateur', loadChildren: './collaborator/collaborator.module#CollaboratorModule'},
-            { path: 'add-collaborateur', loadChildren: './collaborator/add-collaborator/add-collaborator.module#AddCollaboratorModule'},
+
             { path: 'management-offers', loadChildren: './manager/offers/offers.module#OffersModule'},
 
             { path: 'liste-etudiants', loadChildren: './manager/liste-etudiant/liste-etudiant.module#ListeEtudiantModule'},
-
+            { path: 'liste-entreprises', loadChildren: './liste-entreprise/liste-entreprise.module#ListeEntrepriseModule'},
             { path: 'messagerie-etudiant', loadChildren: './managementcandidat/messagerie-manager/messagerie-manager.module#MessagerieManagerModule'},
             { path: 'messagerie-etudiant/:id', loadChildren: './managementcandidat/messagerie-manager/messagerie-manager.module#MessagerieManagerModule'},
 

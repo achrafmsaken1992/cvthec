@@ -67,6 +67,7 @@ isActive(email){
     this.roles=jwthelper.decodeToken(this.jwtToken).roles;
   }
   logout(){
+
       this.jwtToken=null;
     localStorage.removeItem('token');
       location.reload();
@@ -140,4 +141,64 @@ updatePassword(fo){
 
         return this.http.post('http://localhost:8080/admin/supprimerEtudiant',id,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
     }
+
+
+    nbrMessagesRecu(id){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/nbrMessageRecu?id='+id ,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    nbrMessagesEnvoye(id){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/nbrMessageEnvoye?id='+id ,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    nbrOffres(){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/nbrOffres' ,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    nbrQuizs(){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/nbrQuizs' ,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    nbrQuizsRepondus(id){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/nbrQuizsRepondus?id='+id  ,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    nbrEntreprises(){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/nbrEntreprises' ,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    nbrEtudiants(){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/nbrEtudiants' ,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    nbrOffresManager(id){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/nbrOffreManager?id='+id  ,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    nbrQuizsManager(id){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/nbrQuizsManager?id='+id  ,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    nbrRepQuizsManager(id){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/nbrRepQuizsManager?id='+id  ,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    nbrMessageriesEtudiants(){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/nbrMessageriesEtudiants' ,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+
+    nbrMessageriesManagers(){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/nbrMessageriesManagers' ,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    offreStat(){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/admin/offreStat' ,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+    competanceStat(){
+        if(this.jwtToken==null) this.loadToken();
+        return this.http.get('http://localhost:8080/admin/competanceStat' ,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    }
+
 }

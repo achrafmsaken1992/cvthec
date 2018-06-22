@@ -13,7 +13,10 @@ declare var jQuery:any;
 })
 export class QuestionComponent implements OnInit {
 questions:any;
+
 id:number;
+  res:number[]=[];
+  i=0;
   constructor(public _location: Location,private quizService:QuizService,public r:Router
 ,private managerService:ManagersService,private route: ActivatedRoute,private authService:AuthService) {
     if(this.authService.isManeger()==false)
@@ -37,7 +40,7 @@ this.isQcmManager();
   isQcmManager(){
     this.managerService.isOffreManager(this.id).subscribe(resp=>{
       if(resp==0){
-        this.r.navigate(['access-denied'])
+        //this.r.navigate(['access-denied'])
       }
     })
   }
@@ -89,7 +92,7 @@ if (!form.valid) {
           this.quizService.addQuestion(form.value).subscribe(resp=>{
             swal(
                 'Ajouté!',
-                'ajout quiz avec succés',
+                'ajout question avec succés',
                 'success'
             )
             form.reset();
@@ -104,7 +107,7 @@ if (!form.valid) {
         } else if (result.dismiss === swal.DismissReason.cancel) {
           swal(
               'Annuler',
-              'ajout quiz annulé :)',
+              'ajout question annulé :)',
               'error'
           )
 
@@ -238,5 +241,19 @@ modifier(form,id){
 
   }
 }
+  nbr(id,index){
+    var k;
+    if(this.i==index) {
+      this.quizService.nbrSuggestionByQuestion(id).subscribe(resp => {
+
+        k=resp;
+        this.res[index] = resp
+
+      })
+      this.i++;
+    }
+
+
+  }
 
 }

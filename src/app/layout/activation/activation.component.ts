@@ -27,16 +27,16 @@ activeForm={
       this.activeForm.password=form.value.password;
       this.activeForm.repassword=form.value.repassword;
       this.auth.activation(this.activeForm).subscribe(resp=>{
-          this.toastr.success('You are awesome1!', 'Success!');
+          this.toastr.success('Activation compte avec succès', 'Succès!');
       },err => {
 
 
           if(err.error.message==="token n\'existe pas") {
 
-              this.toastr.success(err.error.message + "!", 'Error!');
+              this.toastr.error(err.error.message + "!", 'Erreur!');
           }
           else{
-              this.toastr.success('You are awesome1!', 'Success!');
+              this.toastr.error(err.error.message+'!', 'Erreur!');
 
           }
       });

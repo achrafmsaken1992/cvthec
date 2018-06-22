@@ -13,8 +13,8 @@
       <header class="header theiaStickySidebar" >
         <div class="profile-img">
 
-            <img  *ngIf="candidat.id!=null" class="img-fluid img-thumbnail"    src="{{getPhotoCandidate(candidat.image,candidat.id)}}"  >
-            <img *ngIf="candidat.id==null" src="https://static6.depositphotos.com/1140262/641/i/950/depositphotos_6410189-stock-photo-working-too-much.jpg" class="img-fluid" alt="">
+            <img  *ngIf="candidat?.image!=null" class="img-fluid img-thumbnail"    src="{{getPhotoCandidate(candidat.image,candidat.id)}}"  >
+            <img *ngIf="candidat?.image==null" [src]="'assets/images/icons_user.png'" class="img-fluid" alt="">
         </div>
         <section class="section-contact section-wrapper gray-bg">
           <div class="container-fluid" style="">
@@ -79,6 +79,7 @@
     </div>
     <!-- .left-col-block -->
     <div class="right-col-block blocks" >
+
 
 
       <div class="theiaStickySidebar">

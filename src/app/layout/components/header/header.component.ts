@@ -15,6 +15,10 @@ declare var jQuery:any;
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+    admin:boolean;
+    etudiant:boolean;
+    manager:boolean;
     pushRightClass: string = 'push-right';
     data: any;
     size = 5;
@@ -25,7 +29,9 @@ export class HeaderComponent implements OnInit {
     currentMessage = new BehaviorSubject(null)
     constructor(private translate: TranslateService, public router: Router, private auth: AuthService, public toastr: ToastsManager, vcr: ViewContainerRef,
                private msgService: MessagingService) {
-
+this.etudiant=this.auth.isEtudiant();
+this.admin=this.auth.isAdmin();
+this.manager=this.auth.isManeger();
         this.toastr.setRootViewContainerRef(vcr)
 
         this.auth.getProfile().subscribe(resp => {
@@ -38,8 +44,15 @@ export class HeaderComponent implements OnInit {
 
         });
 
+
     }
 
+
+
+    getPhotoCandidate(photo, id) {
+
+        return "http://localhost:8080/getPhotoEtudiant/" + photo + "/" + id;
+    }
     ngOnInit() {
         this.receiveMessage();
 
@@ -48,7 +61,7 @@ export class HeaderComponent implements OnInit {
             this.msgService.receiveMessage()
 
 
-            this.msgService.currentMessage
+            this.msgService.currentMessage;
 
         })
 
@@ -76,6 +89,9 @@ export class HeaderComponent implements OnInit {
     }
 
     onLoggedout() {
+        this.auth.updateNotification(null,this.profile.id).subscribe(resp=>{
+
+        })
         this.auth.logout();
         localStorage.removeItem('isLoggedin');
         this.router.navigate(["accueil"])
@@ -154,4 +170,12 @@ export class HeaderComponent implements OnInit {
 
 
     }
+    goMessagerieM(id){
+        this.router.navigateByUrl('messagerie-manager/'+id);
+    }
+
+    goMessagerieE(id){
+        this.router.navigateByUrl('messagerie-etudiant/'+id);
+    }
+
 }

@@ -14,12 +14,12 @@
 
           <div class="upload-btn-wrapper">
             <img src="https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png" *ngIf="profile.image==null">
-            <img *ngIf="profile.image!=null" src="{{getPhotoProfil()}}" class="rounded-circle img-thumbnail image">
+            <img *ngIf="profile?.image!=null" src="{{getPhotoProfil()}}" class="rounded-circle img-thumbnail image">
 
             <div class="middle">
               <div class="text"></div>
             </div>
-            <input (change)="selectFile($event);updatePhoto()"  data-toggle="tooltip" title="Changer image profile"  type="file" name="photo" #photo="ngModel" ngModel='' accept="image/x-png,image/gif,image/jpeg" />
+            <input (change)="selectFile($event);updatePhoto()"  data-toggle="tooltip" title="Changer image profile"  type="file" name="file" #photo="ngModel" ngModel='' accept="image/x-png,image/gif,image/jpeg" />
           </div>
           <br>
 
